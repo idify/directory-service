@@ -1,0 +1,30 @@
+%h4='Search for Vendors'
+=form_tag search_homes_path, method: :get do
+  =select_tag :city_name, options_from_collection_for_select(Location.all, "name", "name"), prompt: '-Select City-'
+  .clearfix
+  =select_tag :category_type, options_for_select(Category.all.collect{ |u| [u.category_type, u.category_type] }), prompt: '-Select Category-'
+  .clearfix
+  =submit_tag 'Search Vendors', class:"btn btn-primary"
+.clearfix
+
+-if @serached_results.present?
+  .table-responsive
+    %table.table.table-bordered.table-striped.table-hover
+      %thead
+        %tr
+          %th Vendor
+          %th About us
+          %th Service Area
+          %th Price Range
+      %tbody
+        -@serached_results.each do |x|
+          %tr
+            %td
+              =x.name
+            %td
+              =x.description
+            %td
+              =Location.find(x.service_area).name
+            %td
+              ="#{x.min_price} - #{x.max_price}"
+        .clearfix

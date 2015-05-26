@@ -1,0 +1,26 @@
+%h4 Categories list
+-if @categories.present?
+  .table-responsive
+    %table.table.table-bordered.table-striped.table-hover
+      %thead
+        %tr
+          %th Name
+          %th About us
+          %th Category
+          %th Service Area
+          %th Action
+      %tbody
+        -@categories.each do |category|
+          %tr
+            %td
+              =link_to category.name, category_path(category)
+            %td
+              =category.description
+            %td
+              =category.category_type
+            %td
+              =Location.find(category.service_area).name
+            %td
+              =link_to category, data:{:confirm=>'Are you sure to delete this ?'}, :method=>:delete do
+                %span{style: "aria-hidden=true", class:"glyphicon glyphicon-trash"}
+            .clearfix

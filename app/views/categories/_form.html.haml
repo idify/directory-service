@@ -1,0 +1,61 @@
+=form_for @category do |f|
+  -if @category.errors.any?
+    %h5
+      =pluralize(@category.errors.count, "error") +' '+ 'prohibited this category from being saved:'
+    %ul
+      -@category.errors.full_messages.each do |msg|
+        %li= msg
+  .form-group
+    .col-sm-6
+      =f.label :name, 'Name'
+    .col-sm-6
+      =f.text_field :name, required:true, class: "form-control"
+
+    .col-sm-6
+      =f.label :address
+    .col-sm-6
+      =f.text_field :address, class: "form-control"
+
+    .col-sm-6
+      =f.label :category_type
+    .col-sm-6
+      =f.text_field :category_type, class: "form-control"
+
+    .col-sm-6
+      =f.label :service_area
+    .col-sm-6
+      =f.select :service_area,  Location.all.collect {|p| [ p.name, p.id ] }, class: "form-control", :prompt => '-select-'
+
+    .col-sm-6
+      =f.label :email
+    .col-sm-6
+      =f.email_field :email, class: "form-control"
+
+    .col-sm-6
+      =f.label :mobile
+    .col-sm-6
+      =f.text_field :mobile, class: "form-control"
+
+    .col-sm-6
+      =f.label :no_of_employees
+    .col-sm-6
+      =f.number_field :no_of_employees, :min => 1, class: "form-control"
+
+    .col-sm-6
+      =f.label :min_price
+    .col-sm-6
+      =f.text_field :min_price, class: "form-control"
+
+    .col-sm-6
+      =f.label :max_price
+    .col-sm-6
+      =f.text_field :max_price, class: "form-control"
+
+    .col-sm-6
+      =f.label :description, 'Description'
+    .col-sm-6
+      =f.text_area :description, required: true, class: "form-control"
+    .clearfix
+
+    =f.submit 'Submit',:class=>"btn btn-primary"
+.clearfix
