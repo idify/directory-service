@@ -12,5 +12,12 @@
  *
  *= require_self
  *= require bootstrap
-
+ *= require bootstrap-datepicker
  */
+@import "bootstrap-timepicker.min";
+
+.datepicker {
+  border-radius: 4px;
+  direction: ltr;
+  padding: 5px 12px !important;
+}

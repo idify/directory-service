@@ -14,5 +14,67 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap-datepicker
+//= require bootstrap-timepicker.min
 //= require turbolinks
-//= require_tree .
+
+$(document).ready(function() {
+
+    //Adding guest manager fields
+    $("#addMoreGuestLink").click(function (e) {
+        e.preventDefault();
+
+        $("#guests_fields").append('<div id="guests_fields"><div class="col-sm-3"><input type="text" name="guests[][name]" class="form-control"/></div>'+
+        '<div class="col-sm-3"><input type="text" name="guests[][email]" class="form-control"/></div>'+
+        '<div class="col-sm-2"><input type="text" name="guests[][mobile]" class="form-control"/></div>'+
+        '<div class="col-sm-2"><input type="text" name="guests[][city]" class="form-control"/></div>'+
+        '<div class="col-sm-2"><a id="removeGuestsField" href="javascript:;" class="text-danger"><img src="/assets/close.png"/></a></div>'+
+        '<div class="clearfix"></div>'+
+        '</div>');
+    });
+
+    //Removing guest manager fields
+    $("body").on("click",'#removeGuestsField',function(){
+        $(this).parent().parent().remove();
+    });
+
+    //Adding ceremony fields
+    $("#addMoreCeremonyLink").click(function (e) {
+        e.preventDefault();
+
+        $("#ceremony_fields").append('<div id="ceremony_fields"><div class="col-sm-3"><input type="text" name="ceremonies[][program]" class="form-control" required="required"/></div>'+
+        '<div class="col-sm-3"><input type="text" name="ceremonies[][date]" class="form-control datepicker" required="required"/></div>'+
+        '<div class="col-sm-2"><div class="input-group bootstrap-timepicker">' +
+        '<input type="text" name="ceremonies[][time]" class="form-control ceremonytimepicker" required="required"/>' +
+        '<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i>' +
+        '</span>' +
+        '</div>' +
+        '</div>' +
+        '<div class="col-sm-2"><input type="text" name="ceremonies[][venue]" class="form-control" required="required"/></div>'+
+        '<div class="col-sm-2"><a id="removeCeremonyField" href="javascript:;" class="text-danger"><img src="/assets/close.png"/></a></div>'+
+        '<div class="clearfix"></div>'+
+        '</div>');
+        //Added datepicker
+        $('.datepicker').datepicker({
+            format: 'mm/dd/yy',
+            autoclose: true
+        });
+        $('.ceremonytimepicker').timepicker({
+            defaultTime: "07:00 AM"
+        });
+    });
+
+    //Removing ceremony fields
+    $("body").on("click",'#removeCeremonyField',function(){
+        $(this).parent().parent().remove();
+    });
+
+    $('.ceremonytimepicker').timepicker({
+        defaultTime: "07:00 AM"
+    });
+
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true
+    });
+})
