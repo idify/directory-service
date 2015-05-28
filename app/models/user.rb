@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :guests
   has_many :ceremonies
+
+  acts_as_messageable
 end
