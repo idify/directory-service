@@ -1,0 +1,28 @@
+=form_for @guest do |f|
+  -if @guest.errors.any?
+    %h5
+      =pluralize(@guest.errors.count, "error") +' '+ 'prohibited this guest from being saved:'
+    %div.alert.alert-danger
+      - @guest.errors.full_messages.each do |msg|
+        = msg
+  =f.label :name, 'Name', class:"col-sm-3"
+  =f.label :email, 'Email', class:"col-sm-3"
+  =f.label :mobile, 'Mobile', class:"col-sm-2"
+  =f.label :city, 'City', class:"col-sm-2"
+  .form-group#guests_fields
+    .col-sm-3
+      =f.text_field :name, :name=>"guests[][name]", class:"form-control", :required=>true
+    .col-sm-3
+      =f.email_field :email, :name=>"guests[][email]", class:"form-control", :required=>true
+    .col-sm-2
+      =f.text_field :mobile, :name=>"guests[][mobile]", class:"form-control", :required=>true
+    .col-sm-2
+      =f.text_field :city, :name=>"guests[][city]", class:"form-control", :required=>true
+    -if @guest.new_record?
+      .col-sm-2
+        =link_to 'Add More Guest', 'javascript:void();', :id=>'addMoreGuestLink',class:"btn btn-primary"
+    .clearfix
+
+  .col-lg-12.text-right
+    =f.submit 'Save Guest',:class=>"btn btn-primary"
+.clearfix

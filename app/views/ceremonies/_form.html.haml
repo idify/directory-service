@@ -1,0 +1,31 @@
+=form_for @ceremony do |f|
+  -if @ceremony.errors.any?
+    %h5
+      =pluralize(@ceremony.errors.count, "error") +' '+ 'prohibited this ceremony from being saved:'
+    %div.alert.alert-danger
+      - @ceremony.errors.full_messages.each do |msg|
+        = msg
+  =f.label :program, 'Program', class:"col-sm-3"
+  =f.label :date, 'Date', class:"col-sm-3"
+  =f.label :time, 'Time', class:"col-sm-2"
+  =f.label :venue, 'Venue', class:"col-sm-2"
+  .form-group#ceremony_fields
+    .col-sm-3
+      =f.text_field :program, :name=>"ceremonies[][program]", class:"form-control", :required=>true
+    .col-sm-3
+      =f.text_field :date, :name=>"ceremonies[][date]", class:"form-control datepicker", :required=>true
+    .col-sm-2
+      .input-group.bootstrap-timepicker
+        =f.text_field :time, :name=>"ceremonies[][time]", class:"form-control ceremonytimepicker", :required=>true
+        %span.input-group-addon
+          %i.glyphicon.glyphicon-time
+    .col-sm-2
+      =f.text_field :venue, :name=>"ceremonies[][venue]", class:"form-control", :required=>true
+    -if @ceremony.new_record?
+      .col-sm-2
+        =link_to 'Add More Ceremony', 'javascript:void();', :id=>'addMoreCeremonyLink',class:"btn btn-primary"
+    .clearfix
+
+  .col-lg-12.text-right
+    =f.submit 'Save',:class=>"btn btn-primary"
+.clearfix

@@ -1,0 +1,25 @@
+%h4 Ceremony list
+-if @ceremonies.present?
+  .table-responsive
+    %table.table.table-bordered.table-striped.table-hover
+      %thead
+        %tr
+          %th Program
+          %th Date
+          %th Time
+          %th Venue
+      %tbody
+        -@ceremonies.each do |ceremony|
+          %tr
+            %td
+              =link_to ceremony.program, edit_ceremony_path(ceremony)
+            %td
+              =ceremony.date
+            %td
+              =ceremony.time
+            %td
+              =ceremony.venue
+            %td
+              =link_to ceremony, data:{:confirm=>'Are you sure to delete this ?'}, :method=>:delete do
+                %span{style: "aria-hidden=true", class:"glyphicon glyphicon-trash"}
+          .clearfix

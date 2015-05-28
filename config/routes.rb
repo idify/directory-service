@@ -21,6 +21,10 @@ Rails.application.routes.draw do
 
   resources :categories
 
+  resources :guests
+
+  resources :ceremonies
+
   resources :homes do
     collection do
       get 'dashboard'

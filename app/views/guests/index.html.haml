@@ -1,0 +1,25 @@
+%h4 Guest list
+-if @guests.present?
+  .table-responsive
+    %table.table.table-bordered.table-striped.table-hover
+      %thead
+        %tr
+          %th Name
+          %th Email
+          %th Mobile
+          %th City
+      %tbody
+        -@guests.each do |guest|
+          %tr
+            %td
+              =link_to guest.name, edit_guest_path(guest)
+            %td
+              =guest.email
+            %td
+              =guest.mobile
+            %td
+              =guest.city
+            %td
+              =link_to guest, data:{:confirm=>'Are you sure to delete this ?'}, :method=>:delete do
+                %span{style: "aria-hidden=true", class:"glyphicon glyphicon-trash"}
+          .clearfix
