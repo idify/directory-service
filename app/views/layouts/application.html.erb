@@ -25,7 +25,10 @@
     <ul class="nav navbar-nav pull-right">
       <%if current_user%>
           <li><%= link_to 'Home', dashboard_homes_path %></li>
+          <li><%= link_to 'Ceremony', new_ceremony_path %></li>
+          <li><%= link_to 'Guest Manager', new_guest_path %></li>
           <li><%= link_to 'New Category', new_category_path %></li>
+          <li><%= link_to 'Change Password', edit_user_registration_path%></li>
           <li><%= link_to 'logout', destroy_user_session_path, :method=>"delete"%></li>
       <% end %>
     </ul>
