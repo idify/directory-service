@@ -13,11 +13,19 @@
  *= require_self
  *= require bootstrap
  *= require bootstrap-datepicker
+ *= require ImageSelect
  */
 @import "bootstrap-timepicker.min";
+@import 'chosen';
 
 .datepicker {
   border-radius: 4px;
   direction: ltr;
   padding: 5px 12px !important;
+}
+.messages {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }

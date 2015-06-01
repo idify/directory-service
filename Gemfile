@@ -59,3 +59,6 @@ gem 'mailboxer', :git => 'git://github.com/div/mailboxer.git', :branch => 'rails
 gem 'bootstrap-sass'
 gem 'bootstrap-will_paginate'
 gem 'will_paginate'
+gem 'gravatar_image_tag'
+gem 'chosen-rails', git: 'git://github.com/qpowell/chosen-rails.git'
+gem 'compass-rails', github: 'Compass/compass-rails'

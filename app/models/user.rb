@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   has_many :ceremonies
 
   acts_as_messageable
+
+  def mailboxer_email(object)
+    email
+  end
 end
