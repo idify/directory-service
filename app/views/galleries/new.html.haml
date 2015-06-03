@@ -1,0 +1,23 @@
+=form_for :gallery, :url=>{:controller => 'galleries', :action=>'create' }, :html => { :multipart => true } do |f|
+  .form-group
+    .col-sm-3
+      =f.label :type, 'Select'
+    .col-sm-4
+      =f.select :type, ['Image', 'Video']
+    .clearfix
+  .form-group
+    .col-sm-3
+      =f.label :attachment, 'Choose content'
+    .col-sm-4
+      =f.file_field :attachment, :multiple => true, :required=>true
+    .clearfix
+  .form-group
+    .col-sm-3
+      =f.label :url, 'Give any url from youtube or vimeo'
+    .col-sm-4
+      =f.text_field :url, class:"form-control"
+    .clearfix
+
+  .col-lg-4.text-right
+    =f.submit 'Save',:class=>"btn btn-primary"
+.clearfix

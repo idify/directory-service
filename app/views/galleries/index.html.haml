@@ -1,0 +1,19 @@
+.h3='Gallery'
+.clearfix
+.h4='Pictures:'
+-unless current_user.images.nil?
+  -current_user.images.each do |x|
+    =image_tag x.photo.url(:thumb)
+
+.h4='Videos:'
+-unless current_user.videos.nil?
+  -current_user.videos.each do |x|
+    %video{:controls => "", :width => "200"}
+      %source{:src => "#{x.video.url(:original)}", :type => "video/mp4"}
+    .clearfix
+
+.h4='Videos Urls:'
+-unless current_user.video_urls.nil?
+  -current_user.video_urls.each do |x|
+    =link_to x.url, x.url, :target => "_blank"
+    .clearfix

@@ -17,7 +17,6 @@
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker.min
 //= require chosen-jquery
-//= require messages
 //= require ImageSelect.jquery
 //= require turbolinks
 
@@ -80,4 +79,6 @@ $(document).ready(function() {
         format: 'dd/mm/yyyy',
         autoclose: true
     });
+
+    $('.chosen-it').chosen();
 })

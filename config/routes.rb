@@ -48,6 +48,8 @@ Rails.application.routes.draw do
   end
   resources :messages, only: [:new, :create]
 
+  resources :galleries
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

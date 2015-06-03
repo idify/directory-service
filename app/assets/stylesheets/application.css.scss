@@ -13,10 +13,11 @@
  *= require_self
  *= require bootstrap
  *= require bootstrap-datepicker
+ *= require chosen
  *= require ImageSelect
  */
 @import "bootstrap-timepicker.min";
-@import 'chosen';
+
 
 .datepicker {
   border-radius: 4px;
