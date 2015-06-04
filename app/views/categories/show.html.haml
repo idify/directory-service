@@ -1,3 +1,4 @@
+%script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"}
 -if @category.present?
   .table-responsive
     %table.table.table-bordered.table-striped.table-hover
@@ -17,3 +18,31 @@
             =@category.category_type
           %td
             =Location.find(@category.service_area).name
+  = "MAP NOT ASSIGNED".html_safe if @category.latitude.blank?
+  Location:
+  #googleMap{:style => "width:50%;height:250px; margin:0 auto;"}
+
+:javascript
+    var myCenter=new google.maps.LatLng(#{@category.latitude},#{@category.longitude});
+    var marker;
+
+    function initialize()
+    {
+        var mapProp = {
+            center:myCenter,
+            zoom:16,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+
+        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+        marker=new google.maps.Marker({
+            position:myCenter,
+            animation:google.maps.Animation.BOUNCE,
+            icon: "/assets/custom_marker.png",
+        });
+
+        marker.setMap(map);
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);

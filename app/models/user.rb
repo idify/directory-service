@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 
   enum role: [ :customer, :vendor]
 
+  validates_format_of :mobile, :presence => true, with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/
+
   def mailboxer_email(object)
     email
   end

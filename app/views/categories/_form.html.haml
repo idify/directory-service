@@ -5,6 +5,9 @@
     %ul
       -@category.errors.full_messages.each do |msg|
         %li= msg
+
+  = f.hidden_field(:latitude,:id=>"ad_latitude")
+  = f.hidden_field(:longitude,:id=>"ad_longitude")
   .form-group
     .col-sm-6
       =f.label :name, 'Name'
@@ -15,6 +18,29 @@
       =f.label :address
     .col-sm-6
       =f.text_field :address, class: "form-control"
+
+    %label.col-sm-3{:for => "location"}
+      Location
+      %span{:style=>"color: red;"} *
+      %b
+        [
+        %a{:title => "Please Hit Get Location Button After Filling the Location Address Or Drag The Marker on Map To Choose Location"}> ?
+        ]
+    .col-sm-5.col-md-4
+      = f.text_field(:address,:placeholder=>'Location',:id=>"txtAddress",:class=>"form-control")
+    .col-sm-2
+      = button_tag "Get Location",:id=>"loc",:type=>"button" ,:class=>"btn btn-primary margin_top20_sm"
+    .clearfix
+
+    %label.col-sm-3{:for => "location_map"}
+      Location Map
+      %b
+        [
+        %a{:title => "Drag The Marker To Choose the Location"}> ?
+        ]
+    .col-sm-5
+      #googleMap{:style => "overflow:hidden;height:250px;width:100%;", :type => "hidden"}
+    .clearfix
 
     .col-sm-6
       =f.label :category_type
@@ -59,3 +85,98 @@
 
     =f.submit 'Submit',:class=>"btn btn-primary"
 .clearfix
+
+//google map adding in categories
+:javascript
+  function GetLocation(maplocation) {
+    var geocoder = new google.maps.Geocoder();
+    var address = maplocation;
+    geocoder.geocode({ 'address': address }, function (results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var latitude = results[0].geometry.location.lat();
+        var longitude = results[0].geometry.location.lng();
+        var marker;
+        document.getElementById("ad_latitude").value = (latitude);
+        document.getElementById("ad_longitude").value = (longitude);
+
+        var myCenter=new google.maps.LatLng(latitude,longitude);
+        var mapProp = {
+          center:myCenter,
+          zoom:5,
+          mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+
+        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        marker = new google.maps.Marker(
+          {
+            map:map,
+            icon: "/assets/custom_marker.png",
+            draggable:true,
+            animation: google.maps.Animation.DROP,
+            position: results[0].geometry.location
+
+
+          });
+        google.maps.event.addListener(marker, 'dragend', function()
+        {
+          geocodePosition(marker.getPosition());
+        });
+
+        function geocodePosition(pos)
+        {
+
+
+          geocoder.geocode
+          ({
+            latLng: pos,
+
+            },
+            function(results, status)
+            {
+              if (status == google.maps.GeocoderStatus.OK)
+              {
+                var latitude = results[0].geometry.location.lat();
+                var longitude = results[0].geometry.location.lng();
+                var address=results[0].formatted_address;
+                var marker;
+                document.getElementById("ad_latitude").value = (latitude);
+                document.getElementById("ad_longitude").value = (longitude);
+                document.getElementById("txtAddress").value = (address);
+
+                var myCenter=new google.maps.LatLng(latitude,longitude);
+                $("#mapSearchInput").val(results[0].formatted_address);
+                $("#mapErrorMsg").hide(100);
+              }
+              else
+              {
+                $("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);
+              }
+            }
+          );
+        }
+        map.setZoom(16);
+        marker.setMap(map);
+      }
+      else {
+        alert("Request failed.")                          }
+    });
+  };
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+
+  function initialize()
+  {
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  }
+
+  $('#loc').on('click', function() {
+    city=$('#ad_city_id option:selected').text();
+    address=$('#txtAddress').val();
+    if (address.toLowerCase().indexOf(city.toLowerCase()) < 0)
+      maplocation = address+" "+city
+    else
+      maplocation = address
+    GetLocation(maplocation)
+  });
+
+    // google map code ends here
