@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   acts_as_messageable
 
+  enum role: [ :customer, :vendor]
+
   def mailboxer_email(object)
     email
   end

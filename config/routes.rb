@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :sessions => "users/sessions"} do
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :sessions => "users/sessions", :registrations => "users/registrations"} do
+    resources 'users/registrations'
     resources 'users/sessions'
   end
 
@@ -15,12 +17,6 @@ Rails.application.routes.draw do
       root to: 'devise/sessions#new', :as=> "unauthenticated"
     end
   end
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-
 
   resources :categories
 
@@ -46,6 +42,7 @@ Rails.application.routes.draw do
       delete :empty_trash
     end
   end
+
   resources :messages, only: [:new, :create]
 
   resources :galleries

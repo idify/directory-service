@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603085641) do
+ActiveRecord::Schema.define(version: 20150604051335) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -192,6 +192,10 @@ ActiveRecord::Schema.define(version: 20150603085641) do
     t.datetime "confirmation_sent_at"
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.string   "mobile",                 limit: 255
+    t.integer  "role",                   limit: 4,   default: 0,  null: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
