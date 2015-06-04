@@ -17,4 +17,10 @@ class ApplicationController < ActionController::Base
   def redirect_back_or(path)
     redirect_to request.referer || path
   end
+
+  def check_if_mobile_verified
+    if current_user && !current_user.is_verified?
+      redirect_to :verify_mobile
+    end
+  end
 end

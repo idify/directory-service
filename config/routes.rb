@@ -18,6 +18,12 @@ Rails.application.routes.draw do
     end
   end
 
+  devise_scope :user do
+    get '/sms_verify'=>'users/sessions#sms_verify'
+    get '/check_code'=>'users/sessions#check_code'
+    get '/verify_mobile'=>'users/sessions#verify_mobile'
+  end
+
   resources :categories
 
   resources :guests

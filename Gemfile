@@ -69,3 +69,4 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'unirest'
