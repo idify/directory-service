@@ -11,15 +11,13 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker.min
 //= require chosen-jquery
-//= require messages
 //= require ImageSelect.jquery
-//= require turbolinks
+//= require messages
 
 $(document).ready(function() {
 

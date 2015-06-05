@@ -23,7 +23,7 @@
       =f.text_field :venue, :name=>"ceremonies[][venue]", class:"form-control", :required=>true
     -if @ceremony.new_record?
       .col-sm-2
-        =link_to 'Add More Ceremony', 'javascript:void();', :id=>'addMoreCeremonyLink',class:"btn btn-primary"
+        =link_to 'Add More Ceremony', 'javascript:void(0);', :id=>'addMoreCeremonyLink',class:"btn btn-primary"
     .clearfix
 
   .col-lg-12.text-right
