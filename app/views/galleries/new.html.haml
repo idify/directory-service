@@ -1,3 +1,4 @@
+%h4 Create Gallery
 =form_for :gallery, :url=>{:controller => 'galleries', :action=>'create' }, :html => { :multipart => true } do |f|
   .form-group
     .col-sm-3
@@ -21,3 +22,5 @@
   .col-lg-4.text-right
     =f.submit 'Save',:class=>"btn btn-primary"
 .clearfix
+
+=link_to 'Visit Gallery', galleries_path

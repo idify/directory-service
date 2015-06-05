@@ -51,7 +51,13 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:new, :create]
 
-  resources :galleries
+  resources :galleries do
+    member do
+      delete :delete_photo
+      delete :delete_video
+      delete :delete_video_url
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

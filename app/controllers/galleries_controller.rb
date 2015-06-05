@@ -28,6 +28,30 @@ class GalleriesController < ApplicationController
     redirect_to galleries_path
   end
 
+  def delete_photo
+    @image = Image.find(params[:id])
+
+    if @image.destroy
+      redirect_to galleries_path, notice: "Picture has been deleted."
+    end
+  end
+
+  def delete_video
+    @video = Video.find(params[:id])
+
+    if @video.destroy
+      redirect_to galleries_path, notice: "Video has been deleted."
+    end
+  end
+
+  def delete_video_url
+    @video_url = VideoUrl.find(params[:id])
+
+    if @video_url.destroy
+      redirect_to galleries_path, notice: "Video Url has been deleted."
+    end
+  end
+
   def index;end
 
 end
