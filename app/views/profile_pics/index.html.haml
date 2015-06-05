@@ -1,0 +1,12 @@
+.h3='Business Images'
+.clearfix
+.h4='Logo:'
+-unless @profile_pic.nil?
+  =image_tag @profile_pic.logo.url(:thumb)
+  =#link_to '<span style="aria-hidden=true", class="glyphicon glyphicon-trash"></span>'.html_safe, {:controller=>'profile_pics', action: :destroy, id: @profile_pic.id}, method: :delete,data: { confirm: 'Are you sure to delete this logo?' }
+.clearfix
+
+.h4='Header Image:'
+-unless @profile_pic.nil?
+  =image_tag @profile_pic.header_image.url(:thumb)
+  =#link_to '<span style="aria-hidden=true", class="glyphicon glyphicon-trash"></span>'.html_safe, {:controller=>'profile_pics', action: :destroy, id: @profile_pic.id}, method: :delete,data: { confirm: 'Are you sure to delete this header image?' }

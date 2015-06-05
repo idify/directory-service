@@ -59,6 +59,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :profile_pics
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

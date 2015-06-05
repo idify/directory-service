@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
 
   validates_format_of :mobile, :presence => true, with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/
 
+  has_one :profile_pic
+
   def mailboxer_email(object)
     email
   end
