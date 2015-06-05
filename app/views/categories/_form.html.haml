@@ -9,82 +9,87 @@
   = f.hidden_field(:latitude,:id=>"ad_latitude")
   = f.hidden_field(:longitude,:id=>"ad_longitude")
   .form-group
-    .col-sm-6
-      =f.label :name, 'Name'
-    .col-sm-6
+    .col-sm-4
+      =f.label :name, 'Business Name'
+    .col-sm-4
       =f.text_field :name, required:true, class: "form-control"
+    .clearfix
 
-    .col-sm-6
-      =f.label :address
-    .col-sm-6
+    .col-sm-4
+      =f.label :address, 'Office Address'
+    .col-sm-4
       =f.text_field :address, class: "form-control"
-
-    %label.col-sm-3{:for => "location"}
+    .clearfix
+    %label.col-sm-4{:for => "location"}
       Location
       %span{:style=>"color: red;"} *
       %b
         [
         %a{:title => "Please Hit Get Location Button After Filling the Location Address Or Drag The Marker on Map To Choose Location"}> ?
         ]
-    .col-sm-5.col-md-4
+    .col-sm-4.col-md-4
       = f.text_field(:address,:placeholder=>'Location',:id=>"txtAddress",:class=>"form-control")
     .col-sm-2
       = button_tag "Get Location",:id=>"loc",:type=>"button" ,:class=>"btn btn-primary margin_top20_sm"
     .clearfix
 
-    %label.col-sm-3{:for => "location_map"}
+    %label.col-sm-4{:for => "location_map"}
       Location Map
       %b
         [
         %a{:title => "Drag The Marker To Choose the Location"}> ?
         ]
-    .col-sm-5
+    .col-sm-4
       #googleMap{:style => "overflow:hidden;height:250px;width:100%;", :type => "hidden"}
     .clearfix
 
-    .col-sm-6
-      =f.label :category_type
-    .col-sm-6
+    .col-sm-4
+      =f.label :category_type, 'Add Service'
+    .col-sm-4
       =f.text_field :category_type, class: "form-control"
+    .clearfix
 
-    .col-sm-6
+    .col-sm-4
       =f.label :service_area
-    .col-sm-6
+    .col-sm-4
       =f.select :service_area,  Location.all.collect {|p| [ p.name, p.id ] }, class: "form-control", :prompt => '-select-'
+    .clearfix
+    -#.col-sm-6
+    -#  =f.label :email
+    -#.col-sm-6
+    -#  =f.email_field :email, class: "form-control"
+    -#
+    -#.col-sm-6
+    -#  =f.label :mobile
+    -#.col-sm-6
+    -#  =f.text_field :mobile, class: "form-control"
 
-    .col-sm-6
-      =f.label :email
-    .col-sm-6
-      =f.email_field :email, class: "form-control"
-
-    .col-sm-6
-      =f.label :mobile
-    .col-sm-6
-      =f.text_field :mobile, class: "form-control"
-
-    .col-sm-6
-      =f.label :no_of_employees
-    .col-sm-6
+    .col-sm-4
+      =f.label :no_of_employees, 'No. of employees'
+    .col-sm-4
       =f.number_field :no_of_employees, :min => 1, class: "form-control"
-
-    .col-sm-6
-      =f.label :min_price
-    .col-sm-6
+    .clearfix
+    .col-sm-4
+      =f.label :min_price, 'Min. price'
+    .col-sm-4
       =f.text_field :min_price, class: "form-control"
+    .clearfix
 
-    .col-sm-6
-      =f.label :max_price
-    .col-sm-6
+    .col-sm-4
+      =f.label :max_price, 'Max. price'
+    .col-sm-4
       =f.text_field :max_price, class: "form-control"
+    .clearfix
 
-    .col-sm-6
+    .col-sm-4
       =f.label :description, 'Description'
-    .col-sm-6
+    .col-sm-4
       =f.text_area :description, required: true, class: "form-control"
     .clearfix
 
     =f.submit 'Submit',:class=>"btn btn-primary"
 .clearfix
+=link_to 'See your Business Info', categories_path
 
 //google map adding in categories
 :javascript

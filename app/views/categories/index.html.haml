@@ -1,12 +1,12 @@
-%h4 Categories list
+%h4 Business Info
 -if @categories.present?
   .table-responsive
     %table.table.table-bordered.table-striped.table-hover
       %thead
         %tr
-          %th Name
+          %th Business Name
           %th About us
-          %th Category
+          %th Service
           %th Service Area
           %th Action
       %tbody
@@ -21,6 +21,7 @@
             %td
               =Location.find(category.service_area).name
             %td
+              =link_to '<span style= "aria-hidden=true", class="glyphicon glyphicon-edit"></span>'.html_safe, edit_category_path(category)
               =link_to category, data:{:confirm=>'Are you sure to delete this ?'}, :method=>:delete do
                 %span{style: "aria-hidden=true", class:"glyphicon glyphicon-trash"}
             .clearfix
