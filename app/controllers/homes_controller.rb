@@ -1,8 +1,7 @@
 class HomesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :only=>[:dashboard, :search]
 
-  def dashboard
-  end
+  def dashboard;end
 
   def search
     if params[:city_name].present? or params[:category_type].present?
@@ -11,5 +10,9 @@ class HomesController < ApplicationController
       @serached_results = Category.all
     end
     render 'dashboard'
+  end
+
+  def index
+
   end
 end

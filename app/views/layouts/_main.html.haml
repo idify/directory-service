@@ -1,0 +1,196 @@
+.container
+  .col-sm-6.col-md-4
+    .row
+      .search
+        .row
+          %h3.heading Book Your Wedding
+        .form-group
+          .row
+            %label.col-sm-5{:for => "location"}
+              Select Location
+          .col-sm-7
+            .row
+              %select#location.form-control
+                %option --Select Location--
+                %option Delhi
+                %option Noida
+                %option Gurgaon
+                %option Faridabad
+                %option Ghaziabad
+          .clearfix
+        .form-group
+          .row
+            %label.col-sm-5{:for => "category"} Select Category
+          .col-sm-7
+            .row
+              %select#category.form-control
+                %option --Select Category--
+                %option{:value => "Videography"} Videography
+                %option{:value => "Wedding Card Design"} Wedding Card Design
+                %option{:value => "Wedding Jewellery"} Wedding Jewellery
+                %option{:value => "Wedding Photography"} Wedding Photography
+                %option{:value => "Wedding Venue"} Wedding Venue
+                %option{:value => "Wedding Gifts"} Wedding Gifts
+                %option{:value => "Astrologers"} Astrologers
+                %option{:value => "Salon & Spa"} Salon & Spa
+                %option{:value => "Bridal Mehandi"} Bridal Mehandi
+                %option{:value => "Wedding Cakes"} Wedding Cakes
+                %option{:value => "Transportation"} Transportation
+          .clearfix
+        .text-center
+          %button.btn.btn-custom Search
+    .clearfix
+  .col-sm-12.text-center.margin_bottom30
+    %button.btn.btn-custom{:style => "font-size: 18px"} Request A Quote
+  .clearfix
+  .main_content
+    %h3.heading_inner
+      Hire
+      %span.deco  
+    .col-md-3.col-sm-4
+      .col-sm-12
+        .hire_content
+          %a{:href => "#"}
+            %img{:src => "/assets/cameraman.png"}/
+            %h4 Cameraman
+    .col-md-3.col-sm-4
+      .col-sm-12
+        .hire_content
+          %a{:href => "#"}
+            %img{:src => "/assets/caterer_2X.png"}/
+            %h4 Cater
+    .col-md-3.col-sm-4
+      .col-sm-12
+        .hire_content
+          %a{:href => "#"}
+            %img{:src => "/assets/jewellery_2X.png"}/
+            %h4 Jewellery
+    .col-md-3.col-sm-4
+      .col-sm-12
+        .hire_content
+          %a{:href => "#"}
+            %img{:src => "/assets/transport.png"}/
+            %h4 Transport
+    .col-md-3.col-sm-4
+      .col-sm-12
+        .hire_content
+          %a{:href => "#"}
+            %img{:src => "/assets/cameraman.png"}/
+            %h4 Cameraman
+    .col-md-3.col-sm-4
+      .col-sm-12
+        .hire_content
+          %a{:href => "#"}
+            %img{:src => "/assets/caterer_2X.png"}/
+            %h4 Cater
+    .col-md-3.col-sm-4
+      .col-sm-12
+        .hire_content
+          %a{:href => "#"}
+            %img{:src => "/assets/jewellery_2X.png"}/
+            %h4 Jewellery
+    .col-md-3.col-sm-4
+      .col-sm-12
+        .hire_content
+          %a{:href => "#"}
+            %img{:src => "/assets/transport.png"}/
+            %h4 Transport
+    .clearfix.margin_bottom15px
+    .col-sm-12.text-center
+      %button.btn.btn-custom{:style => "font-size: 18px"} Browse More
+    .clearfix
+  .clearfix.margin_bottom15px
+.container.margin_bottom15px
+  %h3.heading_inner
+    Testimonials
+    %span.deco  
+  .testimonial.col-sm-12
+    .container
+      #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+        %ol.carousel-indicators
+          %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
+          %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
+          %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
+        .carousel-inner{:role => "listbox"}
+          .item.active
+            .col-sm-8
+              %p
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                It has survived not only five centuries, but also the leap into electronic typesetting,
+                remaining essentially unchanged. It was popularised in the 1960s with the release of
+                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+              %h4.text-right.testimonial_name -Naresh Sinha
+            .col-sm-4
+              .profile
+                %img{:src => "/assets/profile_pic.jpg"}/
+              .clearfix
+          .item
+            .col-sm-8
+              %p
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                It has survived not only five centuries, but also the leap into electronic typesetting,
+                remaining essentially unchanged. It was popularised in the 1960s with the release of
+                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+              %h4.text-right.testimonial_name -Naresh Sinha
+            .col-sm-4
+              .profile
+                %img{:src => "/assets/profile_pic.jpg"}/
+          .item
+            .col-sm-8
+              %p
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                It has survived not only five centuries, but also the leap into electronic typesetting,
+                remaining essentially unchanged. It was popularised in the 1960s with the release of
+                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+              %h4.text-right.testimonial_name -Naresh Sinha
+            .col-sm-4
+              .profile
+                %img{:src => "/assets/profile_pic.jpg"}/
+        /
+          <a data-slide="prev" role="button" href="#carousel-example-generic" class="left carousel-control">
+          <span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+          </a>
+          <a data-slide="next" role="button" href="#carousel-example-generic" class="right carousel-control">
+          <span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+          </a>
+      .container
+  %h3.heading_inner
+    Portfolio
+    %span.deco  
+  %h4.text-center.text-grey.margin_bottom15px
+    We Have been served over 5 years for our clients. Some of our best work is  listed below
+  .col-sm-3
+    .portfolio
+      %a.overlay.text-center{:href => ""}
+        %span Browse
+      %img.img-responsive{:src => "/assets/project1.jpg"}/
+  .col-sm-3
+    .portfolio
+      %a.overlay.text-center{:href => ""}
+        %span Browse
+      %img.img-responsive{:src => "/assets/project1.jpg"}/
+  .col-sm-3
+    .portfolio
+      %a.overlay.text-center{:href => ""}
+        %span Browse
+      %img.img-responsive{:src => "/assets/project1.jpg"}/
+  .col-sm-3
+    .portfolio
+      %a.overlay.text-center{:href => ""}
+        %span Browse
+      %img.img-responsive{:src => "/assets/project1.jpg"}/
+  .col-lg-12.text-center.margin_top20
+    %button.btn.btn-custom{:style => "font-size: 18px"} Browse More
+/ /container
+.clearfix.margin_bottom15px

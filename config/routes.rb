@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
 
     unauthenticated :user do
-      root to: 'devise/sessions#new', :as=> "unauthenticated"
+      root to: 'homes#index', :as=> "unauthenticated"
     end
   end
 
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     collection do
       get 'dashboard'
       get 'search'
-      get 'home'
+      get 'index'
     end
   end
 

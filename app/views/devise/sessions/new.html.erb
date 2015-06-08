@@ -1,26 +1,87 @@
-<h2>Log in</h2>
+<div class="container">
+  <h3 class="heading_inner">Login Here
+    <span class="deco">&nbsp;</span>
+  </h3>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <div class="clearfix margin_bottom15px"></div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+  <div id="personal_login">
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="col-sm-5 text-center ">
+
+      <div class="col-sm-12 ">
+
+        <div class="row">
+          <h4 class="heading">Login</h4>
+        </div>
+
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="input-group">
+              <span id="basic-addon1" class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+              <%= f.email_field :email, autofocus: true, placeholder:"Email", class:"form-control" %>
+            </div>
+
+            <div class="clearfix margin_bottom10px"></div>
+
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i> </span>
+              <%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder:"Password" %>
+            </div>
+            <div class="clearfix margin_bottom10px"></div>
+
+            <% if devise_mapping.rememberable? -%>
+                  <%= f.check_box :remember_me, class: "pull-left"  %>
+                  <%= f.label :remember_me, ' &nbsp;'.html_safe+'Remember me', class: "pull-left" %>
+            <% end -%>
+
+            <%= f.submit "Login", class:"btn btn-custom pull-right"  %>
+        <%end%>
+
+        <div class="clearfix margin_bottom10px"></div>
+
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "Forgot your password?", new_password_path(resource_name), class:"pull-left forgot_pass" %><br />
+        <% end -%>
+
+        <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+            <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class:"pull-left forgot_pass" %><br />
+        <% end -%>
+
+        <div class="clearfix margin_bottom15px"></div>
+
+        <p>Not Have Any Account? Please Sign Up Now.</p>
+
+        <!--<button class="btn btn-primary">Sign Up</button>-->
+        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+            <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-primary"%><br />
+        <% end -%>
+
+        <div class="clearfix margin_bottom10px"></div>
+
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+  <div class="col-sm-2">
+    <h3 class="text-center"><img src="/assets/or.png" /></h3>
+  </div>
 
-<%= render "devise/shared/links" %>
+  <div class="col-sm-5">
+
+    <div class="col-sm-12">
+
+      <div class="row">
+        <h4 class="heading">Login With</h4>
+      </div>
+
+      <div class="clearfix margin_bottom15px"></div>
+      <div class="col-sm-12"><%= link_to image_tag("google-Plus_login.png"), '#' %></div>
+      <div class="clearfix margin_bottom15px"></div>
+      <div class="col-sm-12"><%= link_to image_tag("facebook_login.png"), user_omniauth_authorize_path(:facebook) %></div>
+      <div class="clearfix margin_bottom15px"></div>
+      <div class="col-sm-12"><%= link_to image_tag("twitter_login.png"), user_omniauth_authorize_path(:twitter) %></div>
+      <div class="clearfix margin_bottom15px"></div>
+    </div>
+  </div>
+
+  <div class="clearfix margin_bottom15px"></div>
+</div>

@@ -18,6 +18,7 @@
 //= require chosen-jquery
 //= require ImageSelect.jquery
 //= require messages
+//= require custom
 
 $(document).ready(function() {
 
@@ -77,5 +78,14 @@ $(document).ready(function() {
     $('.datepicker').datepicker({
         format: 'dd/mm/yyyy',
         autoclose: true
+    });
+
+    $(".portfolio").on("mouseenter",function(){
+        $(".overlay").fadeOut("fast");
+        $(this).find(".overlay").fadeIn("fast");
+    });
+
+    $(".portfolio").on("mouseleave",function(){
+        $(".overlay").fadeOut("fast");
     });
 })

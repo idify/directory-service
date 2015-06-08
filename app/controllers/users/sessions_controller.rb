@@ -1,5 +1,7 @@
 class Users::SessionsController < Devise::SessionsController
 
+  layout 'plain'
+
   before_action :check_if_mobile_verified, :only=>[:new, :create]
 
   def destroy

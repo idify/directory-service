@@ -1,0 +1,64 @@
+%header
+  .top
+    %ul.top_nav
+      %li
+        =link_to 'Login', '/users/sign_in'
+      %li
+        =link_to '|', '#'
+      %li
+        =link_to 'Register', '/users/sign_up'
+  .navbar-brand
+    %a{:href => ""}
+      %img{:src => "/assets/logo.png"}
+  .clearfix
+  .contact_details
+    Mail us -
+    %a{:href => "mailto:info@weddingplanner.com"} info@weddingplanner.com
+    =raw "&nbsp; &nbsp; &nbsp;"
+    Call us - +91 9876543210
+  %nav.navbar.navbar-inverse
+    .container
+      .navbar-header
+        %button.navbar-toggle.collapsed{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+      .navbar-collapse.collapse
+        %ul.nav.navbar-nav
+          %li
+            %a{:href => "#"}
+              %img{:src => "/assets/wedding_card.png"}
+                %div Wedding Card Design
+          %li
+            %a{:href => ""}
+              %img{:src => "/assets/dress.png"}
+                %div Dresses
+          %li
+            %a{:href => ""}
+              %img{:src => "/assets/jewellery.png"}
+                %div Jewellery
+          %li
+            %a{:href => ""}
+              %img{:src => "/assets/decoration.png"}
+                %div Decoration
+          %li
+            %a{:href => ""}
+              %img{:src => "/assets/venues.png"}
+                %div Wedding Venues
+          %li
+            %a{:href => ""}
+              %img{:src => "/assets/caterers.png"}
+                %div Caterers
+          %li
+            %a{:href => ""}
+              %img{:src => "/assets/cameras.png"}
+                %div Cameras
+          %li
+            %a{:href => ""}
+              %img{:src => "/assets/accomodations.png"}
+                %div Accomodation
+          %li
+            %a{:href => ""}
+              %img{:src => "/assets/music_djs.png"}
+                %div Music  DJ's
