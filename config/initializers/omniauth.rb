@@ -11,4 +11,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       :lang => 'en'
     }
   }
+
+  provider :google_oauth2, GOOGLE_CONFIG[:"#{Rails.env}"]['client_id'], GOOGLE_CONFIG[:"#{Rails.env}"]['client_secret'], { access_type: "online", approval_prompt: "" , prompt: 'consent'}
 end
