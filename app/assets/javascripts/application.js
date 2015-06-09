@@ -18,7 +18,6 @@
 //= require chosen-jquery
 //= require ImageSelect.jquery
 //= require messages
-//= require custom
 
 $(document).ready(function() {
 
