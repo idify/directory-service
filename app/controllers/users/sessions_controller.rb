@@ -1,6 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
 
-  layout 'plain'
+  layout 'plain', :except=>[:verify_mobile]
 
   before_action :authenticate_user!, :only=>[:verify_mobile]
 
