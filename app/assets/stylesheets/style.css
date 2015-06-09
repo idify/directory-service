@@ -1063,3 +1063,17 @@ footer {
 	color: #ffffff;
 	font-size: 11px;
 }
+html {
+    font-size: 10px;
+    min-height: 100%;
+    position: relative;
+}
+html, body {
+    padding: 0;
+    height: auto;
+}
+footer {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}

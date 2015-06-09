@@ -1,0 +1,6 @@
+%h4 listing your keywords
+.clearfix
+-if @user_keywords.present?
+  -@user_keywords.each do |keyword|
+    =keyword.keyword
+    .clearfix

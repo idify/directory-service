@@ -1,0 +1,21 @@
+=form_for @user_keyword do |f|
+  -if @user_keyword.errors.any?
+    %h5
+      =pluralize(@user_keyword.errors.count, "error") +' '+ 'prohibited this guest from being saved:'
+    %div.alert.alert-danger
+      - @user_keyword.errors.full_messages.each do |msg|
+        = msg
+  =f.label :keyword, 'Keyword', class:"col-sm-3"
+  #keyword_fields
+    .form-group
+      .col-sm-3
+        =f.text_field :keyword, :name=>"user_keywords[][keyword]", class:"form-control", :required=>true
+      -if @user_keyword.new_record?
+        .col-sm-2
+          =link_to 'Add More', 'javascript:void(0);', :id=>'addMoreUserKeywordLink',class:"btn btn-primary"
+      .clearfix
+
+  .col-lg-7.text-right
+    =f.submit 'Save',:class=>"btn btn-primary"
+.clearfix
+=link_to 'See your keywords', user_keywords_path

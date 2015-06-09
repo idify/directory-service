@@ -88,4 +88,22 @@ $(document).ready(function() {
     $(".portfolio").on("mouseleave",function(){
         $(".overlay").fadeOut("fast");
     });
+
+    //Adding User keywords fields
+    $("#addMoreUserKeywordLink").click(function (e) {
+        e.preventDefault();
+
+        $("#keyword_fields").append('<div class="form-group"><div class="col-sm-3 col-sm-offset-3"><input type="text" name="user_keywords[][keyword]" class="form-control"/></div>'+
+        '<div class="col-sm-2"><a id="removeUserKeywordField" href="javascript:;" class="text-danger"><img src="/assets/close.png"/></a></div>'+
+        '<div class="clearfix"></div>'+
+        '</div>');
+    });
+
+    //Removing user keywords fields
+    $("body").on("click",'#removeUserKeywordField',function(){
+        $(this).parent().parent().remove();
+    });
+
+    var footer_height= $("footer").height();
+    $("body").css("margin-bottom",footer_height);
 })

@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
 
   has_one :profile_pic
 
+  has_many :user_keywords
+
   def mailboxer_email(object)
     email
   end
