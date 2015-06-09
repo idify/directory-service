@@ -1,0 +1,35 @@
+.container
+  .row
+    %h3.heading_inner.margin_40px_0
+      -if @searched_results.blank?
+        ="No results found for #{@search_params}"
+      -else
+        ="Results for #{@search_params}"
+      %span.deco  
+    .clearfix
+    .col-sm-12
+      -if @searched_results.present?
+        .table.table-responsive
+          %table.table.results
+            %thead
+              %tr
+                %th Vendor
+                %th Price Range
+                %th Service Area
+            %tbody
+              -@searched_results.each do |result|
+                %tr
+                  %td
+                    %a{:href => ""}
+                    %table
+                      %tr
+                        %td
+                          %span.vendor_profile_pic
+                            =image_tag result.user.profile_pic.logo.url(:thumb)
+                        %td
+                          %span
+                            =result.user.categories.first.name
+                  %td="Rs. #{result.user.categories.first.min_price} to #{result.user.categories.first.max_price}"
+                  %td
+                    =Location.find(result.user.categories.first.service_area).name
+      =will_paginate @searched_results

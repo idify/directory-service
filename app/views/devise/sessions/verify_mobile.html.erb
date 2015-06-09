@@ -1,3 +1,4 @@
+<% if current_user.present?%>
 <%unless current_user.is_verified==true%>
     <div class="verification"> <h4>Please Verify Your Mobile Number</h4>
       <h4><%=current_user.mobile%></h4>
@@ -48,4 +49,5 @@
     </script>
 <%else%>
     <h4>Mobile number already activated.</h4>
+<%end%>
 <%end%>

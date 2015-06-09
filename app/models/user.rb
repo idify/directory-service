@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :guests
   has_many :ceremonies
-
+  has_many :categories
   has_many :images
   has_many :videos
   has_many :video_urls

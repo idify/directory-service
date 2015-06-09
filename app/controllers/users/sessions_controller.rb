@@ -2,6 +2,8 @@ class Users::SessionsController < Devise::SessionsController
 
   layout 'plain'
 
+  before_action :authenticate_user!, :only=>[:verify_mobile]
+
   before_action :check_if_mobile_verified, :only=>[:new, :create]
 
   def destroy
@@ -9,7 +11,9 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def verify_mobile
-
+    unless current_user.present?
+      redirect_to root_path
+    end
   end
 
   def sms_verify

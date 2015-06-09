@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       get 'dashboard'
       get 'search'
       get 'index'
+      get 'search_page'=>'homes#search_page', as: :search_page
+      get 'search_results'
     end
   end
 

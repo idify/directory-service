@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @categories = Category.all
+    @categories = current_user.categories
   end
 
   def show
@@ -15,11 +15,11 @@ class CategoriesController < ApplicationController
 
   def create
     if params[:category].present?
-      @category = Category.new(category_params)
+      @category = Category.new(category_params.merge(user_id: current_user.id))
     end
 
     if @category.save
-      redirect_to categories_path, notice: 'Service added sucessfully.'
+      redirect_to categories_path, notice: 'Business info added sucessfully.'
     else
       render 'new'
     end
@@ -32,8 +32,8 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.friendly.find(params[:id])
 
-    if @category.update(category_params)
-      redirect_to categories_path, notice: 'Service updated sucessfully.'
+    if @category.update(category_params.merge(user_id: current_user.id))
+      redirect_to categories_path, notice: 'Business info updated sucessfully.'
     else
       render 'edit'
     end
@@ -43,7 +43,7 @@ class CategoriesController < ApplicationController
     @category = Category.friendly.find(params[:id])
 
     if @category.destroy
-      redirect_to categories_path, notice: 'Service deleted.'
+      redirect_to categories_path, notice: 'Business info deleted.'
     else
       render 'index'
     end

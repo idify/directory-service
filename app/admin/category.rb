@@ -1,17 +1,17 @@
-ActiveAdmin.register Category do
-
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
+# ActiveAdmin.register Category do
 #
-permit_params :name, :description, :no_of_employees, :mobile, :email, :category_type, :service_area
+# # See permitted parameters documentation:
+# # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
+# #
+# #permit_params :name, :description, :no_of_employees, :mobile, :email, :category_type, :service_area
+# #
+# # or
+# #
+# # permit_params do
+# #   permitted = [:permitted, :attributes]
+# #   permitted << :other if resource.something?
+# #   permitted
+# # end
 #
-# or
 #
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
 # end
-
-
-end
