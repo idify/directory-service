@@ -21,6 +21,17 @@ class User < ActiveRecord::Base
 
   has_many :user_keywords
 
+  ##########################################################################
+  # User full name
+  ##########################################################################
+  def full_name
+    if self.first_name.present? && self.last_name.present?
+      self.first_name+ ' ' + self.last_name
+    else
+      self.first_name
+    end
+  end
+
   def mailboxer_email(object)
     email
   end

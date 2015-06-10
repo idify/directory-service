@@ -44,8 +44,8 @@ $(document).ready(function() {
         e.preventDefault();
 
         $("#ceremony_fields").append('<div id="ceremony_fields"><div class="col-sm-3"><input type="text" name="ceremonies[][program]" class="form-control" required="required"/></div>'+
-        '<div class="col-sm-3"><input type="text" name="ceremonies[][date]" class="form-control datepicker" required="required"/></div>'+
-        '<div class="col-sm-2"><div class="input-group bootstrap-timepicker">' +
+        '<div class="col-sm-2"><input type="text" name="ceremonies[][date]" class="form-control datepicker" required="required"/></div>'+
+        '<div class="col-sm-3"><div class="input-group bootstrap-timepicker">' +
         '<input type="text" name="ceremonies[][time]" class="form-control ceremonytimepicker" required="required"/>' +
         '<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i>' +
         '</span>' +

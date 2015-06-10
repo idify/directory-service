@@ -12,9 +12,9 @@
   .form-group#ceremony_fields
     .col-sm-3
       =f.text_field :program, :name=>"ceremonies[][program]", class:"form-control", :required=>true
-    .col-sm-3
-      =f.text_field :date, :name=>"ceremonies[][date]", class:"form-control datepicker", :required=>true
     .col-sm-2
+      =f.text_field :date, :name=>"ceremonies[][date]", class:"form-control datepicker", :required=>true
+    .col-sm-3
       .input-group.bootstrap-timepicker
         =f.text_field :time, :name=>"ceremonies[][time]", class:"form-control ceremonytimepicker", :required=>true
         %span.input-group-addon
