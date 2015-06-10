@@ -46,6 +46,7 @@
 <%end%>
 
 <div class="container-fluid">
+  <%if current_user.is_verified==true%>
   <div class="col-sm-4 col-md-3 sidebar" id="user_bar">
     <div class="row">
       <div class="bg-custom padding_10px">
@@ -76,7 +77,7 @@
       </ul>
     </div>
   </div>
-
+  <% end %>
   <div class="col-md-9 col-sm-8">
     <%= yield %>
   </div>
