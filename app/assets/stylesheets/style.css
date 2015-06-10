@@ -245,7 +245,7 @@ header {
 }
 .deco {
 	display: block;
-	background: url("/assets/deco.png") no-repeat center;
+	background: url("deco.png") no-repeat center;
 }
 
 .portfolio {
@@ -811,18 +811,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .bar_img {
 	position:absolute;
 	left: 35px;
-	top: 20px;
+	top: 70px;
 	text-align: center;
 	vertical-align: middle;
 	border: 2px solid #B9D243;
 	box-shadow: 0 0 10px #000;
-	height: 200px;
+	height: 100px;
 	background: rgba(240,240,240,.8);
-	width: 200px;
+	width: 100px;
 }
 
 #vendor_profile_tabs ul {
-	border: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
 }
 #vendor_profile_tabs ul li {
 	float: right;
@@ -912,6 +912,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	border: 0;
 }
 
+#gallery_tabs .nav-tabs li:last-child a {
+    margin-right:0;
+}
 #gallery_tabs ul li {
 	flex: 1;
 	-webkit-flex: 1;

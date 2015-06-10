@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate_user!
-
+  before_action :authenticate_user!, :except=>[:show]
+  layout 'plain', :only=>[:show]
   def index
     @categories = current_user.categories
   end

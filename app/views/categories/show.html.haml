@@ -1,26 +1,126 @@
 %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"}
--if @category.present?
-  .table-responsive
-    %table.table.table-bordered.table-striped.table-hover
-      %thead
-        %tr
-          %th Business Name
-          %th About us
-          %th Service
-          %th Service Area
-      %tbody
-        %tr
-          %td
-            =@category.name
-          %td
-            =@category.description
-          %td
-            =@category.category_type
-          %td
-            =Location.find(@category.service_area).name
-  = "MAP NOT ASSIGNED".html_safe if @category.latitude.blank?
-  Location:
-  #googleMap{:style => "width:50%;height:250px; margin:0 auto;"}
+.container
+  .row
+    -if @category.present?
+      %h3.heading_inner.margin_40px_0
+        =@category.name
+        %span.deco
+          &nbsp;
+      .clearfix
+      .col-sm-12
+        .header_img
+          =image_tag @category.user.profile_pic.header_image.url(:original), class: "img-responsive"
+        .bar_img
+          =image_tag @category.user.profile_pic.logo.url(:original)
+        .clearfix
+        #vendor_profile_tabs{:role => "tabpanel"}
+          %ul.nav.nav-tabs{:role => "tablist"}
+            %li{:role => "presentation"}
+              %a{"aria-controls" => "img_gallery", "data-toggle" => "tab", :href => "#img_gallery", :role => "tab"} Image Gallery
+            %li{:role => "presentation"}
+              %a{"aria-controls" => "references", "data-toggle" => "tab", :href => "#references", :role => "tab"} References
+            %li{:role => "presentation"}
+              %a{"aria-controls" => "owner_info", "data-toggle" => "tab", :href => "#owner_info", :role => "tab"} Owner Info
+            %li{:role => "presentation"}
+              %a{"aria-controls" => "Services", "data-toggle" => "tab", :href => "#Services", :role => "tab"} Services
+            %li.active{:role => "presentation"}
+              %a{"aria-controls" => "address", "data-toggle" => "tab", :href => "#address", :role => "tab"} Address
+          .tab-content.padding_15px
+            #address.tab-pane.active{:role => "tabpanel"}
+              .row
+                .col-sm-4.border_grey.bg_white{style: "min-height: 295px"}
+                  %h3.heading Address
+                  %p
+                    =@category.address
+                  %h3.heading Contact Info
+                  %p
+                    %span.fa.fa-mobile-phone
+                    %strong Mobile No. :
+                    =@category.user.mobile
+                  %p
+                    %span.fa.fa-envelope
+                    %strong Email :
+                    =@category.user.email
+                .col-sm-8
+                  = "MAP NOT ASSIGNED".html_safe if @category.latitude.blank?
+                  #googleMap{:style => "width:100%;height:295px; frameborder:0, border: 0, margin:0 auto;"}
+            #Services.tab-pane{:role => "tabpanel"}
+              .col-sm-9
+                %h3.heading_inner Services and Description
+                %h4.inner_heading
+                  =@category.name
+                %p
+                  =@category.description
+            #owner_info.tab-pane{:role => "tabpanel"}
+              .col-sm-4.border_grey
+                %h3.heading Owner Info
+              .col-sm-8
+                %p
+                  %strong Service Area
+                %p
+                  =Location.find(@category.service_area).name
+                %p
+                  %strong No. of Employees
+                %p
+                  =@category.no_of_employees
+                %p
+                  %strong Price Range
+                %p
+                  ="Rs. #{@category.min_price} to #{@category.max_price}"
+            #references.tab-pane{:role => "tabpanel"}
+              %p References
+            #img_gallery.tab-pane{role:"tabpanel"}
+              #gallery_tabs
+                %ul.nav.nav-tabs{:role => "tablist"}
+                  %li.active{:role => "presentation"}
+                    %a{"aria-controls" => "pictures", "data-toggle" => "tab", :href => "#pictures", :role => "tab"} Pictures
+                  %li{:role => "presentation"}
+                    %a{"aria-controls" => "videos", "data-toggle" => "tab", :href => "#videos", :role => "tab"} Videos
+                  %li{:role => "presentation"}
+                    %a{"aria-controls" => "streaming", "data-toggle" => "tab", :href => "#streaming", :role => "tab"} Video URLs
+                .tab-content.padding_15px
+                  #pictures.tab-pane.active{:role => "tabpanel"}
+                    -unless @category.user.images.nil?
+                      -@category.user.images.each do |image|
+                        .col-sm-4.text-center
+                          =image_tag image.photo.url(:original)
+                  #videos.tab-pane{:role => "tabpanel"}
+                    -unless @category.user.videos.nil?
+                      .col-sm-4
+                        -@category.user.videos.each do |video|
+                          %video{:controls => "", :width => "400"}
+                            %source{:src => "#{video.video.url(:original)}", :type => "video/mp4"}
+                    .clearfix.margin_bottom15px
+                  #streaming.tab-pane{:role => "tabpanel"}
+                    .col-sm-12.padding_15px
+                      -unless @category.user.video_urls.nil?
+                        -@category.user.video_urls.each do |video_url|
+                          %p
+                            =link_to video_url.url, video_url.url, :target => "_blank"
+                  .clearfix.margin_bottom15px
+
+-#-if @category.present?
+-#  .table-responsive
+-#    %table.table.table-bordered.table-striped.table-hover
+-#      %thead
+-#        %tr
+-#          %th Business Name
+-#          %th About us
+-#          %th Service
+-#          %th Service Area
+-#      %tbody
+-#        %tr
+-#          %td
+-#            =@category.name
+-#          %td
+-#            =@category.description
+-#          %td
+-#            =@category.category_type
+-#          %td
+-#            =Location.find(@category.service_area).name
+-#  = "MAP NOT ASSIGNED".html_safe if @category.latitude.blank?
+-#  Location:
+-#  #googleMap{:style => "width:50%;height:250px; margin:0 auto;"}
 
 :javascript
     var myCenter=new google.maps.LatLng(#{@category.latitude},#{@category.longitude});
