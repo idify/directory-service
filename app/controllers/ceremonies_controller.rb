@@ -18,7 +18,7 @@ class CeremoniesController < ApplicationController
     if params[:ceremonies].present?
 
       params[:ceremonies].each do |ceremony_param|
-        @ceremony= Ceremony.new(program: ceremony_param[:program], date: ceremony_param[:date],
+        @ceremony= Ceremony.new(program: ceremony_param[:program], date: Time.strptime(ceremony_param[:date], "%m/%d/%Y").strftime('%Y-%m-%d'),
                                 time: ceremony_param[:time], venue: ceremony_param[:venue],
                                 user_id: current_user.id)
         @ceremony.save
@@ -39,10 +39,10 @@ class CeremoniesController < ApplicationController
   def update
     @ceremony = Ceremony.find(params[:id])
 
-    ceremony_param = params[:Ceremonies].first
+    ceremony_param = params[:ceremonies].first
 
-    if @ceremony.update_attributes(name: ceremony_param[:name], email: ceremony_param[:email],
-                                   mobile: ceremony_param[:mobile], city: ceremony_param[:city])
+    if @ceremony.update_attributes(program: ceremony_param[:program], date: Time.strptime(ceremony_param[:date], "%m/%d/%Y").strftime('%Y-%m-%d'),
+                                   time: ceremony_param[:time], venue: ceremony_param[:venue])
       redirect_to ceremonies_path
     else
       render 'edit'
