@@ -60,15 +60,19 @@
       </div>
 
       <ul class="nav nav-sidebar">
-        <li class="active"><a href="/homes/dashboard"><span class="fa fa-home"></span> Home</a></li>
-        <li><a href="/profile_pics/new"><span class="fa fa-image"></span>Add Business Images </a></li>
-        <li><a href="/galleries/new"><span class="fa fa-image"></span> Gallery</a></li>
+        <!--<li class="active"><a href="/homes/dashboard"><span class="fa fa-home"></span> Home</a></li>-->
+        <%if current_user.vendor?%>
+            <li><a href="/profile_pics/new"><span class="fa fa-image"></span>Add Business Images </a></li>
+            <li><a href="/galleries/new"><span class="fa fa-image"></span> Gallery</a></li>
+            <li><a href="/user_keywords/new"><span class="fa fa-tags"></span> Add Keywords</a></li>
+            <li><a href="/categories/new"><span class="fa fa-info"></span> Business Info</a></li>
+        <% elsif current_user.customer? %>
+            <li><a href="/ceremonies/new"><span class="fa fa-book"></span> Add Event</a></li>
+        <% end %>
         <li><a href="/conversations"><span class="fa fa-sort-numeric-desc"></span> Your Conversations</a></li>
-        <li><a href="/categories/new"><span class="fa fa-info"></span> Business Info</a></li>
-        <li><a href="/user_keywords/new"><span class="fa fa-tags"></span> Add Keywords</a></li>
-        <li><a href="/ceremonies/new"><span class="fa fa-book"></span> Add Event</a></li>
         <li><a href="/users/edit"><span class="fa fa-user"></span> Manage Profile</a></li>
-        <li><%= link_to 'logout', destroy_user_session_path, :method=>"delete", id: "sign_out"%></li>
+        <li><%= link_to '<span class="fa fa-sign-out"></span> logout'.html_safe, destroy_user_session_path, :method=>"delete", id: "sign_out"%>
+        </li>
       </ul>
     </div>
   </div>
