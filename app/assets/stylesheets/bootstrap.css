@@ -4306,6 +4306,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     padding-top: 15px;
     padding-bottom: 15px;
   }
+
+    .user_name h3 {
+        margin-top: 52px;
+        text-align: center;
+    }
+
+    .user_name span {
+        color: #11C2A0;
+    }
 }
 .navbar-form {
   padding: 10px 15px;

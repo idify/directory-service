@@ -239,6 +239,7 @@ header {
 	padding: 6px 30px;
 }
 
+
 .heading_inner {
 	color:#dc1145;
 	text-align: center;
@@ -1080,4 +1081,12 @@ footer {
     bottom: 0;
     position: absolute;
     width: 100%;
+}
+
+.user_name h3 {
+    text-align: center;
+}
+
+.user_name span {
+    color: #11C2A0;
 }

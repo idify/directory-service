@@ -1,6 +1,9 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, :except=>[:show]
   layout 'plain', :only=>[:show]
+
+  before_action :check_if_mobile_verified, :only=>[:index]
+
   def index
     @categories = current_user.categories
   end

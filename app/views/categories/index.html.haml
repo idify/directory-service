@@ -13,7 +13,7 @@
         -@categories.each do |category|
           %tr
             %td
-              =link_to category.name, category_path(category)
+              =category.name
             %td
               =category.description
             %td
