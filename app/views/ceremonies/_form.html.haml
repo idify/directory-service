@@ -13,10 +13,10 @@
     .col-sm-3
       =f.text_field :program, :name=>"ceremonies[][program]", class:"form-control", :required=>true
     .col-sm-2
-      =f.text_field :date, :name=>"ceremonies[][date]", class:"form-control datepicker", :required=>true
+      =f.text_field :date, :name=>"ceremonies[][date]", class:"form-control datepicker", value: (@ceremony.date.present? ? @ceremony.date.strftime("%m/%d/%Y") : nil), :required=>true
     .col-sm-3
       .input-group.bootstrap-timepicker
-        =f.text_field :time, :name=>"ceremonies[][time]", class:"form-control ceremonytimepicker", :required=>true
+        =f.text_field :time, :name=>"ceremonies[][time]", class:"form-control ceremonytimepicker", value: (@ceremony.time.present? ? @ceremony.time.strftime("%I:%M %p") : nil), :required=>true
         %span.input-group-addon
           %i.glyphicon.glyphicon-time
     .col-sm-2

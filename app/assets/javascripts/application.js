@@ -57,7 +57,7 @@ $(document).ready(function() {
         '</div>');
         //Added datepicker
         $('.datepicker').datepicker({
-            format: 'mm/dd/yy',
+            format: 'mm/dd/yyyy',
             autoclose: true
         });
         $('.ceremonytimepicker').timepicker({
@@ -75,7 +75,7 @@ $(document).ready(function() {
     });
 
     $('.datepicker').datepicker({
-        format: 'dd/mm/yyyy',
+        format: 'mm/dd/yyyy',
         autoclose: true
     });
 
