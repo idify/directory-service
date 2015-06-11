@@ -23,5 +23,19 @@ module DirectoryService
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.default :charset => "utf-8"
+    config.action_mailer.perform_deliveries = true
+
+    config.action_mailer.smtp_settings = {
+        :address =>  "smtp.mailgun.org",
+        :port => 587,
+        :domain => "idifysolutions.cloudapp.net",
+        :user_name => "postmaster@idifysolutions.com",
+        :password => 'k33pw@lking',
+        :authentication => "plain"
+    }
   end
 end
