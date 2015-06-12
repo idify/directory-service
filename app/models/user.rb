@@ -39,9 +39,19 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email.present? ? auth.info.email : auth.info.name
-      user.password = Devise.friendly_token[0,20]
+    user = self.where(provider: auth.provider, uid: auth.uid).first
+    if user
+      return user
+    else
+      registered_user = User.where(:email => auth.info.email).first
+      if registered_user
+        return registered_user
+      else
+        new_user_from_provider = User.new(first_name: auth.info.name, provider: auth.provider, email: auth.info.email, uid: auth.uid,
+                        password: Devise.friendly_token[0,20])
+        new_user_from_provider.save(:validate => false)
+        return new_user_from_provider
+      end
     end
   end
 
@@ -59,7 +69,7 @@ class User < ActiveRecord::Base
                            provider:access_token.provider,
                            email: data["email"],
                            uid: access_token.uid ,
-                           password: Devise.friendly_token[0,20],
+                           password: Devise.friendly_token[0,20]
         )
       end
     end
