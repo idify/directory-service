@@ -20,7 +20,8 @@ class CeremoniesController < ApplicationController
       params[:ceremonies].each do |ceremony_param|
         @ceremony= Ceremony.new(program: ceremony_param[:program], date: Time.strptime(ceremony_param[:date], "%m/%d/%Y").strftime('%Y-%m-%d'),
                                 time: ceremony_param[:time], venue: ceremony_param[:venue],
-                                user_id: current_user.id)
+                                user_id: current_user.id, is_reminder_on_one_day_prior: ceremony_param[:is_reminder_on_one_day_prior],
+                                is_reminder_on_three_day_prior: ceremony_param[:is_reminder_on_three_day_prior], is_reminder_on_seven_day_prior: ceremony_param[:is_reminder_on_seven_day_prior])
         @ceremony.save
       end
     end
@@ -42,7 +43,8 @@ class CeremoniesController < ApplicationController
     ceremony_param = params[:ceremonies].first
 
     if @ceremony.update_attributes(program: ceremony_param[:program], date: Time.strptime(ceremony_param[:date], "%m/%d/%Y").strftime('%Y-%m-%d'),
-                                   time: ceremony_param[:time], venue: ceremony_param[:venue])
+                                   time: ceremony_param[:time], venue: ceremony_param[:venue], is_reminder_on_one_day_prior: ceremony_param[:is_reminder_on_one_day_prior],
+                                   is_reminder_on_three_day_prior: ceremony_param[:is_reminder_on_three_day_prior], is_reminder_on_seven_day_prior: ceremony_param[:is_reminder_on_seven_day_prior])
       redirect_to ceremonies_path
     else
       render 'edit'

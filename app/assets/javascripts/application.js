@@ -43,7 +43,9 @@ $(document).ready(function() {
     $("#addMoreCeremonyLink").click(function (e) {
         e.preventDefault();
 
-        $("#ceremony_fields").append('<div id="ceremony_fields"><div class="col-sm-3"><input type="text" name="ceremonies[][program]" class="form-control" required="required"/></div>'+
+        $("#ceremony_fields").append('<div class="one_ceremony_field">' +
+        '<div class="form-group">' +
+        '<div class="col-sm-3"><input type="text" name="ceremonies[][program]" class="form-control" required="required"/></div>'+
         '<div class="col-sm-2"><input type="text" name="ceremonies[][date]" class="form-control datepicker" required="required"/></div>'+
         '<div class="col-sm-3"><div class="input-group bootstrap-timepicker">' +
         '<input type="text" name="ceremonies[][time]" class="form-control ceremonytimepicker" required="required"/>' +
@@ -52,6 +54,19 @@ $(document).ready(function() {
         '</div>' +
         '</div>' +
         '<div class="col-sm-2"><input type="text" name="ceremonies[][venue]" class="form-control" required="required"/></div>'+
+        '</div>' +
+        '<div class="form-group">' +
+        '<div class="col-sm-5">I prefer to receive reminder for the above event prior to:</div>' +
+        '<label class="col-sm-1"><div class="row">' +
+        '<input name="ceremonies[][is_reminder_on_one_day_prior]" id="ceremonies__is_reminder_on_one_day_prior" value="true" type="checkbox"/>1 day'+
+        '</div></label>'+
+        '<label class="col-sm-1"><div class="row">' +
+        '<input name="ceremonies[][is_reminder_on_three_day_prior]" id="ceremonies__is_reminder_on_three_day_prior" value="true" type="checkbox"/>3 day'+
+        '</div></label>'+
+        '<label class="col-sm-1"><div class="row">' +
+        '<input name="ceremonies[][is_reminder_on_seven_day_prior]" id="ceremonies__is_reminder_on_seven_day_prior" value="true" type="checkbox"/>7 day'+
+        '</div></label>'+
+        '</div>' +
         '<div class="col-sm-2"><a id="removeCeremonyField" href="javascript:;" class="text-danger"><img src="/assets/close.png"/></a></div>'+
         '<div class="clearfix"></div>'+
         '</div>');

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609100556) do
+ActiveRecord::Schema.define(version: 20150612111250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,8 +74,11 @@ ActiveRecord::Schema.define(version: 20150609100556) do
     t.time     "time"
     t.string   "venue"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.boolean  "is_reminder_on_one_day_prior",   default: false
+    t.boolean  "is_reminder_on_three_day_prior", default: false
+    t.boolean  "is_reminder_on_seven_day_prior", default: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
