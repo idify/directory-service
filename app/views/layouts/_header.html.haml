@@ -1,19 +1,18 @@
 %header
   .top
-    %ul.top_nav
-      %li
-        =link_to 'Search', search_page_homes_path
-      %li
-        =link_to '|', '#'
-      %li
-        =link_to 'Login', '/users/sign_in'
-      %li
-        =link_to '|', '#'
-      %li
-        =link_to 'Register', '/users/sign_up'
-  .navbar-brand
-    %a{:href => ""}
-      =link_to image_tag("logo.png"), '/'
+  %ul.top_nav
+    %li
+      =link_to 'Search', search_page_homes_path
+    %li
+      =link_to '|', '#'
+    %li
+      =link_to 'Login', '/users/sign_in'
+    %li
+      =link_to '|', '#'
+    %li
+      =link_to 'Register', '/users/sign_up'
+  .navbar-brand.col-lg-3.col-sm-5.col-xs-10
+    =link_to image_tag("logo.png", class: "img-responsive"), '/'
   .clearfix
   .contact_details
     Mail us -
@@ -22,7 +21,7 @@
     Call us - +91 9876543210
   %nav.navbar.navbar-inverse
     .container
-      .navbar-header
+      .navbar-header{:style=>"display:inline"}
         %button.navbar-toggle.collapsed{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
           %span.sr-only Toggle navigation
           %span.icon-bar
