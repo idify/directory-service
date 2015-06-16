@@ -1,4 +1,4 @@
-%h4 Events list
+%h4 Latest upcoming Events list
 -if @ceremonies.present?
   .table-responsive
     %table.table.table-bordered.table-striped.table-hover
@@ -20,6 +20,6 @@
             %td
               =ceremony.venue
             %td
-              =link_to ceremony, data:{:confirm=>'Are you sure to delete this ?'}, :method=>:delete do
+              =link_to ceremony, data:{:confirm=>'Are you sure to delete this event ?'}, :method=>:delete do
                 %span{style: "aria-hidden=true", class:"glyphicon glyphicon-trash"}
           .clearfix

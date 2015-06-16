@@ -28,17 +28,26 @@
           ='I prefer to receive reminder for the above event prior to:'
         %label.col-sm-1
           .row
-            =check_box_tag "ceremonies[][is_reminder_on_one_day_prior]", @ceremony.is_reminder_on_one_day_prior, @ceremony.is_reminder_on_one_day_prior
+            -if @ceremony.is_reminder_on_one_day_prior.present?
+              =check_box_tag "ceremonies[][is_reminder_on_one_day_prior]", @ceremony.is_reminder_on_one_day_prior, @ceremony.is_reminder_on_one_day_prior
+            -else
+              =check_box_tag "ceremonies[][is_reminder_on_one_day_prior]", true, false
             ='1 day'
 
         %label.col-sm-1
           .row
-            =check_box_tag "ceremonies[][is_reminder_on_three_day_prior]", @ceremony.is_reminder_on_three_day_prior, @ceremony.is_reminder_on_three_day_prior
+            -if @ceremony.is_reminder_on_three_day_prior.present?
+              =check_box_tag "ceremonies[][is_reminder_on_three_day_prior]", @ceremony.is_reminder_on_three_day_prior, @ceremony.is_reminder_on_three_day_prior
+            -else
+              =check_box_tag "ceremonies[][is_reminder_on_three_day_prior]", true, false
             ='3 day'
 
         %label.col-sm-1
           .row
-            =check_box_tag "ceremonies[][is_reminder_on_seven_day_prior]", @ceremony.is_reminder_on_seven_day_prior, @ceremony.is_reminder_on_seven_day_prior
+            -if @ceremony.is_reminder_on_seven_day_prior.present?
+              =check_box_tag "ceremonies[][is_reminder_on_seven_day_prior]", @ceremony.is_reminder_on_seven_day_prior, @ceremony.is_reminder_on_seven_day_prior
+            -else
+              =check_box_tag "ceremonies[][is_reminder_on_seven_day_prior]",true, false
             ='7 day'
     .clearfix
   -if @ceremony.new_record?

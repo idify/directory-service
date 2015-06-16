@@ -3,7 +3,7 @@ class CeremoniesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @ceremonies = Ceremony.all
+    @ceremonies = current_user.ceremonies.order(:date)
   end
 
   def show
