@@ -65,6 +65,8 @@ Rails.application.routes.draw do
 
   resources :user_keywords
 
+  resources :subsites
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :images
   has_many :videos
   has_many :video_urls
+  has_many :subsites
 
   acts_as_messageable
 

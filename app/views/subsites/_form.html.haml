@@ -1,0 +1,44 @@
+=form_for @subsite do |f|
+  -if @subsite.errors.any?
+    %h5
+      =pluralize(@subsite.errors.count, "error") +' '+ 'prohibited this guest from being saved:'
+    %div.alert.alert-danger
+      - @subsite.errors.full_messages.each do |msg|
+        = msg
+  .form-group
+    %label.col-sm-3 Select Your Template :
+    .col-sm-3.text-center
+      %label
+        =f.radio_button :template_type, 'vintage'
+        Vintage
+        =image_tag("vintage_template.jpg")
+    .col-sm-3.text-center
+      %label
+        =f.radio_button :template_type, 'Traditional'
+        Traditional
+        =image_tag("traditional.jpg")
+    .col-sm-3.text-center
+      %label
+        =f.radio_button :template_type, 'Simple'
+        Simple
+        =image_tag("project1.jpg")
+    .margin_top20.clearfix
+  .margin_top20.clearfix
+  .form-group
+    %label.col-sm-3{:for => "domain"} Domain Name
+    .col-sm-3.margin-bottom-5
+      =f.text_field :domain_name, class: 'form-control'
+    .clearfix
+  .form-group
+    %label.col-sm-3{:for => "contact_email"} Contact Email
+    .col-sm-3.margin-bottom-5
+      =f.text_field :contact_email, class: 'form-control'
+    .clearfix
+  .form-group
+    %label.col-sm-3{:for => "invitees"} Invitees
+    .col-sm-3.margin-bottom-5
+      =f.text_field :invitees, name: "invitees[]", class: 'form-control'
+    .clearfix
+  .col-lg-6.text-right
+    =f.submit 'Create',:class=>"btn btn-primary"
+  .clearfix.margin_bottom15px
