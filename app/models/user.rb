@@ -74,4 +74,11 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def self.get_users_not_logged_in_from_last_five_days
+    users_list = self.where("date(last_sign_in_at)=?", Date.today - 5.day)
+    if users_list.present?
+      users_list
+    end
+  end
 end

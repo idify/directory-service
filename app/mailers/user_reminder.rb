@@ -19,4 +19,9 @@ class UserReminder < ActionMailer::Base
                            }
   end
 
+  def send_reminder_email_for_not_logged_in(user)
+    @user = user
+    mail(:to => user.email, :subject =>'Reminder email for not logged in from last 5 days')
+  end
+
 end
