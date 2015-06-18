@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :sessions => "users/sessions", :registrations => "users/registrations"} do
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :sessions => "users/sessions", :registrations => "users/registrations",
+                        :passwords => "users/passwords"} do
     resources 'users/registrations'
     resources 'users/sessions'
+    resources 'users/passwords'
   end
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -66,6 +68,8 @@ Rails.application.routes.draw do
   resources :user_keywords
 
   resources :subsites
+
+  resources :wishlists
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
