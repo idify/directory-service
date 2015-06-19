@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :videos
   has_many :video_urls
   has_many :subsites
+  has_many :wishlists
 
   acts_as_messageable
 

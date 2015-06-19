@@ -1,0 +1,52 @@
+=form_for @wishlist do |f|
+  -if @wishlist.errors.any?
+    %h5
+      =pluralize(@wishlist.errors.count, "error") +' '+ 'prohibited this guest from being saved:'
+    %div.alert.alert-danger
+      - @wishlist.errors.full_messages.each do |msg|
+        = msg
+  .form-group
+    =f.label :name, 'Name', class:"col-sm-3"
+    .col-sm-3
+      =f.text_field :name, class:"form-control", :required=>true
+    .clearfix
+
+  .form-group
+    =f.label :category, 'Select Service type', class:"col-sm-3"
+    .col-sm-3
+      =f.select :category, Category.all.collect {|p| [ p.category_type, p.category_type ] }, class:"form-control", :required=>true, :prompt => '-select-'
+    .clearfix
+
+  .form-group
+    =f.label :mobile_number, 'Mobile Number', class:"col-sm-3"
+    .col-sm-3
+      =f.text_field :mobile_number, class:"form-control", :required=>true
+    .clearfix
+
+  .form-group
+    =f.label :email, 'Email', class:"col-sm-3"
+    .col-sm-3
+      =f.text_field :email, class:"form-control", :required=>true
+    .clearfix
+
+  .form-group
+    =f.label :program_date, 'Program date', class:"col-sm-3"
+    .col-sm-3
+      =f.text_field :program_date, class:"form-control datepicker", :required=>true
+    .clearfix
+
+  .form-group
+    =f.label :city, 'City', class:"col-sm-3"
+    .col-sm-3
+      =f.select :city_id,  Location.all.collect {|p| [ p.name, p.id ] }, class: "form-control", :prompt => '-select-'
+    .clearfix
+
+  .form-group
+    =f.label :wish_list, 'Wish list', class:"col-sm-3"
+    .col-sm-3
+      =f.text_area :wish_list,  class: "form-control"
+    .clearfix
+
+  .col-lg-6.text-right
+    =f.submit 'Save',:class=>"btn btn-primary"
+.clearfix

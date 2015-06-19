@@ -59,10 +59,12 @@
             <li><a href="/galleries/new"><span class="fa fa-image"></span> Gallery</a></li>
             <li><a href="/user_keywords/new"><span class="fa fa-tags"></span> Add Keywords</a></li>
             <li><a href="/categories/new"><span class="fa fa-info"></span> Business Info</a></li>
+            <li><a href="/wishlists"><span class="fa fa-info"></span>See wishlists</a></li>
         <% elsif current_user.customer? %>
             <li><a href="/ceremonies/new"><span class="fa fa-book"></span> Add Event</a></li>
             <li><a href="/galleries/new"><span class="fa fa-image"></span> Gallery</a></li>
             <li><a href="/subsites/new"><span class="fa fa-globe"></span> Create your website</a></li>
+            <li><a href="/wishlists/new"><span class="fa fa-info"></span> Create wishlists</a></li>
         <% end %>
         <li><a href="/conversations"><span class="fa fa-sort-numeric-desc"></span> Your Conversations</a></li>
         <li><a href="/users/edit"><span class="fa fa-user"></span> Manage Profile</a></li>

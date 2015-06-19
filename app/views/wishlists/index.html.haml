@@ -1,0 +1,29 @@
+%h4 See wishlists
+.clearfix
+-if @wishlists.present?
+  -@wishlists.each do |wishlist|
+    .table-responsive
+    %table.table.table-bordered.table-striped.table-hover
+      %thead
+        %tr
+          %th Name
+          %th Mobile
+          %th City
+          %th Category
+          %th Program date
+          %th Wish list
+      %tbody
+        %tr
+          %td
+            =wishlist.name
+          %td
+            =wishlist.mobile_number
+          %td
+            =Location.find(wishlist.city_id).name
+          %td
+            =wishlist.category
+          %td
+            =wishlist.program_date.strftime("%m/%d/%Y")
+          %td
+            =wishlist.wish_list
+    .clearfix
