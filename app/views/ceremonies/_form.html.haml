@@ -5,56 +5,66 @@
     %div.alert.alert-danger
       - @ceremony.errors.full_messages.each do |msg|
         = msg
-  =f.label :program, 'Program', class:"col-sm-3"
-  =f.label :date, 'Date', class:"col-sm-3"
-  =f.label :time, 'Time', class:"col-sm-2"
-  =f.label :venue, 'Venue', class:"col-sm-2"
-  #ceremony_fields
-    #one_ceremony_field
-      .form-group
-        .col-sm-3
-          =f.text_field :program, :name=>"ceremonies[][program]", class:"form-control", :required=>true
-        .col-sm-2
-          =f.text_field :date, :name=>"ceremonies[][date]", class:"form-control datepicker", value: (@ceremony.date.present? ? @ceremony.date.strftime("%m/%d/%Y") : nil), :required=>true
-        .col-sm-3
-          .input-group.bootstrap-timepicker
-            =f.text_field :time, :name=>"ceremonies[][time]", class:"form-control ceremonytimepicker", value: (@ceremony.time.present? ? @ceremony.time.strftime("%I:%M %p") : nil), :required=>true
-            %span.input-group-addon
-              %i.glyphicon.glyphicon-time
-        .col-sm-2
-          =f.text_field :venue, :name=>"ceremonies[][venue]", class:"form-control", :required=>true
-      .form-group
-        .col-sm-5
-          ='I prefer to receive reminder for the above event prior to:'
-        %label.col-sm-1
-          .row
-            -if @ceremony.present? && @ceremony.is_reminder_on_one_day_prior.present?
-              =check_box_tag "ceremonies[][is_reminder_on_one_day_prior]", @ceremony.is_reminder_on_one_day_prior, @ceremony.is_reminder_on_one_day_prior
-            -else
-              =check_box_tag "ceremonies[][is_reminder_on_one_day_prior]", true, false
-            ='1 day'
-
-        %label.col-sm-1
-          .row
-            -if @ceremony.present? && @ceremony.is_reminder_on_three_day_prior.present?
-              =check_box_tag "ceremonies[][is_reminder_on_three_day_prior]", @ceremony.is_reminder_on_three_day_prior, @ceremony.is_reminder_on_three_day_prior
-            -else
-              =check_box_tag "ceremonies[][is_reminder_on_three_day_prior]", true, false
-            ='3 day'
-
-        %label.col-sm-1
-          .row
-            -if @ceremony.present? && @ceremony.is_reminder_on_seven_day_prior.present?
-              =check_box_tag "ceremonies[][is_reminder_on_seven_day_prior]", @ceremony.is_reminder_on_seven_day_prior, @ceremony.is_reminder_on_seven_day_prior
-            -else
-              =check_box_tag "ceremonies[][is_reminder_on_seven_day_prior]",true, false
-            ='7 day'
-    .clearfix
-  -if @ceremony.new_record?
-    .col-sm-2
-      =link_to 'Add More Ceremony', 'javascript:void(0);', :id=>'addMoreCeremonyLink',class:"btn btn-primary"
   .clearfix
 
-  .col-lg-12.text-right
-    =f.submit 'Save',:class=>"btn btn-primary"
-.clearfix
+  .head_dashboard
+    .row
+      .col-sm-6
+        %h3 Create Events
+      .col-sm-6.text-right
+        =link_to 'Events List', ceremonies_path, :class=>"btn btn-primary"
+    .clearfix
+  .dashboard_cont
+    .form-group
+      =f.label :program, 'Program', class:"col-sm-3"
+      =f.label :date, 'Date', class:"col-sm-3"
+      =f.label :time, 'Time', class:"col-sm-2"
+      =f.label :venue, 'Venue', class:"col-sm-2"
+      .clearfix
+    #ceremony_fields
+      #one_ceremony_field
+        .form-group
+          .col-sm-3
+            =f.text_field :program, :name=>"ceremonies[][program]", class:"form-control", :required=>true
+          .col-sm-2
+            =f.text_field :date, :name=>"ceremonies[][date]", class:"form-control datepicker", value: (@ceremony.date.present? ? @ceremony.date.strftime("%m/%d/%Y") : nil), :required=>true
+          .col-sm-3
+            .input-group.bootstrap-timepicker
+              =f.text_field :time, :name=>"ceremonies[][time]", class:"form-control ceremonytimepicker", value: (@ceremony.time.present? ? @ceremony.time.strftime("%I:%M %p") : nil), :required=>true
+              %span.input-group-addon
+                %i.glyphicon.glyphicon-time
+          .col-sm-2
+            =f.text_field :venue, :name=>"ceremonies[][venue]", class:"form-control", :required=>true
+        .form-group
+          .col-sm-5
+            ='I prefer to receive reminder for the above event prior to:'
+          %label.col-sm-1
+            .row
+              -if @ceremony.present? && @ceremony.is_reminder_on_one_day_prior.present?
+                =check_box_tag "ceremonies[][is_reminder_on_one_day_prior]", @ceremony.is_reminder_on_one_day_prior, @ceremony.is_reminder_on_one_day_prior
+              -else
+                =check_box_tag "ceremonies[][is_reminder_on_one_day_prior]", true, false
+              ='1 day'
+
+          %label.col-sm-1
+            .row
+              -if @ceremony.present? && @ceremony.is_reminder_on_three_day_prior.present?
+                =check_box_tag "ceremonies[][is_reminder_on_three_day_prior]", @ceremony.is_reminder_on_three_day_prior, @ceremony.is_reminder_on_three_day_prior
+              -else
+                =check_box_tag "ceremonies[][is_reminder_on_three_day_prior]", true, false
+              ='3 day'
+
+          %label.col-sm-1
+            .row
+              -if @ceremony.present? && @ceremony.is_reminder_on_seven_day_prior.present?
+                =check_box_tag "ceremonies[][is_reminder_on_seven_day_prior]", @ceremony.is_reminder_on_seven_day_prior, @ceremony.is_reminder_on_seven_day_prior
+              -else
+                =check_box_tag "ceremonies[][is_reminder_on_seven_day_prior]",true, false
+              ='7 day'
+          .clearfix
+    -if @ceremony.new_record?
+      .form-group
+        .text-right.col-sm-12
+          =link_to 'Add More Ceremony', 'javascript:void(0);', :id=>'addMoreCeremonyLink',class:"btn btn-primary"
+          =f.submit 'Save',:class=>"btn btn-primary"
+    .clearfix
