@@ -1,5 +1,13 @@
-<h4>Manage Profile</h4>
+<div class="head_dashboard">
+  <div class="row">
+    <div class="col-sm-6">
+        <h3>Manage Profile</h3>
+    </div>
+  </div>
 
+</div>
+<div class="clearfix margin_bottom10px"></div>
+<div class="dashboard_cont">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
@@ -78,3 +86,4 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>-->
+</div>
