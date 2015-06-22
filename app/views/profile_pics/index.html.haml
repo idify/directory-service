@@ -1,12 +1,18 @@
-.h3='Business Images'
-.clearfix
-.h4='Logo:'
--unless @profile_pic.nil?
-  =image_tag @profile_pic.logo.url(:thumb)
-  =#link_to '<span style="aria-hidden=true", class="glyphicon glyphicon-trash"></span>'.html_safe, {:controller=>'profile_pics', action: :destroy, id: @profile_pic.id}, method: :delete,data: { confirm: 'Are you sure to delete this logo?' }
-.clearfix
+.head_dashboard
+  .row
+    .col-sm-6
+      %h3 Business Images
+    .col-sm-6.text-right
+      =link_to 'Add Business Images', new_profile_pic_path, :class=>"btn btn-primary"
+  .clearfix.margin_bottom10px
+.dashboard_cont
+  .h4='Logo:'
+  -unless @profile_pic.nil?
+    =image_tag @profile_pic.logo.url(:thumb)
+    =#link_to '<span style="aria-hidden=true", class="glyphicon glyphicon-trash"></span>'.html_safe, {:controller=>'profile_pics', action: :destroy, id: @profile_pic.id}, method: :delete,data: { confirm: 'Are you sure to delete this logo?' }
+  .clearfix
 
-.h4='Header Image:'
--unless @profile_pic.nil?
-  =image_tag @profile_pic.header_image.url(:thumb)
-  =#link_to '<span style="aria-hidden=true", class="glyphicon glyphicon-trash"></span>'.html_safe, {:controller=>'profile_pics', action: :destroy, id: @profile_pic.id}, method: :delete,data: { confirm: 'Are you sure to delete this header image?' }
+  .h4='Header Image:'
+  -unless @profile_pic.nil?
+    =image_tag @profile_pic.header_image.url(:thumb)
+    =#link_to '<span style="aria-hidden=true", class="glyphicon glyphicon-trash"></span>'.html_safe, {:controller=>'profile_pics', action: :destroy, id: @profile_pic.id}, method: :delete,data: { confirm: 'Are you sure to delete this header image?' }

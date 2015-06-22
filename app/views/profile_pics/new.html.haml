@@ -1,20 +1,25 @@
-%h4 Add Business Images
-=form_for @profile_pic, :html => { :multipart => true } do |f|
-  .form-group
-    .col-sm-3
-      =f.label :logo, 'Add Business Logo'
-    .col-sm-4
-      =f.file_field :logo, :required=>true
-    .clearfix
-  .form-group
-    .col-sm-3
-      =f.label :header_image, 'Add Your Header Image'
-    .col-sm-4
-      =f.file_field :header_image, required: true
-    .clearfix
+.head_dashboard
+  .row
+    .col-sm-6
+      %h3 Add Business Images
+    .col-sm-6.text-right
+      =link_to 'See Business Images', profile_pics_path, :class=>"btn btn-primary"
+  .clearfix
+.dashboard_cont
+  =form_for @profile_pic, :html => { :multipart => true } do |f|
+    .form-group
+      .col-sm-3
+        =f.label :logo, 'Add Business Logo'
+      .col-sm-4
+        =f.file_field :logo, :required=>true
+      .clearfix
+    .form-group
+      .col-sm-3
+        =f.label :header_image, 'Add Your Header Image'
+      .col-sm-4
+        =f.file_field :header_image, required: true
+      .clearfix
 
-  .col-lg-4.text-right
-    =f.submit 'Save',:class=>"btn btn-primary"
-.clearfix
-
-=link_to 'See Business Images', profile_pics_path
+    .col-lg-4.text-right
+      =f.submit 'Save',:class=>"btn btn-primary"
+  .clearfix

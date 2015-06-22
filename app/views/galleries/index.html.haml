@@ -3,22 +3,23 @@
     .col-sm-6
       %h3 Gallery
 .clearfix
-.h4='Pictures:'
--unless current_user.images.nil?
-  -current_user.images.each do |image|
-    =image_tag image.photo.url(:thumb)
-    =link_to '<span style="aria-hidden=true", class="glyphicon glyphicon-trash"></span>'.html_safe, {:controller=>'galleries', action: :delete_photo, id: image.id}, method: :delete,data: { confirm: 'Are you sure to delete this photo?' }
-.h4='Videos:'
--unless current_user.videos.nil?
-  -current_user.videos.each do |video|
-    %video{:controls => "", :width => "200"}
-      %source{:src => "#{video.video.url(:original)}", :type => "video/mp4"}
-    =link_to '<span style="aria-hidden=true", class="glyphicon glyphicon-trash"></span>'.html_safe, {:controller=>'galleries', action: :delete_video, id: video.id}, method: :delete,data: { confirm: 'Are you sure to delete this video?' }
-    .clearfix
+.dashboard_cont
+  .h4='Pictures:'
+  -unless current_user.images.nil?
+    -current_user.images.each do |image|
+      =image_tag image.photo.url(:thumb)
+      =link_to '<span style="aria-hidden=true", class="glyphicon glyphicon-trash"></span>'.html_safe, {:controller=>'galleries', action: :delete_photo, id: image.id}, method: :delete,data: { confirm: 'Are you sure to delete this photo?' }
+  .h4='Videos:'
+  -unless current_user.videos.nil?
+    -current_user.videos.each do |video|
+      %video{:controls => "", :width => "200"}
+        %source{:src => "#{video.video.url(:original)}", :type => "video/mp4"}
+      =link_to '<span style="aria-hidden=true", class="glyphicon glyphicon-trash"></span>'.html_safe, {:controller=>'galleries', action: :delete_video, id: video.id}, method: :delete,data: { confirm: 'Are you sure to delete this video?' }
+      .clearfix
 
-.h4='Videos Urls:'
--unless current_user.video_urls.nil?
-  -current_user.video_urls.each do |video_url|
-    =link_to video_url.url, video_url.url, :target => "_blank"
-    =link_to '<span style="aria-hidden=true", class="glyphicon glyphicon-trash"></span>'.html_safe, {:controller=>'galleries', action: :delete_video_url, id: video_url.id}, method: :delete,data: { confirm: 'Are you sure to delete this video url?' }
-    .clearfix
+  .h4='Videos Urls:'
+  -unless current_user.video_urls.nil?
+    -current_user.video_urls.each do |video_url|
+      =link_to video_url.url, video_url.url, :target => "_blank"
+      =link_to '<span style="aria-hidden=true", class="glyphicon glyphicon-trash"></span>'.html_safe, {:controller=>'galleries', action: :delete_video_url, id: video_url.id}, method: :delete,data: { confirm: 'Are you sure to delete this video url?' }
+      .clearfix

@@ -1,27 +1,31 @@
--if @categories.present?
-  %h4 Business Info
-  .table-responsive
-    %table.table.table-bordered.table-striped.table-hover
-      %thead
-        %tr
-          %th Business Name
-          %th About us
-          %th Service
-          %th Service Area
-          %th Action
-      %tbody
-        -@categories.each do |category|
+.head_dashboard
+  .row
+    .col-sm-6
+      %h3 Business Info
+.dashboard_cont
+  -if @categories.present?
+    .table-responsive
+      %table.table.table-bordered.table-striped.table-hover
+        %thead
           %tr
-            %td
-              =category.name
-            %td
-              =category.description
-            %td
-              =category.category_type
-            %td
-              =Location.find(category.service_area).name
-            %td
-              =link_to '<span style= "aria-hidden=true", class="glyphicon glyphicon-edit"></span>'.html_safe, edit_category_path(category)
-              =link_to category, data:{:confirm=>'Are you sure to delete this ?'}, :method=>:delete do
-                %span{style: "aria-hidden=true", class:"glyphicon glyphicon-trash"}
-            .clearfix
+            %th Business Name
+            %th About us
+            %th Service
+            %th Service Area
+            %th Action
+        %tbody
+          -@categories.each do |category|
+            %tr
+              %td
+                =category.name
+              %td
+                =category.description
+              %td
+                =category.category_type
+              %td
+                =Location.find(category.service_area).name
+              %td
+                =link_to '<span style= "aria-hidden=true", class="glyphicon glyphicon-edit"></span>'.html_safe, edit_category_path(category)
+                =link_to category, data:{:confirm=>'Are you sure to delete this ?'}, :method=>:delete do
+                  %span{style: "aria-hidden=true", class:"glyphicon glyphicon-trash"}
+              .clearfix

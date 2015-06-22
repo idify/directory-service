@@ -1,2 +1,9 @@
-%h4 Update Business Info
-=render 'form'
+.head_dashboard
+  .row
+    .col-sm-6
+      %h3 Update Business Info
+    .col-sm-6.text-right
+      =link_to 'See your Business Info', categories_path, :class=>"btn btn-primary"
+  .clearfix
+.dashboard_cont
+  =render 'form'

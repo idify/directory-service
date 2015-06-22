@@ -1,7 +1,7 @@
 =form_for @user_keyword do |f|
   -if @user_keyword.errors.any?
     %h5
-      =pluralize(@user_keyword.errors.count, "error") +' '+ 'prohibited this guest from being saved:'
+      =pluralize(@user_keyword.errors.count, "error") +' '+ 'prohibited this keyword from being saved:'
     %div.alert.alert-danger
       - @user_keyword.errors.full_messages.each do |msg|
         = msg
@@ -18,4 +18,4 @@
   .col-lg-7.text-right
     =f.submit 'Save',:class=>"btn btn-primary"
 .clearfix
-=link_to 'See your keywords', user_keywords_path
+=#link_to 'See your keywords', user_keywords_path

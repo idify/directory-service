@@ -1,6 +1,12 @@
-%h4 listing your keywords
+.head_dashboard
+  .row
+    .col-sm-6
+      %h3 Listing your keywords
+    .col-sm-6.text-right
+      =link_to 'Add keywords', new_user_keyword_path, :class=>"btn btn-primary"
 .clearfix
--if @user_keywords.present?
-  -@user_keywords.each do |keyword|
-    =keyword.keyword
-    .clearfix
+.dashboard_cont
+  -if @user_keywords.present?
+    -@user_keywords.each do |keyword|
+      =keyword.keyword
+      .clearfix
