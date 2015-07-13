@@ -6,13 +6,13 @@ namespace :reminder_if_not_logs_in_for_days do
 
     if users_list.present?
       users_list.each do |user|
-          begin
-            UserReminder.send_reminder_email_for_not_logged_in(user).deliver
-            puts "#{Time.now} - Success! email reminder for user: #{user.email} for not logged in from last five days."
-          rescue Exception => e
-            puts e.message
-          end
+        begin
+          UserReminder.send_reminder_email_for_not_logged_in(user).deliver
+          puts "#{Time.now} - Success! email reminder for user: #{user.email} for not logged in from last five days."
+        rescue Exception => e
+          puts e.message
         end
+      end
     end
 
   end

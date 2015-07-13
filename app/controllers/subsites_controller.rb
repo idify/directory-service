@@ -15,7 +15,7 @@ class SubsitesController < ApplicationController
                             invitees: params[:invitees].join(','),
                         user_id: current_user.id)
       if @subsite.save
-        redirect_to root_path, notice: 'Your website is sucessfully created.'
+        redirect_to root_path, notice: 'Your website is successfully created.'
       end
     end
 
