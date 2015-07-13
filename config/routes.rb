@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :sessions => "users/sessions", :registrations => "users/registrations",
-                        :passwords => "users/passwords"} do
+                                       :confirmations => "users/confirmations", :passwords => "users/passwords"} do
     resources 'users/registrations'
     resources 'users/sessions'
     resources 'users/passwords'
