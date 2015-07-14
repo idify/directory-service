@@ -1,7 +1,9 @@
 class WishlistsController < ApplicationController
 
   def index
-    @wishlists = Wishlist.where("category=?",current_user.categories.first.category_type)
+    if current_user.categories.present?
+      @wishlists = Wishlist.where("category=?",current_user.categories.first.category_type)
+    end
   end
 
   def new

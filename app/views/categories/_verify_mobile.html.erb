@@ -1,0 +1,53 @@
+<% if current_user.present?%>
+<%unless current_user.is_verified==true%>
+  <div class="verification"> <h4>Please Verify Your Mobile Number</h4>
+    <h4><%=current_user.mobile%></h4>
+    <input id="verify" type="button" value="Verify Mobile" />
+    <div class="otp"  style="display:none;"><input id="input_code" placeholder="Enter Code"/><button href="#" type="button" id="code" >Add</button></div>
+  </div>
+
+  <script type="text/javascript">
+    $("#verify").on('click', function () {
+      $.ajax({
+        type: "GET",
+        url: "/sms_verify",
+        data: {number: <%= current_user.mobile%>}
+      })
+        .done(function (msg) {
+
+          if (msg) {
+            $("#verify").hide();
+            $(".otp").css('display', "block");
+
+          }
+
+        });
+    });
+
+    $("#code").click(function () {
+      a = $("#input_code").val();
+      $.ajax({
+        type: "GET",
+        url: "/check_code",
+        data: {number: a}
+      })
+        .done(function (msg) {
+
+          if (msg == "true") {
+
+            alert("Successfully Verified Your Mobile Number.");
+            $(".verification").remove();
+            window.location.href="/";
+          }
+          else {
+            alert("Wrong Code Entered.");
+          }
+
+        });
+    });
+
+  </script>
+<%else%>
+  <h4>Mobile number already activated.</h4>
+<%end%>
+<%end%>
