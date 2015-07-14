@@ -22,7 +22,7 @@ class HomesController < ApplicationController
 
   @search_params = params[:search_keyword]
     if @search_params.present?
-      @searched_results = UserKeyword.where("keyword=? ", params[:search_keyword]).paginate(:per_page=>10, :page=>params[:page])
+      @searched_results = UserKeyword.where("keyword LIKE ?", "%#{params[:search_keyword]}%").paginate(:per_page=>10, :page=>params[:page])
     end
   end
 end
