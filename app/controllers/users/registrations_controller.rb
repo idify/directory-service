@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
-  layout 'plain', except:['edit']
+  layout 'plain', except:['edit', 'update']
 
   private
 
