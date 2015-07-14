@@ -29,21 +29,25 @@
             #address.tab-pane.active{:role => "tabpanel"}
               .row
                 .col-sm-4.border_grey.bg_white{style: "min-height: 295px"}
-                  %h3.heading Address
-                  %p
-                    =@category.address
-                  %h3.heading Contact Info
-                  %p
-                    %span.fa.fa-mobile-phone
-                    %strong Mobile No. :
-                    =@category.user.mobile
-                  %p
-                    %span.fa.fa-envelope
-                    %strong Email :
-                    =@category.user.email
-                .col-sm-8
-                  = "MAP NOT ASSIGNED".html_safe if @category.latitude.blank?
-                  #googleMap{:style => "width:100%;height:295px; frameborder:0, border: 0, margin:0 auto;"}
+                  -if @visitor.blank?
+                    =render 'verify_mobile'
+                  -else
+                    %h3.heading Address
+                    %p
+                      =@category.address
+                    %h3.heading Contact Info
+                    %p
+                      %span.fa.fa-mobile-phone
+                      %strong Mobile No. :
+                      =@category.user.mobile
+                    %p
+                      %span.fa.fa-envelope
+                      %strong Email :
+                      =@category.user.email
+                -if @visitor.present?
+                  .col-sm-8
+                    = "MAP NOT ASSIGNED".html_safe if @category.latitude.blank?
+                    #googleMap{:style => "width:100%;height:295px; frameborder:0, border: 0, margin:0 auto;"}
             #Services.tab-pane{:role => "tabpanel"}
               .col-sm-9
                 %h3.heading_inner Services and Description

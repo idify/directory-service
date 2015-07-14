@@ -1,43 +1,49 @@
-<% if current_user.present?%>
-<%unless current_user.is_verified==true%>
-  <div class="verification"> <h4>Please Verify Your Mobile Number</h4>
-    <h4><%=current_user.mobile%></h4>
+
+  <div class="verification">
+    <div class="mobile">
+    <h4>Please Verify Your Mobile Number</h4>
+    <input id="mobile_number" type="text" value="" />
     <input id="verify" type="button" value="Verify Mobile" />
-    <div class="otp"  style="display:none;"><input id="input_code" placeholder="Enter Code"/><button href="#" type="button" id="code" >Add</button></div>
+    </div>
+    <div class="otp"  style="display:none;">
+      <%= "#{session[:mobile_number]}" %>
+      <h4>Enter One Time Password (OTP)</h4>
+      <h6>One time password has been sent to your mobile <%= "#{session[:mobile_number]}" %>,
+      please enter the same here.</h6>
+      <input id="input_code" placeholder="OTP"/>
+      <button href="#" type="button" id="code" >Confirm</button>
+    </div>
   </div>
 
   <script type="text/javascript">
     $("#verify").on('click', function () {
       $.ajax({
         type: "GET",
-        url: "/sms_verify",
-        data: {number: <%= current_user.mobile%>}
+        url: "/categories/sms_verify",
+        data: {mobile_number: $("#mobile_number").val()}
       })
         .done(function (msg) {
 
           if (msg) {
-            $("#verify").hide();
+              $(".mobile").hide();
             $(".otp").css('display', "block");
-
           }
 
         });
     });
 
     $("#code").click(function () {
-      a = $("#input_code").val();
+      otp = $("#input_code").val();
       $.ajax({
         type: "GET",
-        url: "/check_code",
-        data: {number: a}
+        url: "/categories/check_code",
+        data: {otp_code: otp}
       })
         .done(function (msg) {
-
           if (msg == "true") {
-
             alert("Successfully Verified Your Mobile Number.");
             $(".verification").remove();
-            window.location.href="/";
+              window.location.href=window.location.href;
           }
           else {
             alert("Wrong Code Entered.");
@@ -47,7 +53,3 @@
     });
 
   </script>
-<%else%>
-  <h4>Mobile number already activated.</h4>
-<%end%>
-<%end%>

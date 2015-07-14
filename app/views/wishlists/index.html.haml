@@ -3,7 +3,8 @@
     .col-sm-6
       %h3 See wishlists
     .col-sm-6.text-right
-      =link_to 'Create Wishlist', new_wishlist_path, :class=>"btn btn-primary"
+      -if current_user.customer?
+        =link_to 'Create Wishlist', new_wishlist_path, :class=>"btn btn-primary"
   .clearfix.margin_bottom10px
 .dashboard_cont
   -if @wishlists.present?
@@ -33,3 +34,5 @@
             %td
               =wishlist.wish_list
       .clearfix
+  -else
+    %h4='Currently, there is no wishlist present.'

@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate_user!, :except=>[:show]
+  before_action :authenticate_user!, :except=>[:show, :sms_verify, :check_code]
   layout 'plain', :only=>[:show]
 
   before_action :check_if_mobile_verified, :only=>[:index]
@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.friendly.find(params[:id])
+    @visitor = VisitorList.where("mobile_number = ? AND is_opt_confirmed = ?", session[:mobile_number],true).last
   end
 
   def new
@@ -49,6 +50,37 @@ class CategoriesController < ApplicationController
       redirect_to categories_path, notice: 'Business info deleted.'
     else
       render 'index'
+    end
+  end
+
+  def sms_verify
+    session[:mobile_number] = params[:mobile_number].present? ? params[:mobile_number] : nil
+    # These code snippets use an open-source library. http://unirest.io/ruby
+    if session[:mobile_number].present?
+      r=Random.new
+      random_value=r.rand(1000...9999)
+      verify_text = 'Your mobile number verification code for Directory service is:'
+      response = Unirest.get "https://site2sms.p.mashape.com/index.php?msg=#{verify_text.to_s+random_value.to_s}&phone=#{session[:mobile_number].to_i}&pwd=262360&uid=9650621543",
+                             headers:{
+                                 "X-Mashape-Key" => "lHwv3VsIn8mshMui2N6NbDzRJMJOp1NISLxjsnAh90sLzPLxLq",
+                                 "Accept" => "application/json"
+                             }
+      logger.info("otp is :#{random_value.inspect}")
+      if VisitorList.create(:mobile_number=>session[:mobile_number])
+        render :text=> true
+      end
+    end
+  end
+
+  def check_code
+    if params[:otp_code].present?
+      @visitor = VisitorList.where("mobile_number=?", session[:mobile_number]).last
+      if @visitor.present?
+        @visitor.update_attribute("is_opt_confirmed", true)
+        render :text=> true
+      end
+    else
+      render :text=> false
     end
   end
 

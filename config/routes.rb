@@ -26,7 +26,13 @@ Rails.application.routes.draw do
     get '/verify_mobile'=>'users/sessions#verify_mobile'
   end
 
-  resources :categories
+  resources :categories do
+    collection do
+      get 'save_visitor'
+      get 'sms_verify'
+      get 'check_code'
+    end
+  end
 
   resources :guests
 
