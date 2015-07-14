@@ -25,11 +25,15 @@
                       %tr
                         %td
                           %span.vendor_profile_pic
-                            =image_tag result.user.profile_pic.logo.url(:thumb)
+                            -if result.user.profile_pic.present?
+                              =image_tag result.user.profile_pic.logo.url(:thumb)
                         %td
                           %span
-                            =link_to result.user.categories.first.name, category_path(result.user.categories.first)
-                  %td="Rs. #{result.user.categories.first.min_price} to #{result.user.categories.first.max_price}"
+                            -if result.user.categories.first.present?
+                              =link_to result.user.categories.first.name, category_path(result.user.categories.first)
                   %td
-                    =Location.find(result.user.categories.first.service_area).name
+                    -if result.user.categories.first.present?
+                      ="Rs. #{result.user.categories.first.min_price} to #{result.user.categories.first.max_price}"
+                      %td
+                        =Location.find(result.user.categories.first.service_area).name
         =will_paginate @searched_results
