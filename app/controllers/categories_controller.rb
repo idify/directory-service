@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.friendly.find(params[:id])
-    @visitor = VisitorList.where("mobile_number = ? AND is_opt_confirmed = ?", session[:mobile_number],true).last
+    @visitor = VisitorList.where("mobile_number = ? AND is_otp_confirmed = ?", session[:mobile_number],true).last
   end
 
   def new
@@ -76,7 +76,7 @@ class CategoriesController < ApplicationController
     if params[:otp_code].present?
       @visitor = VisitorList.where("mobile_number=?", session[:mobile_number]).last
       if @visitor.present?
-        @visitor.update_attribute("is_opt_confirmed", true)
+        @visitor.update_attribute("is_otp_confirmed", true)
         render :text=> true
       end
     else
