@@ -9,9 +9,11 @@
       .clearfix
       .col-sm-12
         .header_img
-          =image_tag @category.user.profile_pic.header_image.url(:original), class: "img-responsive"
+          -if @category.user.profile_pic.present?
+            =image_tag @category.user.profile_pic.header_image.url(:original), class: "img-responsive"
         .bar_img
-          =image_tag @category.user.profile_pic.logo.url(:original)
+          -if @category.user.profile_pic.present?
+            =image_tag @category.user.profile_pic.logo.url(:original)
         .clearfix
         #vendor_profile_tabs{:role => "tabpanel"}
           %ul.nav.nav-tabs{:role => "tablist"}
