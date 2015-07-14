@@ -66,9 +66,13 @@ class CategoriesController < ApplicationController
                                  "Accept" => "application/json"
                              }
       logger.info("otp is :#{random_value.inspect}")
-      if VisitorList.create(:mobile_number=>session[:mobile_number])
-        render :text=> true
+
+      @already_visitor = VisitorList.where("mobile_number=?", session[:mobile_number]).last
+
+      if @already_visitor.blank?
+        VisitorList.create(:mobile_number=> session[:mobile_number])
       end
+      render :text=> true
     end
   end
 
