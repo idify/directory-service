@@ -1113,3 +1113,6 @@ footer {
     margin-top: 15px;
     padding: 15px 0;
 }
+.header_img {
+    min-height: 180px;
+}
