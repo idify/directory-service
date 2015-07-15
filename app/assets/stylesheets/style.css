@@ -1116,3 +1116,6 @@ footer {
 .header_img {
     min-height: 180px;
 }
+label.error {
+    color: #ff0000;
+}

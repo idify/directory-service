@@ -17,6 +17,9 @@
 //= require bootstrap-timepicker.min
 //= require chosen-jquery
 //= require ImageSelect.jquery
+//= require jquery.autocomplete.multiselect
+//= require modernizr-2.6.2.min
+//= require jquery.validate.min
 //= require messages
 
 $(document).ready(function() {
@@ -120,4 +123,46 @@ $(document).ready(function() {
 
     var footer_height= $("footer").height();
     $("body").css("margin-bottom",footer_height);
-})
+
+    $(".new_ceremony").validate({
+        rules: {
+            "ceremonies[][date]": {
+                required: true
+            }
+        },
+        messages: {
+            "ceremonies[][date]": {
+                required: "Please select date"
+            }
+        }
+    });
+
+    //var availableTags = [
+    //    "ActionScript",
+    //    "AppleScript",
+    //    "Asp",
+    //    "BASIC",
+    //    "C",
+    //    "C++",
+    //    "Clojure",
+    //    "COBOL",
+    //    "ColdFusion",
+    //    "Erlang",
+    //    "Fortran",
+    //    "Groovy",
+    //    "Haskell",
+    //    "Java",
+    //    "JavaScript",
+    //    "Lisp",
+    //    "Perl",
+    //    "PHP",
+    //    "Python",
+    //    "Ruby",
+    //    "Scala",
+    //    "Scheme"
+    //];
+    //$('#myAutocomplete').autocomplete({
+    //    source: availableTags,
+    //    multiselect: true
+    //});
+});

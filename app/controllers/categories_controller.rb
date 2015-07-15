@@ -1,8 +1,18 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, :except=>[:show, :sms_verify, :check_code]
-  layout 'plain', :only=>[:show]
+  before_action :check_if_vendor, :only=>[:new]
+
+  layout :set_layout
 
   before_action :check_if_mobile_verified, :only=>[:index]
+
+ def set_layout
+   if current_user.blank? && params[:action] =='show'
+     'plain'
+   else
+     'application'
+   end
+ end
 
   def index
     @categories = current_user.categories
@@ -10,6 +20,8 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.friendly.find(params[:id])
+    @latitude = @category.latitude.present? ? @category.latitude : ''
+    @longitude =@category.longitude.present? ? @category.longitude : ''
     @visitor = VisitorList.where("mobile_number = ? AND is_otp_confirmed = ?", session[:mobile_number],true).last
   end
 
@@ -85,6 +97,12 @@ class CategoriesController < ApplicationController
       end
     else
       render :text=> false
+    end
+  end
+
+  def check_if_vendor
+    if current_user && current_user.customer?
+      redirect_to '/'
     end
   end
 

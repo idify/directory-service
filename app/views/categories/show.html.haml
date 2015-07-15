@@ -131,7 +131,7 @@
 -#  #googleMap{:style => "width:50%;height:250px; margin:0 auto;"}
 
 :javascript
-    var myCenter=new google.maps.LatLng(#{@category.latitude},#{@category.longitude});
+    var myCenter=new google.maps.LatLng(#{@latitude},#{@longitude});
     var marker;
 
     function initialize()

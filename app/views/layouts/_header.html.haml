@@ -29,39 +29,42 @@
           %span.icon-bar
       .navbar-collapse.collapse
         %ul.nav.navbar-nav
-          %li
-            %a{:href => "#"}
-              %img{:src => "/assets/wedding_card.png"}
-                %div Wedding Card Design
-          %li
-            %a{:href => ""}
-              %img{:src => "/assets/dress.png"}
-                %div Dresses
-          %li
-            %a{:href => ""}
-              %img{:src => "/assets/jewellery.png"}
-                %div Jewellery
-          %li
-            %a{:href => ""}
-              %img{:src => "/assets/decoration.png"}
-                %div Decoration
-          %li
-            %a{:href => ""}
-              %img{:src => "/assets/venues.png"}
-                %div Wedding Venues
-          %li
-            %a{:href => ""}
-              %img{:src => "/assets/caterers.png"}
-                %div Caterers
-          %li
-            %a{:href => ""}
-              %img{:src => "/assets/cameras.png"}
-                %div Cameras
-          %li
-            %a{:href => ""}
-              %img{:src => "/assets/accomodations.png"}
-                %div Accomodation
-          %li
-            %a{:href => ""}
-              %img{:src => "/assets/music_djs.png"}
-                %div Music  DJ's
+          -@categories = Category.all
+          -@categories.each do |category|
+            %li
+              %a{:href => "#"}
+                %img{:src => "/assets/wedding_card.png"}
+                  %div
+                    =link_to category.category_type, category_path(category)
+          -#%li
+          -#  %a{:href => ""}
+          -#    %img{:src => "/assets/dress.png"}
+          -#      %div Dresses
+          -#%li
+          -#  %a{:href => ""}
+          -#    %img{:src => "/assets/jewellery.png"}
+          -#      %div Jewellery
+          -#%li
+          -#  %a{:href => ""}
+          -#    %img{:src => "/assets/decoration.png"}
+          -#      %div Decoration
+          -#%li
+          -#  %a{:href => ""}
+          -#    %img{:src => "/assets/venues.png"}
+          -#      %div Wedding Venues
+          -#%li
+          -#  %a{:href => ""}
+          -#    %img{:src => "/assets/caterers.png"}
+          -#      %div Caterers
+          -#%li
+          -#  %a{:href => ""}
+          -#    %img{:src => "/assets/cameras.png"}
+          -#      %div Cameras
+          -#%li
+          -#  %a{:href => ""}
+          -#    %img{:src => "/assets/accomodations.png"}
+          -#      %div Accomodation
+          -#%li
+          -#  %a{:href => ""}
+          -#    %img{:src => "/assets/music_djs.png"}
+          -#      %div Music  DJ's

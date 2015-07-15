@@ -37,6 +37,35 @@
     </div>
 <%end%>
 
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <div class="navbar-header" style="display:inline">
+      <button class="navbar-toggle collapsed" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <% @categories = Category.all %>
+        <% @categories.each do |category| %>
+            <li>
+              <a href="#">
+                <img src="/assets/wedding_card.png">
+                <div>
+                  <%= link_to category.category_type, category_path(category) %>
+                </div>
+                </img>
+              </a>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div class="container-fluid">
   <%if current_user.is_verified==true%>
   <div class="col-sm-4 col-md-3 sidebar" id="user_bar">
