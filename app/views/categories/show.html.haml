@@ -46,6 +46,8 @@
                       %span.fa.fa-envelope
                       %strong Email :
                       =@category.user.email
+                    %p
+                      = link_to 'Start Conversation', new_message_path, class: 'btn btn-md btn-primary'
                 -if @visitor.present?
                   .col-sm-8
                     = "MAP NOT ASSIGNED".html_safe if @category.latitude.blank?
