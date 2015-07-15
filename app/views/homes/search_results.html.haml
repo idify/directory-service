@@ -34,6 +34,7 @@
                   %td
                     -if result.user.categories.first.present?
                       ="Rs. #{result.user.categories.first.min_price} to #{result.user.categories.first.max_price}"
-                      %td
-                        =Location.find(result.user.categories.first.service_area).name
+                  %td
+                    -if result.user.categories.first.present?
+                      =Location.find(result.user.categories.first.service_area).name
         =will_paginate @searched_results
