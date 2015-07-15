@@ -20,7 +20,7 @@
           .col-sm-3
             =f.text_field :program, :name=>"ceremonies[][program]", class:"form-control", :required=>true
           .col-sm-2
-            =f.text_field :date, :name=>"ceremonies[][date]", class:"form-control datepicker", value: (@ceremony.date.present? ? @ceremony.date.strftime("%m/%d/%Y") : nil), :required=>true
+            =f.text_field :date, :name=>"ceremonies[][date]", class:"form-control datepicker", value: (@ceremony.date.present? ? @ceremony.date.strftime("%m/%d/%Y") : nil)
           .col-sm-3
             .input-group.bootstrap-timepicker
               =f.text_field :time, :name=>"ceremonies[][time]", class:"form-control ceremonytimepicker", value: (@ceremony.time.present? ? @ceremony.time.strftime("%I:%M %p") : nil), :required=>true
@@ -55,9 +55,25 @@
                 =check_box_tag "ceremonies[][is_reminder_on_seven_day_prior]",true, false
               ='7 day'
           .clearfix
-    -if @ceremony.new_record?
-      .form-group
-        .text-right.col-sm-12
+
+    .form-group
+      .text-right.col-sm-12
+        -if @ceremony.new_record?
           =link_to 'Add More Ceremony', 'javascript:void(0);', :id=>'addMoreCeremonyLink',class:"btn btn-primary"
-          =f.submit 'Save',:class=>"btn btn-primary"
+        =f.submit 'Save',:class=>"btn btn-primary"
     .clearfix
+
+-#:javascript
+-#  function process(date){
+-#    var parts = date.split("/");
+-#    return new Date(parts[2], parts[1] - 1, parts[0]);
+-#    }
+-#
+-#    var today = new Date();
+-#
+-#  $(".new_ceremony").submit(function(){
+-#    if(today < process($("#ceremonies_date").val())){
+-#    alert("Date Cannot be Greater than today's Date");
+-#    return false;
+-#    }
+-#  });

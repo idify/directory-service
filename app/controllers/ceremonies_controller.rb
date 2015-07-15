@@ -18,11 +18,13 @@ class CeremoniesController < ApplicationController
     if params[:ceremonies].present?
 
       params[:ceremonies].each do |ceremony_param|
-        @ceremony= Ceremony.new(program: ceremony_param[:program], date: Time.strptime(ceremony_param[:date], "%m/%d/%Y").strftime('%Y-%m-%d'),
-                                time: ceremony_param[:time], venue: ceremony_param[:venue],
-                                user_id: current_user.id, is_reminder_on_one_day_prior: ceremony_param[:is_reminder_on_one_day_prior],
-                                is_reminder_on_three_day_prior: ceremony_param[:is_reminder_on_three_day_prior], is_reminder_on_seven_day_prior: ceremony_param[:is_reminder_on_seven_day_prior])
-        @ceremony.save
+        if ceremony_param[:date].present? && ceremony_param[:program].present?
+          @ceremony= Ceremony.new(program: ceremony_param[:program], date: Time.strptime(ceremony_param[:date], "%m/%d/%Y").strftime('%Y-%m-%d'),
+                                  time: ceremony_param[:time], venue: ceremony_param[:venue],
+                                  user_id: current_user.id, is_reminder_on_one_day_prior: ceremony_param[:is_reminder_on_one_day_prior],
+                                  is_reminder_on_three_day_prior: ceremony_param[:is_reminder_on_three_day_prior], is_reminder_on_seven_day_prior: ceremony_param[:is_reminder_on_seven_day_prior])
+          @ceremony.save
+        end
       end
     end
 
