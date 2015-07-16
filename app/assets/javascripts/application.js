@@ -90,10 +90,11 @@ $(document).ready(function() {
     $('.ceremonytimepicker').timepicker({
         defaultTime: "07:00 AM"
     });
-
+    var dateToday = new Date();
     $('.datepicker').datepicker({
         format: 'mm/dd/yyyy',
-        autoclose: true
+        autoclose: true,
+        minDate: dateToday
     });
 
     $(".portfolio").on("mouseenter",function(){
