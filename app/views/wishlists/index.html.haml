@@ -7,8 +7,8 @@
         =link_to 'Create Wishlist', new_wishlist_path, :class=>"btn btn-primary"
   .clearfix.margin_bottom10px
 .dashboard_cont
-  -if @wishlists.present?
-    -@wishlists.each do |wishlist|
+  -if @wishlists.flatten.present?
+    -@wishlists.flatten.each do |wishlist|
       .table-responsive
       %table.table.table-bordered.table-striped.table-hover
         %thead
@@ -26,7 +26,7 @@
             %td
               =wishlist.mobile_number
             %td
-              =Location.find(wishlist.city_id).name
+              =wishlist.city.present? ? wishlist.city.split(", ").join(', ') : ''
             %td
               =wishlist.category
             %td

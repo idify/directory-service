@@ -38,7 +38,7 @@
   .form-group
     =f.label :city, 'City', class:"col-sm-3"
     .col-sm-3
-      =f.select :city_id,  Location.all.collect {|p| [ p.name, p.id ] }, class: "form-control", :prompt => '-select-'
+      =f.text_field :city, id:"AutocompleteServiceArea", class: "form-control"
     .clearfix
 
   .form-group
