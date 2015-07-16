@@ -48,7 +48,7 @@ class GalleriesController < ApplicationController
     @video_url = VideoUrl.find(params[:id])
 
     if @video_url.destroy
-      redirect_to galleries_path, notice: "Video Url has been deleted."
+      redirect_to galleries_path, notice: "Video has been deleted."
     end
   end
 

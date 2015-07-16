@@ -18,7 +18,7 @@
         #vendor_profile_tabs{:role => "tabpanel"}
           %ul.nav.nav-tabs{:role => "tablist"}
             %li{:role => "presentation"}
-              %a{"aria-controls" => "img_gallery", "data-toggle" => "tab", :href => "#img_gallery", :role => "tab"} Image Gallery
+              %a{"aria-controls" => "img_gallery", "data-toggle" => "tab", :href => "#img_gallery", :role => "tab"} Gallery
             %li{:role => "presentation"}
               %a{"aria-controls" => "references", "data-toggle" => "tab", :href => "#references", :role => "tab"} References
             %li{:role => "presentation"}
@@ -84,8 +84,8 @@
                     %a{"aria-controls" => "pictures", "data-toggle" => "tab", :href => "#pictures", :role => "tab"} Pictures
                   %li{:role => "presentation"}
                     %a{"aria-controls" => "videos", "data-toggle" => "tab", :href => "#videos", :role => "tab"} Videos
-                  %li{:role => "presentation"}
-                    %a{"aria-controls" => "streaming", "data-toggle" => "tab", :href => "#streaming", :role => "tab"} Video URLs
+                  -#%li{:role => "presentation"}
+                  -#  %a{"aria-controls" => "streaming", "data-toggle" => "tab", :href => "#streaming", :role => "tab"} Video URLs
                 .tab-content.padding_15px
                   #pictures.tab-pane.active{:role => "tabpanel"}
                     -unless @category.user.images.nil?
@@ -96,15 +96,19 @@
                     -unless @category.user.videos.nil?
                       .col-sm-4
                         -@category.user.videos.each do |video|
-                          %video{:controls => "", :width => "400"}
+                          %video{:controls => "", :width => "300"}
                             %source{:src => "#{video.video.url(:original)}", :type => "video/mp4"}
+                    -unless @category.user.video_urls.nil?
+                      -@category.user.video_urls.each do |video_url|
+                        .col-sm-4
+                          %iframe{:allowfullscreen => "", :frameborder => "0", :src => video_url.url, :width => "300"}
                     .clearfix.margin_bottom15px
-                  #streaming.tab-pane{:role => "tabpanel"}
-                    .col-sm-12.padding_15px
-                      -unless @category.user.video_urls.nil?
-                        -@category.user.video_urls.each do |video_url|
-                          %p
-                            =link_to video_url.url, video_url.url, :target => "_blank"
+                  -##streaming.tab-pane{:role => "tabpanel"}
+                  -#  .col-sm-12.padding_15px
+                  -#    -unless @category.user.video_urls.nil?
+                  -#      -@category.user.video_urls.each do |video_url|
+                  -#        %p
+                  -#          %iframe{:allowfullscreen => "", :frameborder => "0", :src => video_url.url, :width => "200"}
                   .clearfix.margin_bottom15px
 
 -#-if @category.present?
