@@ -65,6 +65,17 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def autocomplete_locations
+    @terms = params[:term].split(', ')
+    @locations = Location.order(:name).where("name ILIKE ?", "%#{@terms.last}%")
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: @locations.map(&:name)
+      }
+    end
+  end
+
   def sms_verify
     session[:mobile_number] = params[:mobile_number].present? ? params[:mobile_number] : nil
     # These code snippets use an open-source library. http://unirest.io/ruby

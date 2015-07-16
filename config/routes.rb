@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       get 'save_visitor'
       get 'sms_verify'
       get 'check_code'
+      get 'autocomplete_locations'
     end
   end
 
