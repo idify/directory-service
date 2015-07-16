@@ -19,6 +19,7 @@
 //= require ImageSelect.jquery
 //= require jquery.validate.min
 //= require messages
+//= require jquery-ui.min
 
 $(document).ready(function() {
 
