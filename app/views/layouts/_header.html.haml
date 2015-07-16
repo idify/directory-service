@@ -32,10 +32,10 @@
           -@categories = Category.all
           -@categories.each do |category|
             %li
-              %a{:href => "#"}
+              %a{:href => "#{category_path(category)}"}
                 %img{:src => "/assets/wedding_card.png"}
                   %div
-                    =link_to category.category_type, category_path(category)
+                    =category.category_type
           -#%li
           -#  %a{:href => ""}
           -#    %img{:src => "/assets/dress.png"}

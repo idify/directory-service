@@ -28,15 +28,6 @@
   <!--</div>-->
 </nav>
 
-<% flash.each do |name,msg|%>
-    <div class="col-lg-12 ">
-      <div class="alert alert-<%=name == 'notice' || 'success' ? 'success' : 'danger'%>">
-        <%=msg%>
-        <a class="close" data-dismiss="alert">x</a>
-      </div>
-    </div>
-<%end%>
-
 <nav class="navbar navbar-inverse">
   <div class="container">
     <div class="navbar-header" style="display:inline">
@@ -52,10 +43,10 @@
         <% @categories = Category.all %>
         <% @categories.each do |category| %>
             <li>
-              <a href="#">
+              <a href="<%= category_path(category) %>">
                 <img src="/assets/wedding_card.png">
                 <div>
-                  <%= link_to category.category_type, category_path(category) %>
+                  <%= category.category_type %>
                 </div>
                 </img>
               </a>
@@ -65,6 +56,15 @@
     </div>
   </div>
 </nav>
+
+<% flash.each do |name,msg|%>
+    <div class="col-lg-12 ">
+      <div class="alert alert-<%=name == 'notice' || 'success' ? 'success' : 'danger'%>">
+        <%=msg%>
+        <a class="close" data-dismiss="alert">x</a>
+      </div>
+    </div>
+<%end%>
 
 <div class="container-fluid">
   <%if current_user.is_verified==true%>
