@@ -1,4 +1,4 @@
-=form_for @category do |f|
+=form_for @category, id:'bussiness_o' do |f|
   -if @category.errors.any?
     %h5
       =pluralize(@category.errors.count, "error") +' '+ 'prohibited this category from being saved:'
@@ -52,7 +52,7 @@
     .col-sm-4
       =f.label :service_area
     .col-sm-4
-      =f.select :service_area,  Location.all.collect {|p| [ p.name, p.id ] }, class: "form-control", :prompt => '-select-'
+      =f.text_field :service_area, id:"AutocompleteServiceArea", class: "form-control"
     .clearfix
     -#.col-sm-6
     -#  =f.label :email

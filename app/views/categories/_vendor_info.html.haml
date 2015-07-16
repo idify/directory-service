@@ -64,7 +64,7 @@
               %p
                 %strong Service Area
               %p
-                =Location.find(@category.service_area).name
+                =@category.service_area.split(", ").join(', ')
               %p
                 %strong No. of Employees
               %p

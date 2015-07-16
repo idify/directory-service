@@ -23,7 +23,7 @@
               %td
                 =category.category_type
               %td
-                =Location.find(category.service_area).name
+                =category.service_area.split(", ").join(', ')
               %td
                 =link_to '<span style= "aria-hidden=true", class="glyphicon glyphicon-edit"></span>'.html_safe, edit_category_path(category)
                 =link_to category, data:{:confirm=>'Are you sure to delete this ?'}, :method=>:delete do

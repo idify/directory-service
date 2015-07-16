@@ -17,8 +17,6 @@
 //= require bootstrap-timepicker.min
 //= require chosen-jquery
 //= require ImageSelect.jquery
-//= require jquery.autocomplete.multiselect
-//= require modernizr-2.6.2.min
 //= require jquery.validate.min
 //= require messages
 
