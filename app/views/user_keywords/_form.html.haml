@@ -19,3 +19,12 @@
     =f.submit 'Save',:class=>"btn btn-primary"
 .clearfix
 =#link_to 'See your keywords', user_keywords_path
+
+.dashboard_cont
+  .col-sm-12
+    %h4.strong
+      Your Keywords
+    -if @user_keywords.present?
+      -@user_keywords.each do |keyword|
+        =keyword.keyword
+        .clearfix

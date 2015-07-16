@@ -7,6 +7,7 @@ class UserKeywordsController < ApplicationController
   end
 
   def new
+    @user_keywords = current_user.user_keywords
     @user_keyword = UserKeyword.new
   end
 
@@ -18,7 +19,7 @@ class UserKeywordsController < ApplicationController
     end
 
     if current_user.user_keywords.present?
-      redirect_to user_keywords_path, :notice => 'You have added Keywords successfully.'
+      redirect_to new_user_keyword_path, :notice => 'You have added Keywords successfully.'
     end
   end
 
