@@ -1,39 +1,40 @@
-.row
-  %h3.heading_inner.margin_40px_0
-    -if @searched_results.blank?
-      ="No results found for #{@search_params}"
-    -else
-      ="Results for #{@search_params}"
-    %span.deco  
-  .clearfix
-  .col-sm-12
-    -if @searched_results.present?
-      .table.table-responsive
-        %table.table.results
-          %thead
-            %tr
-              %th Vendor
-              %th Price Range
-              %th Service Area
-          %tbody
-            -@searched_results.each do |result|
+.container
+  .row
+    %h3.heading_inner.margin_40px_0
+      -if @searched_results.blank?
+        ="No results found for #{@search_params}"
+      -else
+        ="Results for #{@search_params}"
+      %span.deco  
+    .clearfix
+    .col-sm-12
+      -if @searched_results.present?
+        .table.table-responsive
+          %table.table.results
+            %thead
               %tr
-                %td
-                  %a{:href => ""}
-                  %table
-                    %tr
-                      %td
-                        %span.vendor_profile_pic
-                          -if result.user.profile_pic.present?
-                            =image_tag result.user.profile_pic.logo.url(:thumb)
-                      %td
-                        %span
-                          -if result.user.categories.first.present?
-                            =link_to result.user.categories.first.name, category_path(result.user.categories.first)
-                %td
-                  -if result.user.categories.first.present?
-                    ="Rs. #{result.user.categories.first.min_price} to #{result.user.categories.first.max_price}"
-                %td
-                  -if result.user.categories.first.present?
-                    =Location.find(result.user.categories.first.service_area).name
-      =will_paginate @searched_results
+                %th Vendor
+                %th Price Range
+                %th Service Area
+            %tbody
+              -@searched_results.each do |result|
+                %tr
+                  %td
+                    %a{:href => ""}
+                    %table
+                      %tr
+                        %td
+                          %span.vendor_profile_pic
+                            -if result.user.profile_pic.present?
+                              =image_tag result.user.profile_pic.logo.url(:thumb)
+                        %td
+                          %span
+                            -if result.user.categories.first.present?
+                              =link_to result.user.categories.first.name, category_path(result.user.categories.first)
+                  %td
+                    -if result.user.categories.first.present?
+                      ="Rs. #{result.user.categories.first.min_price} to #{result.user.categories.first.max_price}"
+                  %td
+                    -if result.user.categories.first.present?
+                      =Location.find(result.user.categories.first.service_area).name
+        =will_paginate @searched_results
