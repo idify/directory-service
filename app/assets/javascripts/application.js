@@ -146,7 +146,7 @@ $(document).ready(function() {
         messages: {
             "user[email]": {
                 required: 'email should be present.',
-                email: 'email should be in valid.',
+                email: 'email should be in valid format.',
                 remote: "This email has already been taken."
             }
         }
