@@ -3,5 +3,7 @@ development:
   secret: "07cff84f35ba74da3e5e44578dc66153"
 
 production:
-  app_id: "792731890845081"
-  secret: "fc29e74d1c1ee367817b6519b2765e0f"
+  #app_id: "792731890845081"
+  #secret: "fc29e74d1c1ee367817b6519b2765e0f"
+  app_id: "1634371246800409"
+  secret: "07cff84f35ba74da3e5e44578dc66153"
