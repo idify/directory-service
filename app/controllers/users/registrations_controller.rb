@@ -2,6 +2,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   layout 'plain', except:['edit', 'update']
 
+  def check_email
+    @user = User.find_by_email(params[:user][:email])
+
+    respond_to do |format|
+      format.json { render :json => !@user }
+    end
+  end
+
   private
 
   def sign_up_params

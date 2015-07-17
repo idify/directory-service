@@ -137,6 +137,21 @@ $(document).ready(function() {
         }
     });
 
+    $("#sign_up").validate({
+        rules: {
+            "user[email]": {
+                required: true, email: true, remote:"/check_email"
+            }
+        },
+        messages: {
+            "user[email]": {
+                required: 'email should be present.',
+                email: 'email should be in valid.',
+                remote: "This email has already been taken."
+            }
+        }
+    });
+
     function split( val ) {
         return val.split( /,\s*/ );
     }
