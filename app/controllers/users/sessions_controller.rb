@@ -2,7 +2,7 @@ class Users::SessionsController < Devise::SessionsController
 
   layout 'plain', :except=>[:verify_mobile]
 
-  before_action :authenticate_user!, :only=>[:verify_mobile]
+  before_action :authenticate_user!, :only=>[:verify_mobile, :sms_verify, :check_code]
 
   before_action :check_if_mobile_verified, :only=>[:new, :create]
 
@@ -27,7 +27,9 @@ class Users::SessionsController < Devise::SessionsController
                                  "X-Mashape-Key" => "lHwv3VsIn8mshMui2N6NbDzRJMJOp1NISLxjsnAh90sLzPLxLq",
                                  "Accept" => "application/json"
                              }
-      if current_user.update_attributes(:verification_code=>random_value)
+
+      logger.info("otp is :#{random_value.inspect}")
+      if current_user.update_attributes(verification_code: random_value, mobile: params[:number])
         render :text=> true
       end
     end

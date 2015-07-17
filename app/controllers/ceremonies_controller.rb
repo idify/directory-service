@@ -1,6 +1,7 @@
 class CeremoniesController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :check_if_mobile_verified, :only=>[:index]
 
   def index
     @ceremonies = current_user.ceremonies.order(:date)

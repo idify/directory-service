@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_if_mobile_verified
-    if current_user && current_user.mobile.present? && !current_user.is_verified?
+    if current_user && !current_user.is_verified?
       redirect_to :verify_mobile
     end
   end
