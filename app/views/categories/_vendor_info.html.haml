@@ -9,9 +9,13 @@
       .header_img
         -if @category.user.profile_pic.present?
           =image_tag @category.user.profile_pic.header_image.url(:original), class: "img-responsive"
+        -else
+          =default_header_image
       .bar_img
         -if @category.user.profile_pic.present?
           =image_tag @category.user.profile_pic.logo.url(:original)
+        -else
+          =default_logo_image
       .clearfix
       #vendor_profile_tabs{:role => "tabpanel"}
         %ul.nav.nav-tabs{:role => "tablist"}
