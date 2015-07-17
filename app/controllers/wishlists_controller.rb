@@ -1,5 +1,7 @@
 class WishlistsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     if current_user.vendor? && current_user.categories.present?
       @category_types = current_user.categories.map(&:category_type)
@@ -8,6 +10,8 @@ class WishlistsController < ApplicationController
       @category_types.each do |category_type|
         @wishlists << Wishlist.where("category=?",category_type)
       end
+    elsif current_user.vendor? && current_user.categories.blank?
+      render :index
     else
       redirect_to root_path
     end

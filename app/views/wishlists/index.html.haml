@@ -7,7 +7,7 @@
         =link_to 'Create Wishlist', new_wishlist_path, :class=>"btn btn-primary"
   .clearfix.margin_bottom10px
 .dashboard_cont
-  -if @wishlists.flatten.present?
+  -if @wishlists.present? && @wishlists.flatten.present?
     -@wishlists.flatten.each do |wishlist|
       .table-responsive
       %table.table.table-bordered.table-striped.table-hover
