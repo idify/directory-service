@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  require 'subdomain'
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :sessions => "users/sessions", :registrations => "users/registrations",
                                        :confirmations => "users/confirmations", :passwords => "users/passwords"} do
     resources 'users/registrations'
@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_scope :user do
+    constraints(Subdomain) do
+      get '/' => 'subsites#show'
+    end
+
     authenticated :user do
       root to: "categories#index"
     end

@@ -2,4 +2,6 @@
   .row
     .col-sm-6
       %h3 Create your own site
+    .col-sm-6.text-right
+      = link_to 'See Your website', root_url(:subdomain => current_user.subsites.first.domain_name), class: 'btn btn-lg btn-primary'
 =render 'form'

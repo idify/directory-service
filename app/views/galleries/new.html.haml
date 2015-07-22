@@ -1,32 +1,47 @@
-.head_dashboard
-  .row
-    .col-sm-6
-      %h3 Add in Gallery
-    .col-sm-6.text-right
-      =link_to 'Visit Gallery', galleries_path, :class=>"btn btn-primary"
-  .clearfix
-.dashboard_cont
-  =form_for :gallery, :url=>{:controller => 'galleries', :action=>'create' }, :html => { :multipart => true } do |f|
-    .form-group
-      .col-sm-3
-        =f.label :type, 'Select'
-      .col-sm-4
-        =f.select :type, ['Image', 'Video']
-      .clearfix
-    .form-group
-      .col-sm-3
-        =f.label :attachment, 'Choose content'
-      .col-sm-4
-        =f.file_field :attachment, :multiple => true
-      .clearfix
-    .form-group
-      .col-sm-3
-        =f.label :url, 'Give any url from youtube or vimeo'
-      .col-sm-4
-        =f.text_field :url, class:"form-control"
-      .clearfix
-
-    .col-lg-4.text-right
-      =f.submit 'Save',:class=>"btn btn-primary"
-  .clearfix
-
+<div class="head_dashboard">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Add in Gallery</h3>
+    </div>
+    <div class="col-sm-6 text-right">
+      <%= link_to 'Visit Gallery', galleries_path, :class=>"btn btn-primary" %>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="dashboard_cont">
+  <%= form_for :gallery, :url=>{:controller => 'galleries', :action=>'create' }, :html => { :multipart => true } do |f| %>
+    <div class="form-group">
+      <div class="col-sm-3">
+        <%= f.label :type, 'Select' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.select :type, ['Image', 'Video'] %>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3">
+        <%= f.label :attachment, 'Choose content' %>
+      </div>
+      <div class="margin_top20px" id="qq-template-gallery">
+          <%= f.file_field :attachment, :multiple => true %>
+      </div>
+      <div id="div-tag-tag_photo1" style="display:none;"></div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3">
+        <%= f.label :url, 'Give any url from youtube or vimeo' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.text_field :url, class:"form-control" %>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="col-lg-4 text-right">
+      <%= f.submit 'Save',:class=>"btn btn-primary" %>
+    </div>
+  <% end %>
+  <div class="clearfix"></div>
+</div>
