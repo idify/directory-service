@@ -9,7 +9,7 @@
     %label.col-sm-2 Select Your Template :
     .col-sm-3.text-center
       %label
-        =f.radio_button :template_type, 'vintage'
+        =f.radio_button :template_type, 'vintage', required: true
         Vintage
         =image_tag("vintage_template.jpg")
     .col-sm-3.text-center
@@ -29,13 +29,13 @@
     .col-sm-5
       .input-group
         %span.input-group-addon='http://'
-        =f.text_field :domain_name, class: 'form-control'
+        =f.text_field :domain_name, class: 'form-control', required: true
         %span.input-group-addon='.directory-service.com'
     .clearfix
   .form-group
     %label.col-sm-3{:for => "contact_email"} Contact Email
     .col-sm-3.margin-bottom-5
-      =f.text_field :contact_email, class: 'form-control'
+      =f.text_field :contact_email, class: 'form-control', required: true
     .clearfix
   .form-group
     %label.col-sm-3{:for => "invitees"} Invitees

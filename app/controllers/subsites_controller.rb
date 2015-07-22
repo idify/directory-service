@@ -1,6 +1,6 @@
 class SubsitesController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   def new
     @subsite = Subsite.new
@@ -16,6 +16,8 @@ class SubsitesController < ApplicationController
                         user_id: current_user.id)
       if @subsite.save
         redirect_to root_path, notice: 'Your website is successfully created.'
+      else
+        render 'new'
       end
     end
 
@@ -23,7 +25,7 @@ class SubsitesController < ApplicationController
 
   def show
     @subsite= Subsite.find_by_domain_name(request.subdomain)
-    @ceremonies = current_user.ceremonies.order(:date)
+    @ceremonies = @subsite.user.ceremonies.order(:date)
     render layout: 'vintage'
   end
 
