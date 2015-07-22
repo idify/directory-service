@@ -20,6 +20,7 @@
 //= require jquery.validate.min
 //= require messages
 //= require jquery-ui.min
+//= require jquery-fileupload/basic
 
 $(document).ready(function() {
 
