@@ -21,6 +21,7 @@
 //= require messages
 //= require jquery-ui.min
 //= require jquery-fileupload/basic
+//= require jquery.tagsinput
 
 $(document).ready(function() {
 
@@ -192,4 +193,10 @@ $(document).ready(function() {
                 return false;
             }
         });
+
+
+    var emailRregex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;// Email address
+    $('#subsite_invitees').tagsInput({
+        pattern: emailRregex
+    });
 });
