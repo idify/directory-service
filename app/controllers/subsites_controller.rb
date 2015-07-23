@@ -28,7 +28,7 @@ class SubsitesController < ApplicationController
     logger.debug(request.subdomain)
     @subsite= Subsite.find_by_domain_name(request.subdomain)
     if @subsite.present?
-      @ceremonies = @subsite.user.ceremonies.order(:date)
+      @ceremonies = @subsite.user.ceremonies.where('public=?', true).order(:date)
       render layout: 'vintage'
     end
   end

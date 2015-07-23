@@ -13,6 +13,7 @@
       =f.label :date, 'Date', class:"col-sm-3"
       =f.label :time, 'Time', class:"col-sm-2"
       =f.label :venue, 'Venue', class:"col-sm-2"
+      =f.label :public, 'Make Public', class:"col-sm-2"
       .clearfix
     #ceremony_fields
       #one_ceremony_field
@@ -28,6 +29,11 @@
                 %i.glyphicon.glyphicon-time
           .col-sm-2
             =f.text_field :venue, :name=>"ceremonies[][venue]", class:"form-control", :required=>true
+          .col-sm-2
+            -if @ceremony.present? && @ceremony.public.present?
+              =check_box_tag "ceremonies[][public]", @ceremony.public, @ceremony.public, class:"form-control"
+            -else
+              =check_box_tag "ceremonies[][public]", true, false, class:"form-control"
         .form-group
           .col-sm-5
             ='I prefer to receive reminder for the above event prior to:'

@@ -58,6 +58,7 @@ $(document).ready(function() {
         '</div>' +
         '</div>' +
         '<div class="col-sm-2"><input type="text" name="ceremonies[][venue]" class="form-control" required="required"/></div>'+
+        '<div class="col-sm-2"><input type="checkbox" name="ceremonies[][public]" class="form-control"/></div>'+
         '</div>' +
         '<div class="form-group">' +
         '<div class="col-sm-5">I prefer to receive reminder for the above event prior to:</div>' +

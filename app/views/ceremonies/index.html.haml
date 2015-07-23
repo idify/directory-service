@@ -13,6 +13,7 @@
             %th Date
             %th Time
             %th Venue
+            %th Public?
             %th Action
         %tbody
           -@ceremonies.each do |ceremony|
@@ -25,6 +26,8 @@
                 =ceremony.time.strftime("%I:%M %p")
               %td
                 =ceremony.venue
+              %td
+                =(ceremony.public == true) ? 'Yes' : 'No'
               %td
                 =link_to ceremony, data:{:confirm=>'Are you sure to delete this event ?'}, :method=>:delete do
                   %span{style: "aria-hidden=true", class:"glyphicon glyphicon-trash"}
