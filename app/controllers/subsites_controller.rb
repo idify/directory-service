@@ -25,8 +25,10 @@ class SubsitesController < ApplicationController
 
   def show
     @subsite= Subsite.find_by_domain_name(request.subdomain)
-    @ceremonies = @subsite.user.ceremonies.order(:date)
-    render layout: 'vintage'
+    if @subsite.present?
+      @ceremonies = @subsite.user.ceremonies.order(:date)
+      render layout: 'vintage'
+    end
   end
 
 end
