@@ -24,6 +24,8 @@ class SubsitesController < ApplicationController
   end
 
   def show
+    logger.info("**********************subdomain is:**********************")
+    logger.debug(request.subdomain)
     @subsite= Subsite.find_by_domain_name(request.subdomain)
     if @subsite.present?
       @ceremonies = @subsite.user.ceremonies.order(:date)
