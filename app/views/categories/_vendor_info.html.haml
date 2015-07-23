@@ -33,7 +33,7 @@
           #address.tab-pane.active{:role => "tabpanel"}
             .row
               .col-sm-4.border_grey.bg_white{style: "min-height: 295px"}
-                -if @visitor.blank?
+                -if (@visitor.blank? && current_user.blank?) || (current_user.present? && current_user.is_verified == false)
                   =render 'verify_mobile'
                 -else
                   %h3.heading Address
