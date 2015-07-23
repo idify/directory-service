@@ -31,9 +31,9 @@
             =f.text_field :venue, :name=>"ceremonies[][venue]", class:"form-control", :required=>true
           .col-sm-2
             -if @ceremony.present? && @ceremony.public.present?
-              =check_box_tag "ceremonies[][public]", @ceremony.public, @ceremony.public, class:"form-control"
+              =check_box_tag "ceremonies[][public]", @ceremony.public, @ceremony.public
             -else
-              =check_box_tag "ceremonies[][public]", true, false, class:"form-control"
+              =check_box_tag "ceremonies[][public]", true, false
         .form-group
           .col-sm-5
             ='I prefer to receive reminder for the above event prior to:'
