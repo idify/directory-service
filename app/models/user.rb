@@ -10,18 +10,16 @@ class User < ActiveRecord::Base
   has_many :images
   has_many :videos
   has_many :video_urls
-  has_many :subsites
+  has_one :subsite
   has_many :wishlists
+  #has_many :user_keywords
+  has_one :profile_pic
 
   acts_as_messageable
 
   enum role: [ :customer, :vendor]
 
   validates_format_of :mobile, :presence => true, with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/
-
-  has_one :profile_pic
-
-  has_many :user_keywords
 
   ##########################################################################
   # User full name

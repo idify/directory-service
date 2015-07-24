@@ -9,7 +9,7 @@
     %label.col-sm-2 Select Your Template :
     .col-sm-3.text-center
       %label
-        =f.radio_button :template_type, 'vintage', required: true
+        =f.radio_button :template_type, 'vintage'
         Vintage
         =image_tag("vintage_template.jpg")
     .col-sm-3.text-center
@@ -40,8 +40,11 @@
   .form-group
     %label.col-sm-3{:for => "invitees"} Invitees
     .col-sm-6.margin-bottom-5
-      =f.text_field :invitees, name: "invitees[]", class: 'form-control', placeholder:"Add invitess"
+      =f.text_field :invitees, name: "subsite[invitees][]", class: 'form-control', placeholder:"Add invitess"
     .clearfix
   .col-lg-6.text-right
-    =f.submit 'Create',:class=>"btn btn-primary"
+    -if @subsite.new_record?
+      =f.submit 'Create',:class=>"btn btn-primary"
+    -else
+      =f.submit 'Update',:class=>"btn btn-primary"
   .clearfix.margin_bottom15px

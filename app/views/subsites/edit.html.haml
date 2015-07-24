@@ -1,0 +1,8 @@
+.head_dashboard
+  .row
+    .col-sm-6
+      %h3 Update your own site
+    -if current_user.subsite.present? && current_user.subsite.domain_name.present?
+      .col-sm-6.text-right
+        = link_to 'See Your website', root_url(:subdomain => current_user.subsite.domain_name), class: 'btn btn-lg btn-primary'
+=render 'form'
