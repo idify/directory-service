@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, :except=>[:show, :sms_verify, :check_code]
-  before_action :check_if_vendor, :only=>[:new]
+  before_action :check_if_vendor, :only=>[:new, :edit]
 
   layout :set_layout
 
