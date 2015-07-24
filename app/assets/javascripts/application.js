@@ -202,4 +202,5 @@ $(document).ready(function() {
     });
 
     $('#category_keywords').tagsInput();
+    $("#modal-window").modal('show');
 });

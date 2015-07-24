@@ -1,19 +1,34 @@
+<div aria-labelledby='exampleModalLabel' class='modal fade' id='modal-window' role='dialog' style='display: none;' tabindex='-1'>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+          <span aria-hidden='true'>×</span>
+        </button>
+        <h4 class='modal-title'>Please Verify Your Mobile Number</h4>
+      </div>
 
-  <div class="verification">
-    <div class="mobile">
-    <h4>Please Verify Your Mobile Number</h4>
-    <input id="mobile_number" type="text" value="" placeholder="Enter mobile number"/>
-    <input id="verify" type="button" value="Verify Mobile" class="btn btn-primary"/>
-    </div>
-    <div class="otp"  style="display:none;">
-      <%= "#{session[:mobile_number]}" %>
-      <h4>Enter One Time Password (OTP)</h4>
-      <h6>One time password has been sent to your mobile,
-      please enter the same here.</h6>
-      <input id="input_code" placeholder="OTP"/>
-      <button href="#" type="button" id="code" class="btn btn-primary">Confirm</button>
+      <div class="modal-body">
+        <div class="verification">
+          <div class="mobile">
+            <input id="mobile_number" type="text" value="" placeholder="Enter mobile number"/>
+            <input id="verify" type="button" value="Verify Mobile" class="btn btn-primary"/>
+          </div>
+          <div class="otp"  style="display:none;">
+            <%= "#{session[:mobile_number]}" %>
+            <h4>Enter One Time Password (OTP)</h4>
+            <h6>One time password has been sent to your mobile,
+              please enter the same here.</h6>
+            <input id="input_code" placeholder="OTP"/>
+            <button href="#" type="button" id="code" class="btn btn-primary">Confirm</button>
+          </div>
+        </div>
+      </div>
+
+      <div class='modal-footer'></div>
     </div>
   </div>
+</div>
 
   <script type="text/javascript">
     $("#verify").on('click', function () {
