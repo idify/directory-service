@@ -35,7 +35,7 @@ class CategoriesController < ApplicationController
 
   def create
     if params[:category].present?
-      @category = Category.new(category_params.merge(user_id: current_user.id))
+      @category = Category.new(category_params.merge(user_id: current_user.id, keywords: params[:category][:keywords].join(',')))
     end
 
     if @category.save
@@ -52,7 +52,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.friendly.find(params[:id])
 
-    if @category.update(category_params.merge(user_id: current_user.id))
+    if @category.update(category_params.merge(user_id: current_user.id, keywords: params[:category][:keywords].join(',')))
       redirect_to categories_path, notice: 'Business info updated sucessfully.'
     else
       render 'edit'

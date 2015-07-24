@@ -77,7 +77,7 @@ Rails.application.routes.draw do
 
   resources :profile_pics
 
-  resources :user_keywords
+  #resources :user_keywords
 
   resources :subsites
 

@@ -200,4 +200,6 @@ $(document).ready(function() {
     $('#subsite_invitees').tagsInput({
         pattern: emailRregex
     });
+
+    $('#category_keywords').tagsInput();
 });

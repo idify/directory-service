@@ -29,12 +29,12 @@
                               =image_tag result.user.profile_pic.logo.url(:thumb)
                         %td
                           %span
-                            -if result.user.categories.first.present?
-                              =link_to result.user.categories.first.name, category_path(result.user.categories.first)
+                            -if result.name.present?
+                              =link_to result.name, category_path(result)
                   %td
-                    -if result.user.categories.first.present?
-                      ="Rs. #{result.user.categories.first.min_price} to #{result.user.categories.first.max_price}"
+                    -if result.min_price.present? && result.max_price.present?
+                      ="Rs. #{result.min_price} to #{result.max_price}"
                   %td
-                    -if result.user.categories.first.present?
-                      =result.user.categories.first.service_area.split(", ").join(', ')
+                    -if result.service_area.present?
+                      =result.service_area.split(", ").join(', ')
         =will_paginate @searched_results

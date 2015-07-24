@@ -15,11 +15,14 @@
       =f.text_field :name, required:true, class: "form-control"
     .clearfix
 
+  .form-group
     .col-sm-4
       =f.label :address, 'Office Address'
     .col-sm-4
       =f.text_field :address, class: "form-control"
     .clearfix
+
+  .form-group
     %label.col-sm-4{:for => "location"}
       Location
       %span{:style=>"color: red;"} *
@@ -27,12 +30,14 @@
         [
         %a{:title => "Please Hit Get Location Button After Filling the Location Address Or Drag The Marker on Map To Choose Location"}> ?
         ]
+  .form-group
     .col-sm-4.col-md-4
       = f.text_field(:address,:placeholder=>'Location',:id=>"txtAddress",:class=>"form-control")
     .col-sm-2
       = button_tag "Get Location",:id=>"loc",:type=>"button" ,:class=>"btn btn-primary margin_top20_sm"
     .clearfix
 
+  .form-group
     %label.col-sm-4{:for => "location_map"}
       Location Map
       %b
@@ -43,12 +48,14 @@
       #googleMap{:style => "overflow:hidden;height:250px;width:100%;", :type => "hidden"}
     .clearfix
 
+  .form-group
     .col-sm-4
       =f.label :category_type, 'Add Service'
     .col-sm-4
       =f.text_field :category_type, class: "form-control"
     .clearfix
 
+  .form-group
     .col-sm-4
       =f.label :service_area
     .col-sm-4
@@ -63,31 +70,44 @@
     -#  =f.label :mobile
     -#.col-sm-6
     -#  =f.text_field :mobile, class: "form-control"
-
+  .form-group
     .col-sm-4
       =f.label :no_of_employees, 'No. of employees'
     .col-sm-4
       =f.number_field :no_of_employees, :min => 1, class: "form-control"
     .clearfix
+
+  .form-group
     .col-sm-4
       =f.label :min_price, 'Min. price'
     .col-sm-4
       =f.text_field :min_price, class: "form-control"
     .clearfix
 
+  .form-group
     .col-sm-4
       =f.label :max_price, 'Max. price'
     .col-sm-4
       =f.text_field :max_price, class: "form-control"
     .clearfix
 
+  .form-group
     .col-sm-4
       =f.label :description, 'Description'
     .col-sm-4
       =f.text_area :description, required: true, class: "form-control"
     .clearfix
 
-    =f.submit 'Submit',:class=>"btn btn-primary"
+  .form-group
+    .col-sm-4
+      =f.label :keywords, 'Keywords'
+    .col-sm-4
+      =f.text_field :keywords, name: "category[keywords][]", class:"form-control", :required=>true
+    .clearfix
+
+  .form-group
+    .col-sm-8.pull-right
+      =f.submit 'Submit',:class=>"btn btn-primary"
 .clearfix
 
 //google map adding in categories
