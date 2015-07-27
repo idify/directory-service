@@ -33,7 +33,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def google_oauth2
-    @user = User.find_for_google_oauth2(request.env["omniauth.auth"], current_user)
+    @user = User.find_for_google_oauth2(request.env["omniauth.auth"], current_user, request.env["omniauth.params"])
 
     if @user.persisted?
       cookies.delete :google_oauth2_approval_prompt

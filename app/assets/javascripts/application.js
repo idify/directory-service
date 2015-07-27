@@ -203,4 +203,16 @@ $(document).ready(function() {
 
     $('#category_keywords').tagsInput();
     $("#modal-window").modal('show');
+
+
+    $('.role_social_login').click(function(){
+        if($("input[name='role']:checked").val() == 'customer'){
+            $("#social_login_customer").show();
+            $("#social_login_vendor").hide();
+        }
+        if($("input[name='role']:checked").val() == 'vendor'){
+            $("#social_login_vendor").show();
+            $("#social_login_customer").hide();
+        }
+    });
 });

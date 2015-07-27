@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
+  def self.find_for_google_oauth2(access_token, signed_in_resource=nil, user_role=nil)
     data = access_token.info
     user = User.where(:provider => access_token.provider, :uid => access_token.uid ).first
     if user
@@ -70,7 +70,9 @@ class User < ActiveRecord::Base
                            provider:access_token.provider,
                            email: data["email"],
                            uid: access_token.uid ,
-                           password: Devise.friendly_token[0,20]
+                           password: Devise.friendly_token[0,20],
+                           role: user_role['role']=='customer' ? 0 : 1
+
         )
         user.skip_confirmation!
         user.save(validate:false)
