@@ -131,7 +131,7 @@
           <div class="clearfix margin_bottom15px"></div>
           <div class="col-sm-12"><%= link_to image_tag("facebook_login.png"), user_omniauth_authorize_path(:facebook, :role=>'customer') %></div>
           <div class="clearfix margin_bottom15px"></div>
-          <div class="col-sm-12"><%= link_to image_tag("twitter_login.png"), user_omniauth_authorize_path(:twitter) %></div>
+          <div class="col-sm-12"><%= link_to image_tag("twitter_login.png"), user_omniauth_authorize_path(:twitter, :role=>'customer') %></div>
           <div class="clearfix margin_bottom15px"></div>
       </div>
       <div id="social_login_vendor" style="display: none;">
@@ -140,7 +140,7 @@
         <div class="clearfix margin_bottom15px"></div>
         <div class="col-sm-12"><%= link_to image_tag("facebook_login.png"), user_omniauth_authorize_path(:facebook, :role=>'vendor') %></div>
         <div class="clearfix margin_bottom15px"></div>
-        <div class="col-sm-12"><%= link_to image_tag("twitter_login.png"), user_omniauth_authorize_path(:twitter) %></div>
+        <div class="col-sm-12"><%= link_to image_tag("twitter_login.png"), user_omniauth_authorize_path(:twitter, :role=>'vendor') %></div>
         <div class="clearfix margin_bottom15px"></div>
       </div>
     </div>

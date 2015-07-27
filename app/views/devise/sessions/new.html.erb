@@ -99,13 +99,33 @@
         <h4 class="heading">Login With</h4>
       </div>
 
-      <div class="clearfix margin_bottom15px"></div>
-      <div class="col-sm-12"><%= link_to image_tag("google-Plus_login.png"), user_omniauth_authorize_path(:google_oauth2) %></div>
-      <div class="clearfix margin_bottom15px"></div>
-      <div class="col-sm-12"><%= link_to image_tag("facebook_login.png"), user_omniauth_authorize_path(:facebook) %></div>
-      <div class="clearfix margin_bottom15px"></div>
-      <div class="col-sm-12"><%= link_to image_tag("twitter_login.png"), user_omniauth_authorize_path(:twitter) %></div>
-      <div class="clearfix margin_bottom15px"></div>
+      <div class="field">
+        I'm
+        <label>
+          <%= radio_button_tag('role', 'customer', true, class: 'role_social_login')%>
+          Customer</label>
+        <label>
+          <%= radio_button_tag('role', 'vendor', false, class: 'role_social_login')%>
+          Vendor</label><br />
+      </div>
+      <div id="social_login_customer">
+        <div class="clearfix margin_bottom15px"></div>
+        <div class="col-sm-12"><%= link_to image_tag("google-Plus_login.png"), user_omniauth_authorize_path(:google_oauth2, :role=>'customer')  %></div>
+        <div class="clearfix margin_bottom15px"></div>
+        <div class="col-sm-12"><%= link_to image_tag("facebook_login.png"), user_omniauth_authorize_path(:facebook, :role=>'customer') %></div>
+        <div class="clearfix margin_bottom15px"></div>
+        <div class="col-sm-12"><%= link_to image_tag("twitter_login.png"), user_omniauth_authorize_path(:twitter, :role=>'customer') %></div>
+        <div class="clearfix margin_bottom15px"></div>
+      </div>
+      <div id="social_login_vendor" style="display: none;">
+        <div class="clearfix margin_bottom15px"></div>
+        <div class="col-sm-12"><%= link_to image_tag("google-Plus_login.png"), user_omniauth_authorize_path(:google_oauth2, :role=>'vendor')  %></div>
+        <div class="clearfix margin_bottom15px"></div>
+        <div class="col-sm-12"><%= link_to image_tag("facebook_login.png"), user_omniauth_authorize_path(:facebook, :role=>'vendor') %></div>
+        <div class="clearfix margin_bottom15px"></div>
+        <div class="col-sm-12"><%= link_to image_tag("twitter_login.png"), user_omniauth_authorize_path(:twitter, :role=>'vendor') %></div>
+        <div class="clearfix margin_bottom15px"></div>
+      </div>
     </div>
   </div>
 

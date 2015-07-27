@@ -1,8 +1,8 @@
 class Users::SessionsController < Devise::SessionsController
 
-  layout 'plain', :except=>[:verify_mobile]
+  layout 'plain', :except=>[:verify_mobile, :get_twitter_email, :update_twitter_email]
 
-  before_action :authenticate_user!, :only=>[:verify_mobile, :sms_verify, :check_code]
+  before_action :authenticate_user!, :only=>[:verify_mobile, :sms_verify, :check_code, :get_twitter_email, :update_twitter_email]
 
   before_action :check_if_mobile_verified, :only=>[:new, :create]
 
@@ -29,7 +29,7 @@ class Users::SessionsController < Devise::SessionsController
                              }
 
       logger.info("otp is :#{random_value.inspect}")
-      if current_user.update_attributes(verification_code: random_value, mobile: params[:number])
+      if current_user.update_attributes(verification_code: random_value, mobile: params[:number], email: session[:email_id])
         render :text=> true
       end
     end
@@ -41,6 +41,20 @@ class Users::SessionsController < Devise::SessionsController
       render :text=> true
     else
       render :text=> false
+    end
+  end
+
+  def get_twitter_email
+    unless current_user.present?
+      redirect_to root_path
+    end
+  end
+
+  def update_twitter_email
+    emailRregex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
+    session[:email_id] = params[:email_id]
+    if User.find_by_email(session[:email_id]).blank? && !(params[:email_id]=~emailRregex).nil?
+      render :text=> true
     end
   end
 

@@ -47,8 +47,9 @@ class User < ActiveRecord::Base
       if registered_user
         return registered_user
       else
-        new_user_from_provider = User.new(first_name: auth.info.name, provider: auth.provider, email: auth.info.email, uid: auth.uid,
-                        password: Devise.friendly_token[0,20],role: user_role['role']=='customer' ? 0 : 1)
+        new_user_from_provider = User.new(first_name: auth.info.name, provider: auth.provider,
+                                          email: auth.info.email.present? ? auth.info.email : "#{auth.info.name}@idifysolutions.com",
+                                          uid: auth.uid, password: Devise.friendly_token[0,20], role: user_role['role']=='customer' ? 0 : 1)
         new_user_from_provider.skip_confirmation!
         new_user_from_provider.save(:validate => false)
         return new_user_from_provider

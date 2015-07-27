@@ -8,7 +8,11 @@
   </div>
 
   <div class="col-sm-5 user_name">
-    <h3>Welcome, <span><%= current_user.email%></span></h3>
+    <% if current_user.provider == 'twitter' && current_user.is_verified==false %>
+        <h3>Welcome, <span><%= current_user.first_name%></span></h3>
+    <% else %>
+        <h3>Welcome, <span><%= current_user.email%></span></h3>
+    <% end %>
   </div>
   <!--<div id="navbarCollapse" class="collapse navbar-collapse">-->
   <!--<ul class="nav navbar-nav pull-right">-->

@@ -19,7 +19,9 @@ class ApplicationController < ActionController::Base
   end
 
   def check_if_mobile_verified
-    if current_user && !current_user.is_verified?
+    if current_user && current_user.provider == 'twitter' && !current_user.is_verified?
+      redirect_to :get_twitter_email
+    elsif current_user && !current_user.is_verified?
       redirect_to :verify_mobile
     end
   end

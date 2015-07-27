@@ -1,6 +1,6 @@
 development:
-  api_key: "atYwTpWf3iWvJ4gUEuQwnWoQ8"
-  api_secret: "DYjVO3jb2tps9FZlL0MamTH479pev09oArUYbIJPfc673rbQia"
+  api_key: "ZO1CIiXZz84ooE5MbhWCU4pnZ"
+  api_secret: "COkRWW1EbocIlMnIMQhBSYiMXF6YHhPp51he1HBt7VBaLdqJkj"
 
 production:
   api_key: "atYwTpWf3iWvJ4gUEuQwnWoQ8"

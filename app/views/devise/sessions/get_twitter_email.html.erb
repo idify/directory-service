@@ -1,0 +1,29 @@
+<% if current_user.present? && current_user.is_verified==false && current_user.provider == 'twitter'%>
+    <div class="get_twitter_email">
+        <h4>Please enter your email for further communication</h4>
+            <input id="twitter_email" type="text" value="" placeholder="Enter email id"/>
+        <input id="Save_twitter_email" type="button" value="Save" class="btn btn-primary"/>
+      </div>
+    </div>
+<% end  %>
+
+<script type="text/javascript">
+    $("#Save_twitter_email").click(function () {
+        email_value = $("#twitter_email").val();
+
+        $.ajax({
+            type: "GET",
+            url: "/update_twitter_email",
+            data: {email_id: email_value}
+        })
+                .done(function (msg) {
+                    alert(msg)
+                    if (msg == "true") {
+                        window.location.href="/verify_mobile";
+                    }
+                    else {
+                        alert("email is not valid.");
+                    }
+                });
+    });
+</script>

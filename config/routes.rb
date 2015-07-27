@@ -28,7 +28,8 @@ Rails.application.routes.draw do
     get '/sms_verify'=>'users/sessions#sms_verify'
     get '/check_code'=>'users/sessions#check_code'
     get '/verify_mobile'=>'users/sessions#verify_mobile'
-    get '/check_email'=> "users/registrations#check_email"
+    get '/get_twitter_email'=>'users/sessions#get_twitter_email'
+    get '/update_twitter_email'=>'users/sessions#update_twitter_email'
   end
 
   resources :categories do
