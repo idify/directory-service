@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
     email
   end
 
-  def self.from_omniauth(auth)
+  def self.from_omniauth(auth, user_role=nil)
     user = self.where(provider: auth.provider, uid: auth.uid).first
     if user
       return user
@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
         return registered_user
       else
         new_user_from_provider = User.new(first_name: auth.info.name, provider: auth.provider, email: auth.info.email, uid: auth.uid,
-                        password: Devise.friendly_token[0,20])
+                        password: Devise.friendly_token[0,20],role: user_role['role']=='customer' ? 0 : 1)
         new_user_from_provider.skip_confirmation!
         new_user_from_provider.save(:validate => false)
         return new_user_from_provider
