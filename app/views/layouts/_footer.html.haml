@@ -46,8 +46,12 @@
               %a{:href => ""} Facebook
             %li
               %a{:href => ""} Twitter
-            %li
-              %a{:href => ""} Google+
+            -if user_signed_in?
+              %li
+                %a{:href => "/import_contacts/authenticate"} Google+ Invite
+            -else
+              %li
+                %a{:href => ""} Google+
             %li
               %a{:href => ""} Blog
           .clearfix

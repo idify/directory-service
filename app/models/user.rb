@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :wishlists
   #has_many :user_keywords
   has_one :profile_pic
+  has_many :invites
 
   acts_as_messageable
 

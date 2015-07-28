@@ -84,6 +84,14 @@ Rails.application.routes.draw do
 
   resources :wishlists
 
+  resources :import_contacts do
+    collection do
+      get 'authorise'
+      get 'authenticate'
+      get 'send_invite'
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

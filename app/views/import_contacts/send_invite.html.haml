@@ -1,0 +1,10 @@
+.head_dashboard
+  .row
+    .col-sm-6
+      %h3 Invite your contacts
+  .clearfix
+.dashboard_cont
+  .col-sm-12
+    -@google_friends.each do |friend|
+      =friend.email
+      .clearfix
