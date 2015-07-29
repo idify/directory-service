@@ -90,24 +90,23 @@
       <ul class="nav nav-sidebar">
         <!--<li class="active"><a href="/homes/dashboard"><span class="fa fa-home"></span> Home</a></li>-->
         <%if current_user.vendor?%>
-            <li><a href="/profile_pics/new"><span class="fa fa-image"></span> Add Business Images </a></li>
-            <li><a href="/galleries/new"><span class="fa fa-image"></span> Gallery</a></li>
+            <li class="<%= 'active' if current_page?(new_profile_pic_path) %>"><a href="/profile_pics/new"><span class="fa fa-image"></span> Add Business Images </a></li>
+            <li class="<%= 'active' if current_page?(new_gallery_path) %>"><a href="/galleries/new"><span class="fa fa-image"></span> Gallery</a></li>
             <!--<li><a href="/user_keywords/new"><span class="fa fa-tags"></span> Add Keywords</a></li>-->
-            <li><a href="/categories/new"><span class="fa fa-info"></span> Business Info</a></li>
-            <li><a href="/wishlists"><span class="fa fa-info"></span> See wishlists</a></li>
+            <li class="<%= 'active' if current_page?(new_category_path) %>"><a href="/categories/new"><span class="fa fa-info"></span> Business Info</a></li>
+            <li class="<%= 'active' if current_page?(wishlists_path) %>"><a href="/wishlists"><span class="fa fa-info"></span> See wishlists</a></li>
         <% elsif current_user.customer? %>
-            <li><a href="/ceremonies/new"><span class="fa fa-book"></span> Add Event</a></li>
-            <li><a href="/galleries/new"><span class="fa fa-image"></span> Gallery</a></li>
+            <li class="<%= 'active' if current_page?(new_ceremony_path) %>"><a href="/ceremonies/new"><span class="fa fa-book"></span> Add Event</a></li>
+            <li class="<%= 'active' if current_page?(new_gallery_path) %>"><a href="/galleries/new"><span class="fa fa-image"></span> Gallery</a></li>
             <%if current_user.subsite.present? %>
-                <li><%= link_to '<span class="fa fa-globe"></span> Update your website'.html_safe, edit_subsite_path(current_user.subsite.id)%>
-                <!--<li><a href="/subsites/current_user.subsite.id/edit"><span class="fa fa-globe"></span> Update your website</a></li>-->
+                <li class="<%= 'active' if current_page?(edit_subsite_path(current_user.subsite.id)) %>"><%= link_to '<span class="fa fa-globe"></span> Update your website'.html_safe, edit_subsite_path(current_user.subsite.id)%>
             <%else  %>
-                <li><a href="/subsites/new"><span class="fa fa-globe"></span> Create your website</a></li>
+                <li class="<%= 'active' if current_page?(new_subsite_path) %>"><a href="/subsites/new"><span class="fa fa-globe"></span> Create your website</a></li>
             <%end %>
-            <li><a href="/wishlists/new"><span class="fa fa-info"></span> Create wishlists</a></li>
+            <li class="<%= 'active' if current_page?(new_wishlist_path) %>"><a href="/wishlists/new"><span class="fa fa-info"></span> Create wishlists</a></li>
         <% end %>
-        <li><a href="/conversations"><span class="fa fa-sort-numeric-desc"></span> Your Conversations</a></li>
-        <li><a href="/users/edit"><span class="fa fa-user"></span> Manage Profile</a></li>
+        <li class="<%= 'active' if current_page?(conversations_path) %>"><a href="/conversations"><span class="fa fa-sort-numeric-desc"></span> Your Conversations</a></li>
+        <li class="<%= 'active' if current_page?(edit_user_registration_path) %>"><a href="/users/edit"><span class="fa fa-user"></span> Manage Profile</a></li>
         <li><%= link_to '<span class="fa fa-sign-out"></span> logout'.html_safe, destroy_user_session_path, :method=>"delete", id: "sign_out"%>
         </li>
       </ul>

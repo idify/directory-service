@@ -3875,7 +3875,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding: 10px 15px;
 }
 .nav > li > a:hover,
-.nav > li > a:focus {
+.nav > li > a:focus ,.nav > li.active > a {
   text-decoration: none;
   background-color: #eee;
 }
