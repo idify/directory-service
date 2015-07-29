@@ -107,6 +107,7 @@
         <% end %>
         <li class="<%= 'active' if current_page?(conversations_path) %>"><a href="/conversations"><span class="fa fa-sort-numeric-desc"></span> Your Conversations</a></li>
         <li class="<%= 'active' if current_page?(edit_user_registration_path) %>"><a href="/users/edit"><span class="fa fa-user"></span> Manage Profile</a></li>
+        <li class="<%= 'active' if current_page?(send_invite_import_contacts_path) %>"><a href="/import_contacts/authenticate"><span class="fa fa-user"></span> Invite Friends</a></li>
         <li><%= link_to '<span class="fa fa-sign-out"></span> logout'.html_safe, destroy_user_session_path, :method=>"delete", id: "sign_out"%>
         </li>
       </ul>
