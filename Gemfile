@@ -76,3 +76,4 @@ gem 'rails_12factor', group: :production
 gem "whenever"
 gem 'rmagick'
 gem 'jquery-fileupload-rails'
+gem 'ratyrate', github: 'wazery/ratyrate'

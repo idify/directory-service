@@ -27,6 +27,8 @@ class CategoriesController < ApplicationController
     @latitude = @category.latitude.present? ? @category.latitude : ''
     @longitude =@category.longitude.present? ? @category.longitude : ''
     @visitor = VisitorList.where("mobile_number = ? AND is_otp_confirmed = ?", session[:mobile_number],true).last
+    @references = @category.references.present? ? @category.references : nil
+    @reference = Reference.new
   end
 
   def new
@@ -118,6 +120,17 @@ class CategoriesController < ApplicationController
   def check_if_vendor
     if current_user && current_user.customer?
       redirect_to '/'
+    end
+  end
+
+  def save_references
+    if params[:reference][:name].present? && params[:reference][:comment].present? && params[:reference][:category_id].present?
+
+      @reference = Reference.new(name: params[:reference][:name], email: params[:reference][:email],
+                                 comment: params[:reference][:comment], score: params[:score], category_id: params[:reference][:category_id])
+      if @reference.save
+        redirect_to :back
+      end
     end
   end
 

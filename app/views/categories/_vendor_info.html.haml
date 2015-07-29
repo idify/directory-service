@@ -78,7 +78,8 @@
               %p
                 ="Rs. #{@category.min_price} to #{@category.max_price}"
           #references.tab-pane{:role => "tabpanel"}
-            %p References
+            %p
+              =render 'reference_form'
           #img_gallery.tab-pane{role:"tabpanel"}
             #gallery_tabs
               %ul.nav.nav-tabs{:role => "tablist"}

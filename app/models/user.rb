@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_one :profile_pic
   has_many :invites
 
+  ratyrate_rater
+
   acts_as_messageable
 
   enum role: [ :customer, :vendor]

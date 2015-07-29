@@ -22,6 +22,8 @@
 //= require jquery-ui.min
 //= require jquery-fileupload/basic
 //= require jquery.tagsinput
+//= require jquery.raty
+//= require ratyrate
 
 $(document).ready(function() {
 

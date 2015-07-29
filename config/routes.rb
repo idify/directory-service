@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/rate' => 'rater#create', :as => 'rate'
   require 'subdomain'
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :sessions => "users/sessions", :registrations => "users/registrations",
                                        :confirmations => "users/confirmations", :passwords => "users/passwords"} do
@@ -38,6 +39,7 @@ Rails.application.routes.draw do
       get 'sms_verify'
       get 'check_code'
       get 'autocomplete_locations'
+      post 'save_references'
     end
   end
 

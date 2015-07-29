@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728065432) do
+ActiveRecord::Schema.define(version: 20150729061459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 20150728065432) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "average_caches", force: :cascade do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "avg",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -149,19 +158,23 @@ ActiveRecord::Schema.define(version: 20150728065432) do
   create_table "mailboxer_notifications", force: :cascade do |t|
     t.string   "type"
     t.text     "body"
-    t.string   "subject",              default: ""
+    t.string   "subject",               default: ""
     t.integer  "sender_id"
     t.string   "sender_type"
     t.integer  "conversation_id"
-    t.boolean  "draft",                default: false
+    t.boolean  "draft",                 default: false
     t.string   "notification_code"
     t.integer  "notified_object_id"
     t.string   "notified_object_type"
     t.string   "attachment"
-    t.datetime "updated_at",                           null: false
-    t.datetime "created_at",                           null: false
-    t.boolean  "global",               default: false
+    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                            null: false
+    t.boolean  "global",                default: false
     t.datetime "expires"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
   end
 
   add_index "mailboxer_notifications", ["conversation_id"], name: "index_mailboxer_notifications_on_conversation_id", using: :btree
@@ -184,6 +197,14 @@ ActiveRecord::Schema.define(version: 20150728065432) do
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
 
+  create_table "overall_averages", force: :cascade do |t|
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "overall_avg",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "profile_pics", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at",                null: false
@@ -196,6 +217,41 @@ ActiveRecord::Schema.define(version: 20150728065432) do
     t.string   "header_image_content_type"
     t.integer  "header_image_file_size"
     t.datetime "header_image_updated_at"
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "stars",         null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
+  add_index "rates", ["rater_id"], name: "index_rates_on_rater_id", using: :btree
+
+  create_table "rating_caches", force: :cascade do |t|
+    t.integer  "cacheable_id"
+    t.string   "cacheable_type"
+    t.float    "avg",            null: false
+    t.integer  "qty",            null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
+
+  create_table "references", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "comment"
+    t.float    "score"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "sessions", force: :cascade do |t|
