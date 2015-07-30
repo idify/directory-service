@@ -29,9 +29,13 @@ class Users::SessionsController < Devise::SessionsController
                              }
 
       logger.info("otp is :#{random_value.inspect}")
-      if current_user.update_attributes(verification_code: random_value, mobile: params[:number], email: session[:email_id])
-        render :text=> true
+
+      if session[:email_id].present?
+        current_user.update_attributes(verification_code: random_value, mobile: params[:number], email: session[:email_id].present?)
+      else
+        current_user.update_attributes(verification_code: random_value, mobile: params[:number])
       end
+      render :text=> true
     end
   end
 

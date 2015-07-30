@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
   def index
     if current_user.vendor?
       @categories = current_user.categories
-    else
+    elsif current_user.customer?
       redirect_to ceremonies_path
     end
   end
