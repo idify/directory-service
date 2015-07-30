@@ -3,22 +3,24 @@
 
 -if @references.present?
   -@references.each do |x|
-    %p
+    %div.border_1px.border_radius_10px.padding_10px.break_word
       =x.comment
       .clearfix
-      Your Rating:
+      .text-right
+        Your Rating:
+        .clearfix
+        -if x.score.blank?
+          ='No rating given'
+        -else
+          -x.score.floor.times do
+            = image_tag "star-on.png"
+        -if x.score == (x.score.floor + 0.5) && x.score.to_i != 5
+          = image_tag 'star-half.png'
       .clearfix
-      -if x.score.blank?
-        ='No rating given'
-      -else
-        -x.score.floor.times do
-          = image_tag "star-on.png"
-      -if x.score == (x.score.floor + 0.5) && x.score.to_i != 5
-        = image_tag 'star-half.png'
-      .clearfix
+    .text-right
       Given by:
       =x.name
-    .clearfix
+    .clearfix.margin_bottom15px
 
 
 #reference_form

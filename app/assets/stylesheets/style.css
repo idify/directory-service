@@ -1119,3 +1119,15 @@ footer {
 label.error {
     color: #ff0000;
 }
+.border_1px{
+    border: 1px solid #000000;
+}
+.border_radius_10px{
+    border-radius: 10px;
+}
+.padding_10px{
+    padding: 10px;
+}
+.break_word{
+    word-break: break-all;
+}
