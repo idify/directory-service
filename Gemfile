@@ -5,8 +5,9 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
-#gem 'mysql2'
-gem 'pg'
+gem 'mysql2'
+gem 'puma'
+#gem 'pg'
 gem 'devise'
 gem "haml-rails"
 # Use SCSS for stylesheets
