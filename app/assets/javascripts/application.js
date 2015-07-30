@@ -142,21 +142,6 @@ $(document).ready(function() {
         }
     });
 
-    $("#sign_up").validate({
-        rules: {
-            "user[email]": {
-                required: true, email: true, remote:"/check_email"
-            }
-        },
-        messages: {
-            "user[email]": {
-                required: 'email should be present.',
-                email: 'email should be in valid format.',
-                remote: "This email has already been taken."
-            }
-        }
-    });
-
     function split( val ) {
         return val.split( /,\s*/ );
     }
@@ -215,6 +200,118 @@ $(document).ready(function() {
         if($("input[name='role']:checked").val() == 'vendor'){
             $("#social_login_vendor").show();
             $("#social_login_customer").hide();
+        }
+    });
+});
+
+//validation
+$(document).ready(function() {
+
+    $("#new_user").validate({
+        rules: {
+
+            "user[email]": {
+                required: true
+            },
+            "user[password]": {
+                required: true
+            }
+        }
+    });
+    $("#new_gallery").validate({
+        rules: {
+
+            "gallery[attachment][]": {
+                required: true
+            }
+        }
+    });
+    $("#new_subsite").validate({
+        rules: {
+
+            "subsite[domain_name]": {
+                required: true
+            },
+            "subsite[contact_email]": {
+                required: true
+            },
+            "subsite[invitees][]": {
+                required: true
+            }
+        }
+    });
+    $("#new_wishlist").validate({
+        rules: {
+
+            "wishlist[name]": {
+                required: true
+            },
+            "wishlist[category]": {
+                required: true
+            },
+            "wishlist[mobile_number]": {
+                number: true,
+                minlength: 10, 
+                maxlength: 10
+            },
+            "wishlist[email]": {
+                email: true
+            },
+            "wishlist[program_date]": {
+                required: true
+            },
+            "wishlist[city]": {
+                required: true
+            },
+            "wishlist[wish_list]": {
+                required: true
+            }
+
+        }
+    });
+        $("#sign_up").validate({
+        rules: {
+
+            "user[email]": {
+                required: true,
+                email: true
+            },
+            "user[password]": {
+                required: true,
+                minlength: 8
+            },
+            "user[password_confirmation]": {
+                required: true,
+                equalTo: "#user_password"
+            },
+            "user[mobile]": {
+                required: true,
+                number: true,
+                minlength: 10, 
+                maxlength: 10
+            }
+        },
+        messages: {
+        "user[email]": {
+                required: 'Email should be present.',
+                email: 'Email should be in valid format.',
+                remote: "This email has already been taken."
+            },
+        "user[password]": {
+            required: "Please provide a password"
+
+            
+        },
+        "user[password_confirmation]": {
+            required: "Please provide a confirm password",
+            equalTo: "Password should match with above"
+        },
+        "user[mobile]": {
+            required: "Please enter your mobile number",
+            number: "Please enter number only",
+            minlength: "Length must be 10", 
+            maxlength: "Length must be 10"
+        }
         }
     });
 });
