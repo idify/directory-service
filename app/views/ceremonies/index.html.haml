@@ -1,34 +1,35 @@
-.head_dashboard
-  .row
-    .col-sm-6
-      %h3 Latest upcoming Events list
-  .clearfix
-.dashboard_cont
-  -if @ceremonies.present?
-    .table-responsive
-      %table.table.table-bordered.table-striped.table-hover
-        %thead
-          %tr
-            %th Program
-            %th Date
-            %th Time
-            %th Venue
-            %th Public?
-            %th Action
-        %tbody
-          -@ceremonies.each do |ceremony|
+-if current_user.present?
+  .head_dashboard
+    .row
+      .col-sm-6
+        %h3 Latest upcoming Events list
+    .clearfix
+  .dashboard_cont
+    -if @ceremonies.present?
+      .table-responsive
+        %table.table.table-bordered.table-striped.table-hover
+          %thead
             %tr
-              %td
-                =link_to ceremony.program, edit_ceremony_path(ceremony)
-              %td
-                =ceremony.date.strftime("%m/%d/%Y")
-              %td
-                =ceremony.time.strftime("%I:%M %p")
-              %td
-                =ceremony.venue
-              %td
-                =(ceremony.public == true) ? 'Yes' : 'No'
-              %td
-                =link_to ceremony, data:{:confirm=>'Are you sure to delete this event ?'}, :method=>:delete do
-                  %span{style: "aria-hidden=true", class:"glyphicon glyphicon-trash"}
-            .clearfix
+              %th Program
+              %th Date
+              %th Time
+              %th Venue
+              %th Public?
+              %th Action
+          %tbody
+            -@ceremonies.each do |ceremony|
+              %tr
+                %td
+                  =link_to ceremony.program, edit_ceremony_path(ceremony)
+                %td
+                  =ceremony.date.strftime("%m/%d/%Y")
+                %td
+                  =ceremony.time.strftime("%I:%M %p")
+                %td
+                  =ceremony.venue
+                %td
+                  =(ceremony.public == true) ? 'Yes' : 'No'
+                %td
+                  =link_to ceremony, data:{:confirm=>'Are you sure to delete this event ?'}, :method=>:delete do
+                    %span{style: "aria-hidden=true", class:"glyphicon glyphicon-trash"}
+              .clearfix
