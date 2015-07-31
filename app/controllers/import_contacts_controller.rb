@@ -9,7 +9,7 @@ class ImportContactsController < ApplicationController
     @title = "Google Authetication"
 
     client_id = "751699330278-a5dhs5addu0ua909bnofcnc43djqddha.apps.googleusercontent.com"
-    googleauth_url = "http://localhost:3000/import_contacts/authorise"
+    googleauth_url = "http://search.dhoomdhamaka.com/import_contacts/authorise"
     google_root_url = "https://accounts.google.com/o/oauth2/auth?state=profile&redirect_uri="+googleauth_url+"&response_type=code&client_id="+client_id.to_s+"&approval_prompt=force&scope=https://www.google.com/m8/feeds/,https://www.googleapis.com/auth/contacts.readonly"
     redirect_to google_root_url
   end
@@ -25,7 +25,7 @@ class ImportContactsController < ApplicationController
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     request = Net::HTTP::Post.new(uri.request_uri)
 
-    googleauth_url = "http://localhost:3000/import_contacts/authorise"
+    googleauth_url = "http://search.dhoomdhamaka.com/import_contacts/authorise"
     request.set_form_data('code' => token, 'client_id' => client_id, 'client_secret' => client_secret, 'redirect_uri' => googleauth_url, 'grant_type' => 'authorization_code')
     request.content_type = 'application/x-www-form-urlencoded'
     response = http.request(request)
