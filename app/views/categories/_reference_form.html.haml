@@ -25,7 +25,7 @@
 
 #reference_form
   ='Please give the references below:'
-  =form_for(:reference, url: save_references_categories_path) do |f|
+  =form_for(:reference, url: save_references_categories_path,html:{id:'new_reference'}) do |f|
     .form-group
       .col-sm-4
         =f.label :name, 'Name:'

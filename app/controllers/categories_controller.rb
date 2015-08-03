@@ -131,6 +131,8 @@ class CategoriesController < ApplicationController
       if @reference.save
         redirect_to :back
       end
+    else
+      redirect_to :back
     end
   end
 
