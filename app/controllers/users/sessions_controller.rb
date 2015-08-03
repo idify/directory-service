@@ -31,7 +31,7 @@ class Users::SessionsController < Devise::SessionsController
       logger.info("otp is :#{random_value.inspect}")
 
       if session[:email_id].present?
-        current_user.update_attributes(verification_code: random_value, mobile: params[:number], email: session[:email_id].present?)
+        current_user.update_attributes(verification_code: random_value, mobile: params[:number], email: session[:email_id])
       else
         current_user.update_attributes(verification_code: random_value, mobile: params[:number])
       end
@@ -59,6 +59,9 @@ class Users::SessionsController < Devise::SessionsController
     session[:email_id] = params[:email_id]
     if User.find_by_email(session[:email_id]).blank? && !(params[:email_id]=~emailRregex).nil?
       render :text=> true
+    elsif User.find_by_email(session[:email_id]).present?
+      session[:email_id] = nil
+      redirect_to :back
     end
   end
 

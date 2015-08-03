@@ -1,6 +1,6 @@
 <% if current_user.present?%>
 <%unless current_user.is_verified==true%>
-    <div class="verification">
+    <div class="verification col-sm-6 pull-right">
       <div class="mobile">
         <h4>Please Verify Your Mobile Number</h4>
         <% if current_user.mobile.present? %>
