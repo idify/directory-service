@@ -1,11 +1,64 @@
 .head_dashboard
   .row
     .col-sm-6
-      %h3 Invite your contacts
+      %h3 Invite your friends
   .clearfix
 .dashboard_cont
-  .col-sm-12
-    -@google_friends.each do |friend|
-      =friend.email
+  - if @google_friends.any?
+    #invitation_send
+      .col-sm-1
+        %input#check_all_invitation.check_all_invitation{:name => "check_all_invitation", :type => "checkbox"}
+      .col-sm-4
+        %h4 Name
+      .col-sm-4
+        %h4 Email
+      .col-sm-3
+        %a{:href => "javascript:void(0);", :class=>"btn btn-primary margin-top7 align_right",  :id=> 'mail_to_selected', :onclick=>"mailSelected();"} Invite to All
       .clearfix
+    .clearfix.margin_bottom5px
+
+    - @google_friends.each do |contact|
+      .col-sm-1
+        %input#check_invitation.check_invitation{:name => "check_invitation", :type => "checkbox", :value=>"#{contact.id}"}
+      .col-sm-4
+        = contact.full_name.present? ? contact.full_name : "-----"
+      .col-sm-4
+        = contact.email
+      .col-sm-3
+        = link_to "Invite", invitation_mail_import_contacts_path(:contact=>contact), class: "btn btn-primary margin-top7 align_right margin_right_30px"
+      .clearfix.margin_bottom5px
   .clearfix
+:javascript
+  function mailSelected(){
+    var arr_inv_val = []
+    $("#invitation_send input[type=checkbox]").each(function(){
+      if($(this).is(':checked')){
+        if($(this).attr('id') == "check_all_invitation"){
+        }else{
+          arr_inv_val.push($(this).val());
+        }
+        }
+    });
+    if (arr_inv_val.length==0){
+      alert("Please select any contact(s) to send invitation!");
+    }else{
+      p = arr_inv_val.toString()
+      alert(p);
+      window.location = '/import_contacts/multiple_mail?ids='+p
+    }
+  }
+
+  $(document).ready(function() {
+    $('.check_all_invitation').click(function(event) {
+      if(this.checked) {
+        $('.check_invitation').each(function() {
+          this.checked = true;
+        });
+      }else{
+        $('.check_invitation').each(function() {
+          this.checked = false;
+        });
+      }
+    });
+
+  });

@@ -91,6 +91,8 @@ Rails.application.routes.draw do
       get 'authorise'
       get 'authenticate'
       get 'send_invite'
+      get 'multiple_mail'
+      get 'invitation_mail'
     end
   end
 

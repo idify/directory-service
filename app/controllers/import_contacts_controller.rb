@@ -58,4 +58,37 @@ class ImportContactsController < ApplicationController
   def send_invite
     @google_friends = Invite.where(:invite_source => "Gmail", :user_id => current_user.id)
   end
+
+  def multiple_mail
+    results = params[:ids].split(/,/)
+    results.each do |result|
+      @contact = Invite.find(result)
+
+      begin
+        InvitationMailer.invitation_email(@contact,current_user).deliver
+      rescue Exception => e
+        puts e.message
+      end
+    end
+    redirect_to send_invite_import_contacts_path, notice: "Invitation Mail send"
+  end
+
+  def invitation_mail
+    if params[:contact].present?
+      @contact = Invite.find(params[:contact])
+
+      begin
+        if @contact.present?
+          InvitationMailer.invitation_email(@contact,current_user).deliver
+          redirect_to send_invite_import_contacts_path, notice: "Invitation sent."
+        else
+          redirect_to :back, notice: 'Invitation not sent.'
+        end
+      rescue Exception => e
+        puts e.message
+        redirect_to :back
+      end
+    end
+  end
+
 end
