@@ -1,9 +1,12 @@
 development:
-  #client_id: "251038995973-htec3e86ehg58n7t5mfcenmqrj2qv240.apps.googleusercontent.com"
-  #client_secret: "KFxKmKe5gVN9C4fjUCCUcSZ2"
   client_id: "751699330278-km30eub632rrpqvi0nudg4n3gcd1ov11.apps.googleusercontent.com"
   client_secret: "wQvxSDDRnqUwYIb83BRe9we3"
+  invite_client_id: "751699330278-a5dhs5addu0ua909bnofcnc43djqddha.apps.googleusercontent.com"
+  invite_client_secret: "lE_mUUtTP1lNWSYfBtOgW8om"
+
 
 production:
   client_id: "251038995973-htec3e86ehg58n7t5mfcenmqrj2qv240.apps.googleusercontent.com"
   client_secret: "KFxKmKe5gVN9C4fjUCCUcSZ2"
+  invite_client_id: "251038995973-5393amvov2v117coumo04if1f34q5nqc.apps.googleusercontent.com"
+  invite_client_secret: "-Fc2Y2ZbX-DK9uemI63YRxTx"
