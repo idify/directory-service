@@ -25,7 +25,15 @@
           <%= f.label :attachment, 'Choose content' %>
         </div>
         <div class="col-sm-3 margin_top20px">
-          <%= f.file_field :attachment, :multiple => true %>
+          <%= f.file_field :attachment, :multiple => true%>
+          <%= f.hidden_field(:attachment_count, :id=>"attachment_count" )%>
+          <!-- The container for the uploaded files -->
+          <div id="files" class="files"></div>
+        </div>
+        <div class="col-sm-9 margin_top20px">
+            <div id="gallery-progress" class="progress">
+              <div class="progress-bar progress-bar-success"></div>
+            </div>
         </div>
         <div class="clearfix"></div>
       </div>
@@ -44,12 +52,6 @@
       <div class="clearfix"></div>
   <% end %>
   <div class="clearfix margin_top20px">&nbsp;</div>
-  <div id="gallery-progress" class="progress">
-    <div class="progress-bar progress-bar-success"></div>
-  </div>
-  <div class="clearfix margin_top20px">&nbsp;</div>
-  <!-- The container for the uploaded files -->
-  <div id="files" class="files"></div>
   <div class="clearfix"></div>
 </div>
 <script type="text/javascript">
@@ -57,6 +59,7 @@
         $('#new_gallery').fileupload({
             dataType: 'script',
             add: function (e, data) {
+                $("#attachment_count").val('true');
                 $.each(data.files, function (index, file) {
                     $('<p/>').text(file.name).appendTo('#files');
                 });
@@ -67,6 +70,8 @@
           var progress = parseInt(data.loaded / data.total * 100, 10);
             $("#gallery-progress").show();
             $('#gallery-progress .progress-bar').css('width', progress + '%').text(progress + '%');
+            $("#attachment_count-error").hide();
         });
+        $("#attachment_count").val('');
     });
 </script>

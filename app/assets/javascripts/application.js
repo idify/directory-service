@@ -219,10 +219,15 @@ $(document).ready(function() {
         }
     });
     $("#new_gallery").validate({
+        ignore: "",
         rules: {
-
-            "gallery[attachment][]": {
+            "gallery[attachment_count]":{
                 required: true
+            }
+        },
+        messages: {
+            "gallery[attachment_count]": {
+                required: 'Please select any file.'
             }
         }
     });
