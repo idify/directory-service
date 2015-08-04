@@ -11,8 +11,10 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def verify_mobile
-    unless current_user.present?
+    if current_user.blank?
       redirect_to root_path
+    elsif current_user.present? && current_user.is_verified?
+      redirect_to root_path, notice: 'Mobile number already activated.'
     end
   end
 

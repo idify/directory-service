@@ -32,9 +32,9 @@
   <!--</div>-->
 </nav>
 
-<%if current_user.is_verified==true%>
+<%#if current_user.is_verified==true%>
     <nav class="navbar navbar-inverse">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar-header" style="display:inline">
           <button class="navbar-toggle collapsed" data-target=".navbar-collapse" data-toggle="collapse" type="button">
             <span class="sr-only">Toggle navigation</span>
@@ -58,10 +58,15 @@
                 </li>
             <% end %>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li style="margin-top: 15px">
+              <%= link_to '<span class="fa fa-sign-out"></span> logout'.html_safe, destroy_user_session_path, :class=>'pull-right btn btn-warning', :method=>"delete", id: "sign_out"%>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
-<% end %>
+<%# end %>
 
 <% flash.each do |name,msg|%>
     <div class="col-lg-12 ">
@@ -108,7 +113,7 @@
         <li class="<%= 'active' if current_page?(conversations_path) %>"><a href="/conversations"><span class="fa fa-sort-numeric-desc"></span> Your Conversations</a></li>
         <li class="<%= 'active' if current_page?(edit_user_registration_path) %>"><a href="/users/edit"><span class="fa fa-user"></span> Manage Profile</a></li>
         <li class="<%= 'active' if current_page?(send_invite_import_contacts_path) %>"><a href="/import_contacts/authenticate"><span class="fa fa-user"></span> Invite Friends</a></li>
-        <li><%= link_to '<span class="fa fa-sign-out"></span> logout'.html_safe, destroy_user_session_path, :method=>"delete", id: "sign_out"%>
+        <!--<li><%#= link_to '<span class="fa fa-sign-out"></span> logout'.html_safe, destroy_user_session_path, :method=>"delete", id: "sign_out"%>-->
         </li>
       </ul>
     </div>

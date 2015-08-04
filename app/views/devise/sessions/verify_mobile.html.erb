@@ -64,6 +64,6 @@
 
     </script>
 <%else%>
-    <h4>Mobile number already activated.</h4>
+    <h4><%= flash[:notice] = 'Mobile number already activated.' %></h4>
 <%end%>
 <%end%>

@@ -1131,3 +1131,14 @@ label.error {
 .break_word{
     word-break: break-all;
 }
+.logout_at_top {
+    color: #262626;
+    font-size: 16px;
+}
+.verify_mobile_modal  {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -125px;
+    margin-left: -300px;
+}

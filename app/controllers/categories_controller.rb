@@ -95,11 +95,14 @@ class CategoriesController < ApplicationController
                                  "Accept" => "application/json"
                              }
       logger.info("otp is :#{random_value.inspect}")
+      if current_user.blank?
+        @already_visitor = VisitorList.where("mobile_number=?", session[:mobile_number]).last
 
-      @already_visitor = VisitorList.where("mobile_number=?", session[:mobile_number]).last
-
-      if @already_visitor.blank?
-        VisitorList.create(:mobile_number=> session[:mobile_number])
+        if @already_visitor.blank?
+          VisitorList.create(:mobile_number=> session[:mobile_number])
+        end
+      else
+        current_user.update_attributes(verification_code: random_value, mobile: session[:mobile_number])
       end
       render :text=> true
     end
@@ -107,10 +110,19 @@ class CategoriesController < ApplicationController
 
   def check_code
     if params[:otp_code].present?
-      @visitor = VisitorList.where("mobile_number=?", session[:mobile_number]).last
-      if @visitor.present?
-        @visitor.update_attribute("is_otp_confirmed", true)
-        render :text=> true
+      if current_user.blank?
+        @visitor = VisitorList.where("mobile_number=?", session[:mobile_number]).last
+        if @visitor.present?
+          @visitor.update_attribute("is_otp_confirmed", true)
+          render :text=> true
+        end
+      elsif current_user.present?
+        if(params[:otp_code]==current_user.verification_code)
+          current_user.update_attributes(:is_verified=>true)
+          render :text=> true
+        else
+          render :text=> false
+        end
       end
     else
       render :text=> false

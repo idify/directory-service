@@ -190,6 +190,7 @@ $(document).ready(function() {
 
     $('#category_keywords').tagsInput();
     $("#modal-window").modal('show');
+    $("#modal-window").find('.modal-dialog').addClass('verify_mobile_modal');
 
 
     $('.role_social_login').click(function(){
