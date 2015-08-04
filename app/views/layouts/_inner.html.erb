@@ -14,6 +14,14 @@
         <h3>Welcome, <span><%= current_user.email%></span></h3>
     <% end %>
   </div>
+
+  <header>
+    <div class="top"></div>
+    <ul class="top_nav">
+      <li><%= link_to 'Search', search_page_homes_path %></li>
+    </ul>
+  </header>
+
   <!--<div id="navbarCollapse" class="collapse navbar-collapse">-->
   <!--<ul class="nav navbar-nav pull-right">-->
   <!--<li>Welcome <%= current_user.role%></li>-->
@@ -59,7 +67,7 @@
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li style="margin-top: 15px">
+            <li style="margin-top: 15px; margin-bottom: 15px;">
               <%= link_to '<span class="fa fa-sign-out"></span> logout'.html_safe, destroy_user_session_path, :class=>'pull-right btn btn-warning', :method=>"delete", id: "sign_out"%>
             </li>
           </ul>
