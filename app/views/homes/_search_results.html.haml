@@ -1,0 +1,39 @@
+.row
+  %h3.heading_inner.margin_40px_0
+    -if @searched_results.blank?
+      ="No results found for #{@search_params}"
+    -else
+      ="Results for #{@search_params}"
+    %span.deco  
+  .clearfix
+  .col-sm-12
+    -if @searched_results.present?
+      .table.table-responsive
+        %table.table.results
+          %thead
+            %tr
+              %th Vendor
+              %th Price Range
+              %th Service Area
+          %tbody
+            -@searched_results.each do |result|
+              %tr
+                %td
+                  %a{:href => ""}
+                  %table
+                    %tr
+                      %td
+                        %span.vendor_profile_pic
+                          -if result.user.profile_pic.present?
+                            =image_tag result.user.profile_pic.logo.url(:thumb)
+                      %td
+                        %span
+                          -if result.name.present?
+                            =link_to result.name, category_path(result)
+                %td
+                  -if result.min_price.present? && result.max_price.present?
+                    ="Rs. #{result.min_price} to #{result.max_price}"
+                %td
+                  -if result.service_area.present?
+                    =result.service_area.split(", ").join(', ')
+      =will_paginate @searched_results

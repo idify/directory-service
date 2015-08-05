@@ -15,17 +15,19 @@
         .col-md-3.col-sm-4.col-xs-6.margin_10px_0_30px
           %ul.list-unstyled
             %li Hire
-            %li
-              =link_to 'Login', '/users/sign_in'
-            %li
-              =link_to 'Join us', '/users/sign_up'
+            -if current_user.blank?
+              %li
+                =link_to 'Login', '/users/sign_in'
+              %li
+                =link_to 'Join us', '/users/sign_up'
           .clearfix
         .clearfix.visible-xs
         .col-md-3.col-sm-4.col-xs-6.margin_10px_0_30px
           %ul.list-unstyled
             %li Request For
-            %li
-              =link_to 'Login', '/users/sign_in'
+            -if current_user.blank?
+              %li
+                =link_to 'Login', '/users/sign_in'
           .clearfix
         .col-md-3.col-sm-4.col-xs-6.margin_10px_0_30px
           %ul.list-unstyled

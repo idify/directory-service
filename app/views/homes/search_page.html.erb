@@ -21,9 +21,50 @@
   <%= csrf_meta_tags %>
 </head>
   <body role="document">
+      <header>
+        <div class="top"></div>
+        <ul class="top_nav">
+          <%if current_user.blank? %>
+              <li>
+                <%= link_to 'Login', '/users/sign_in' %>
+              </li>
+              <li>
+                <%= link_to '|', '#' %>
+              </li>
+              <li>
+                <%= link_to 'Register', '/users/sign_up' %>
+              </li>
+          <% end  %>
+
+          <%if current_user.present? %>
+            <% if current_user.provider == 'twitter' && current_user.is_verified==false && !current_user.is_twitter_email_verified? %>
+              <li><a href="/">Welcome,<%= current_user.first_name%></a></li>
+            <% else %>
+              <li><a href="/">Welcome,<%= current_user.email%></a></li>
+            <% end %>
+            <li>
+              <%= link_to '<span class="fa fa-sign-out"></span> logout'.html_safe, destroy_user_session_path, :class=>'pull-right', :method=>"delete"%>
+            </li>
+          <% end %>
+        </ul>
+        <div class="clearfix">
+          <div class="contact_details">
+            Mail us -
+            <a href="mailto:info@dhoomdhamaka.com">info@dhoomdhamaka.com</a>
+            <%= raw "&nbsp; &nbsp; &nbsp;" %>
+            Call us - +91 9876543210
+          </div>
+        </div>
+      </header>
+    </div>
+
     <div class="middle">
       <div class="col-sm-6 col-sm-offset-3 text-center">
-        <%= link_to image_tag('logo_big.png'), '/' %>
+        <%if current_user.blank? %>
+            <%= link_to image_tag('logo_big.png'), '/homes/index' %>
+        <% else  %>
+            <%= link_to image_tag('logo_big.png'), '/' %>
+        <% end %>
       </div>
       <div class="col-sm-6 col-sm-offset-3 text-center margin_top10px">
         <%=form_tag search_results_homes_path, method: :get do%>

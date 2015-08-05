@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     end
 
     unauthenticated :user do
-      root to: 'homes#index', :as=> "unauthenticated"
+      root to: 'homes#search_page', :as=> "unauthenticated"
     end
   end
 

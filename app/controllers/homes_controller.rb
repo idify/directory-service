@@ -1,7 +1,15 @@
 class HomesController < ApplicationController
   before_action :authenticate_user!, :only=>[:dashboard]
 
-  layout 'plain', :only=>[:search_results]
+  layout :set_layout
+
+  def set_layout
+    if current_user.blank? && params[:action] =='search_results'
+      'plain'
+    elsif current_user.present? && params[:action] =='search_results'
+      'application'
+    end
+  end
 
   def dashboard;end
 
