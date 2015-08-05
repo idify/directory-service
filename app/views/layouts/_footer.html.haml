@@ -4,52 +4,34 @@
       .row
         .col-md-3.col-sm-4.col-xs-6.margin_10px_0_30px
           %ul.list-unstyled
-            %li Wedding
+            %li Directory Service
             %li
-              %a{:href => ""} Vendor
+              =link_to "Disclaimer", '/disclaimer',:target=>"_blank"
             %li
-              %a{:href => ""} Venue
+              =link_to "Contact", '/contact_us',:target=>"_blank"
             %li
-              %a{:href => ""} Reception
-            %li
-              %a{:href => ""} Decoration
+              =link_to "Privacy Policy", '/privacy_policy',:target=>"_blank"
           .clearfix
         .col-md-3.col-sm-4.col-xs-6.margin_10px_0_30px
           %ul.list-unstyled
             %li Hire
             %li
-              %a{:href => ""} Cameraman
+              =link_to 'Login', '/users/sign_in'
             %li
-              %a{:href => ""} Cater
-            %li
-              %a{:href => ""} Jewellery
-            %li
-              %a{:href => ""} Transport
+              =link_to 'Join us', '/users/sign_up'
           .clearfix
         .clearfix.visible-xs
         .col-md-3.col-sm-4.col-xs-6.margin_10px_0_30px
           %ul.list-unstyled
             %li Request For
             %li
-              %a{:href => ""} Sweets
-            %li
-              %a{:href => ""} DJ
-            %li
-              %a{:href => ""} Spa
-            %li
-              %a{:href => ""} Wedding Gifts
+              =link_to 'Login', '/users/sign_in'
           .clearfix
         .col-md-3.col-sm-4.col-xs-6.margin_10px_0_30px
           %ul.list-unstyled
             %li Meet us Also on
             %li
-              %a{:href => ""} Facebook
-            %li
-              %a{:href => ""} Twitter
-            %li
-              %a{:href => ""} Google+
-            %li
-              %a{:href => ""} Blog
+              =link_to 'Facebook', "http://www.facebook.com"
           .clearfix
   .bottom
     .container-fluid
