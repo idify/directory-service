@@ -65,22 +65,30 @@
           <span id="basic-addon1" class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
           <%= f.email_field :email, autofocus: true, placeholder: 'Email', class: 'form-control' %>
         </div>
+        <label id="user_email-error" class="error" for="user_email" style="display: none"></label>
         <div class="clearfix margin_bottom10px"></div>
+
         <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i> </span>
           <%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder:"Password" %>
         </div>
+        <label id="user_password-error" class="error" for="user_password" style="display: none"></label>
         <div class="clearfix margin_bottom10px"></div>
+
         <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i> </span>
           <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder:"Confirm Password" %>
         </div>
+        <label id="user_password_confirmation-error" class="error" for="user_password_confirmation" style="display: none"></label>
         <div class="clearfix margin_bottom10px"></div>
+
         <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i> </span>
           <%= f.text_field :mobile, autofocus: true, class:"form-control", placeholder:"Mobile"%>
         </div>
+        <label id="user_mobile-error" class="error" for="user_mobile" style="display: none"></label>
         <div class="clearfix margin_bottom10px"></div>
+
           <%= f.submit "Sign Up", class:"btn btn-custom pull-right"%>
       <%end%>
 
