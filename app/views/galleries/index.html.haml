@@ -4,13 +4,13 @@
       %h3 Gallery
 .clearfix
 .dashboard_cont
-  .col-sm-12
+  .col-sm-12.pictures
     .h4='Pictures:'
     -unless current_user.images.nil?
       -current_user.images.each do |image|
         =image_tag image.photo.url(:thumb)
         =link_to '<span style="aria-hidden=true", class="glyphicon glyphicon-trash"></span>'.html_safe, {:controller=>'galleries', action: :delete_photo, id: image.id}, method: :delete,data: { confirm: 'Are you sure to delete this photo?' }
-    .clearfix.margin_top20px
+  .clearfix.margin_bottom30px
 
   .col-sm-12
     .clearfix.margin_top20px

@@ -1142,3 +1142,10 @@ label.error {
     margin-top: -125px;
     margin-left: -300px;
 }
+.margin_bottom30px{
+    margin-bottom: 30px;
+}
+.pictures img {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
