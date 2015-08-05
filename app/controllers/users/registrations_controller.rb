@@ -10,6 +10,34 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def edit
+
+  end
+
+  def update
+    super
+
+    if params[:user][:email].present? && current_user.email != params[:user][:email]
+      @user = User.find_by_email(params[:user][:email])
+
+      if @user.present?
+        @user.confirmed_at = nil
+        @user.send_confirmation_instructions
+      end
+    end
+
+    if params[:user][:mobile].present? && current_user.mobile.present? && current_user.mobile != params[:user][:mobile]
+      @user = User.find_by_email(params[:user][:email])
+
+      if @user.present?
+        @user.is_verified = false
+        @user.verification_code = nil
+        @user.save
+      end
+    end
+
+  end
+
   private
 
   def sign_up_params
