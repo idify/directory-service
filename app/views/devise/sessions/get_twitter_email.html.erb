@@ -1,4 +1,4 @@
-<% if current_user.present? && current_user.is_verified==false && current_user.provider == 'twitter'%>
+<% if current_user.present? && current_user.is_verified==false && current_user.provider == 'twitter' && current_user.is_twitter_email_verified == false%>
     <div class="get_twitter_email col-sm-6 pull-right">
         <h4>Please enter your email for further communication</h4>
             <input id="twitter_email" type="text" value="" placeholder="Enter email id"/>

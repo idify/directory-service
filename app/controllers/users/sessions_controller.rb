@@ -60,6 +60,7 @@ class Users::SessionsController < Devise::SessionsController
     emailRregex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
     session[:email_id] = params[:email_id]
     if User.find_by_email(session[:email_id]).blank? && !(params[:email_id]=~emailRregex).nil?
+      current_user.update_attributes(:is_twitter_email_verified=>true)
       render :text=> true
     elsif User.find_by_email(session[:email_id]).present?
       session[:email_id] = nil
