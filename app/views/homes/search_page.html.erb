@@ -66,6 +66,14 @@
             <%= link_to image_tag('logo_big.png'), '/' %>
         <% end %>
       </div>
+      <% flash.each do |name,msg|%>
+          <div class="col-lg-12 ">
+            <div class="alert alert-<%=name == 'notice' ? "success" : "danger"%>">
+              <%=msg%>
+              <a class="close" data-dismiss="alert">x</a>
+            </div>
+          </div>
+      <%end%>
       <div class="col-sm-6 col-sm-offset-3 text-center margin_top10px">
         <%=form_tag search_results_homes_path, method: :get do%>
           <div class="form-group">
