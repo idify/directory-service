@@ -1,19 +1,3 @@
-<!--<h2>Forgot your password?</h2>-->
-
-<!--<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>-->
-  <!--<%= devise_error_messages! %>-->
-
-  <!--<div class="form-group">-->
-    <%#= f.label :email %><br />
-    <!--<%= f.email_field :email, autofocus: true %>-->
-  <!--</div>-->
-
-  <!--<div class="actions">-->
-    <!--<%= f.submit "Send me reset password instructions" %>-->
-  <!--</div>-->
-<!--<% end %>-->
-
-<!--<%= render "devise/shared/links" %>-->
 <div class="container">
   <h3 class="heading_inner">Forgot your password?
     <span class="deco">&nbsp;</span>
@@ -37,6 +21,7 @@
               <span id="basic-addon1" class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
               <%= f.email_field :email, autofocus: true, placeholder:"Email", class:"form-control" %>
             </div>
+            <label id="user_email-error" class="error" for="user_email" style="display: none"></label>
 
             <div class="clearfix margin_bottom10px"></div>
 
@@ -75,13 +60,33 @@
         <h4 class="heading">Login With</h4>
       </div>
 
-      <div class="clearfix margin_bottom15px"></div>
-      <div class="col-sm-12"><%= link_to image_tag("google-Plus_login.png"), user_omniauth_authorize_path(:google_oauth2) %></div>
-      <div class="clearfix margin_bottom15px"></div>
-      <div class="col-sm-12"><%= link_to image_tag("facebook_login.png"), user_omniauth_authorize_path(:facebook) %></div>
-      <div class="clearfix margin_bottom15px"></div>
-      <div class="col-sm-12"><%= link_to image_tag("twitter_login.png"), user_omniauth_authorize_path(:twitter) %></div>
-      <div class="clearfix margin_bottom15px"></div>
+      <div class="field">
+        I'm
+        <label>
+          <%= radio_button_tag('role', 'customer', true, class: 'role_social_login')%>
+          Customer</label>
+        <label>
+          <%= radio_button_tag('role', 'vendor', false, class: 'role_social_login')%>
+          Vendor</label><br />
+      </div>
+      <div id="social_login_customer">
+        <div class="clearfix margin_bottom15px"></div>
+        <div class="col-sm-12"><%= link_to image_tag("google-Plus_login.png"), user_omniauth_authorize_path(:google_oauth2, :role=>'customer')  %></div>
+        <div class="clearfix margin_bottom15px"></div>
+        <div class="col-sm-12"><%= link_to image_tag("facebook_login.png"), user_omniauth_authorize_path(:facebook, :role=>'customer') %></div>
+        <div class="clearfix margin_bottom15px"></div>
+        <div class="col-sm-12"><%= link_to image_tag("twitter_login.png"), user_omniauth_authorize_path(:twitter, :role=>'customer') %></div>
+        <div class="clearfix margin_bottom15px"></div>
+      </div>
+      <div id="social_login_vendor" style="display: none;">
+        <div class="clearfix margin_bottom15px"></div>
+        <div class="col-sm-12"><%= link_to image_tag("google-Plus_login.png"), user_omniauth_authorize_path(:google_oauth2, :role=>'vendor')  %></div>
+        <div class="clearfix margin_bottom15px"></div>
+        <div class="col-sm-12"><%= link_to image_tag("facebook_login.png"), user_omniauth_authorize_path(:facebook, :role=>'vendor') %></div>
+        <div class="clearfix margin_bottom15px"></div>
+        <div class="col-sm-12"><%= link_to image_tag("twitter_login.png"), user_omniauth_authorize_path(:twitter, :role=>'vendor') %></div>
+        <div class="clearfix margin_bottom15px"></div>
+      </div>
     </div>
   </div>
 
