@@ -1,7 +1,7 @@
 =form_for @wishlist do |f|
   -if @wishlist.errors.any?
     %h5
-      =pluralize(@wishlist.errors.count, "error") +' '+ 'prohibited this guest from being saved:'
+      =pluralize(@wishlist.errors.count, "error") +' '+ 'prohibited this wishlist from being saved:'
     %div.alert.alert-danger
       - @wishlist.errors.full_messages.each do |msg|
         = msg

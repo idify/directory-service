@@ -1,50 +1,57 @@
-=form_for @subsite do |f|
-  -if @subsite.errors.any?
-    %h5
-      =pluralize(@subsite.errors.count, "error") +' '+ 'prohibited this guest from being saved:'
-    %div.alert.alert-danger
-      - @subsite.errors.full_messages.each do |msg|
-        = msg
-  .form-group
-    %label.col-sm-2 Select Your Template :
-    .col-sm-3.text-center
-      %label
-        =f.radio_button :template_type, 'vintage'
-        Vintage
-        =image_tag("vintage_template.jpg")
-    .col-sm-3.text-center
-      %label
-        =f.radio_button :template_type, 'Traditional'
-        Traditional
-        =image_tag("traditional.jpg")
-    .col-sm-3.text-center
-      %label
-        =f.radio_button :template_type, 'Simple'
-        Simple
-        =image_tag("project1.jpg")
+.dashboard_cont
+  =form_for @subsite do |f|
+    -if @subsite.errors.any?
+      %h5
+        =pluralize(@subsite.errors.count, "error") +' '+ 'prohibited this subsite information from being saved:'
+      %div.alert.alert-danger
+        - @subsite.errors.full_messages.each do |msg|
+          = msg
+    .form-group
+      %label.col-sm-2 Select Your Template :
+      .col-sm-3.text-center
+        %label
+          =f.radio_button :template_type, 'vintage'
+          Vintage
+          =image_tag("vintage_template.jpg")
+      .col-sm-3.text-center
+        %label
+          =f.radio_button :template_type, 'Traditional'
+          Traditional
+          =image_tag("traditional.jpg")
+      .col-sm-3.text-center
+        %label
+          =f.radio_button :template_type, 'Simple'
+          Simple
+          =image_tag("project1.jpg")
+      .margin_top20.clearfix
     .margin_top20.clearfix
-  .margin_top20.clearfix
-  .form-group
-    %label.col-sm-3{:for => "domain"} Domain Name
-    .col-sm-5
-      .input-group
-        %span.input-group-addon='http://'
-        =f.text_field :domain_name, class: 'form-control', required: true
-        %span.input-group-addon='.directory-service.com'
-    .clearfix
-  .form-group
-    %label.col-sm-3{:for => "contact_email"} Contact Email
-    .col-sm-3.margin-bottom-5
-      =f.text_field :contact_email, class: 'form-control', required: true
-    .clearfix
-  .form-group
-    %label.col-sm-3{:for => "invitees"} Invitees
-    .col-sm-6.margin-bottom-5
-      =f.text_field :invitees, name: "subsite[invitees][]", class: 'form-control', placeholder:"Add invitess"
-    .clearfix
-  .col-lg-6.text-right
-    -if @subsite.new_record?
-      =f.submit 'Create',:class=>"btn btn-primary"
-    -else
-      =f.submit 'Update',:class=>"btn btn-primary"
-  .clearfix.margin_bottom15px
+    .form-group
+      %label.col-sm-3{:for => "domain"} Domain Name
+      .col-sm-5
+        .input-group
+          %span.input-group-addon='http://'
+          =f.text_field :domain_name, class: 'form-control', required: true
+          %span.input-group-addon='.dhoomdhamaka.com'
+        %label#subsite_domain_name-error.error{:for => "subsite_domain_name", :style => "display: none"}
+      .clearfix
+    .form-group
+      %label.col-sm-3{:for => "contact_email"} Contact Email
+      .col-sm-3.margin-bottom-5
+        =f.text_field :contact_email, class: 'form-control', required: true
+      .clearfix
+    .form-group
+      %label.col-sm-3{:for => "contact_email"} Contact Address
+      .col-sm-3.margin-bottom-5
+        =f.text_field :contact_address, class: 'form-control', required: true
+      .clearfix
+    .form-group
+      %label.col-sm-3{:for => "invitees"} Invitees
+      .col-sm-6.margin-bottom-5
+        =f.text_field :invitees, name: "subsite[invitees][]", class: 'form-control', placeholder:"Add invitess"
+      .clearfix
+    .col-lg-6.text-right
+      -if @subsite.new_record?
+        =f.submit 'Create',:class=>"btn btn-primary"
+      -else
+        =f.submit 'Update',:class=>"btn btn-primary"
+    .clearfix.margin_bottom15px

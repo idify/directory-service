@@ -38,9 +38,9 @@
 
           <%if current_user.present? %>
             <% if current_user.provider == 'twitter' && current_user.is_verified==false && !current_user.is_twitter_email_verified? %>
-              <li><a href="/">Welcome,<%= current_user.first_name%></a></li>
+              <li><a href="/">Welcome, <%= current_user.first_name%></a></li>
             <% else %>
-              <li><a href="/">Welcome,<%= current_user.email%></a></li>
+              <li><a href="/">Welcome, <%= current_user.email%></a></li>
             <% end %>
             <li>
               <%= link_to '<span class="fa fa-sign-out"></span> logout'.html_safe, destroy_user_session_path, :class=>'pull-right', :method=>"delete"%>

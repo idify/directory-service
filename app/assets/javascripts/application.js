@@ -241,6 +241,9 @@ $(document).ready(function() {
             "subsite[contact_email]": {
                 required: true
             },
+            "subsite[contact_address]": {
+                required: true
+            },
             "subsite[invitees][]": {
                 required: true
             }
