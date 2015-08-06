@@ -13,7 +13,11 @@ class HomesController < ApplicationController
 
   def dashboard;end
 
-  def index;end
+  def index
+    if current_user.present?
+      redirect_to root_path
+    end
+  end
 
   def search_page
     render layout: false
