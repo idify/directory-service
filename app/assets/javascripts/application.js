@@ -24,6 +24,7 @@
 //= require jquery.tagsinput
 //= require jquery.raty
 //= require ratyrate
+//= require galleria-1.4.2.min
 
 $(document).ready(function() {
 

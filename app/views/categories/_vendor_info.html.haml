@@ -90,10 +90,10 @@
               -#%li{:role => "presentation"}
               -#  %a{"aria-controls" => "streaming", "data-toggle" => "tab", :href => "#streaming", :role => "tab"} Video URLs
               .tab-content.padding_15px
-                #pictures.tab-pane.active{:role => "tabpanel"}
-                  -unless @category.user.images.nil?
-                    -@category.user.images.each do |image|
-                      .col-sm-4.text-center
+                -if @category.user.images.present?
+                  #pictures.tab-pane.active{:role => "tabpanel"}
+                    %div.galleria
+                      -@category.user.images.each do |image|
                         =image_tag image.photo.url(:original)
                 #videos.tab-pane{:role => "tabpanel"}
                   -unless @category.user.videos.nil?
@@ -115,3 +115,9 @@
                 -#        %p
                 -#          %iframe{:allowfullscreen => "", :frameborder => "0", :src => video_url.url, :width => "200"}
                 .clearfix.margin_bottom15px
+:javascript
+  Galleria.loadTheme('/assets/galleria.classic.min.js');
+  Galleria.run('.galleria');
+  Galleria.configure({
+    lightbox: true
+  });
