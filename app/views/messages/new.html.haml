@@ -6,15 +6,24 @@
       = link_to 'Your Conversations', conversations_path, class: 'btn btn-lg btn-primary'
   .clearfix
 .dashboard_cont
-  = form_tag messages_path, method: :post do
+  = form_tag messages_path, method: :post, multipart: true  do
     .col-sm-12
       .form-group
         = label_tag 'message[subject]', 'Subject'
         = text_field_tag 'message[subject]', nil, class: 'form-control', required: true
+        .clearfix
       .form-group
         = label_tag 'message[body]', 'Message'
         = text_area_tag 'message[body]', nil, cols: 3, class: 'form-control', required: true
+        .clearfix
       .form-group
         = label_tag 'recipients', 'Choose recipients'
         = select_tag 'recipients', recipients_options(@chosen_recipient), multiple: true, class: 'form-control chosen-it'
+        .clearfix
+      .form-group
+        = label_tag 'attachment', 'Attach files'
+        = file_field_tag :attachment
+        .clearfix
       = submit_tag 'Send', class: 'btn btn-primary'
+  .clearfix
+.clearfix

@@ -26,14 +26,6 @@ GIT
       sass-rails
 
 GIT
-  remote: git://github.com/lacco/mailboxer.git
-  revision: d4f0e9c70e29fcc5c2b4b7c87379e1830d45a367
-  specs:
-    mailboxer (0.12.5)
-      carrierwave (>= 0.5.8)
-      rails (>= 3.2.0)
-
-GIT
   remote: git://github.com/qpowell/chosen-rails.git
   revision: d23aba36d1dab2402b783befca7846b80b488ca9
   specs:
@@ -68,6 +60,14 @@ GIT
   revision: 6e74ba8636bcea90c56a52a9cf78ca1fa4ca470f
   specs:
     ratyrate (1.2.2.alpha)
+
+PATH
+  remote: vendor/mailboxer
+  specs:
+    mailboxer (0.13.0)
+      carrierwave (>= 0.5.8)
+      foreigner (>= 0.9.1)
+      rails (>= 3.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -177,6 +177,8 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
+    foreigner (1.7.4)
+      activerecord (>= 3.0.0)
     formtastic (3.1.3)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.4.1)
@@ -430,6 +432,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   less-rails
+  mail
   mailboxer!
   mysql2
   omniauth

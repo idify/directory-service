@@ -4,7 +4,7 @@ Mailboxer.setup do |config|
   config.uses_emails = true
 
   #Configures the default from for emails sent for Messages and Notifications
-  config.default_from = "no-reply@mailboxer.com"
+  config.default_from = "test1@idifysolutions.com"
 
   #Configures the methods needed by mailboxer
   config.email_method = :mailboxer_email
@@ -18,4 +18,10 @@ Mailboxer.setup do |config|
   #Configures maximum length of the message subject and body
   config.subject_max_length = 255
   config.body_max_length = 32000
+end
+
+Mailboxer::Message.class_eval do
+  has_attached_file :document
+  validates_attachment_content_type :document, :content_type => ['application/pdf', 'application/msword','application/vnd.ms-excel','text/plain', "image/jpeg", "image/gif", "image/png"]
+  validates_attachment :document
 end
