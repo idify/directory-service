@@ -73,7 +73,7 @@ class CategoriesController < ApplicationController
 
   def autocomplete_locations
     @terms = params[:term].split(', ')
-    @locations = Location.order(:name).where("name ILIKE ?", "%#{@terms.last}%")
+    @locations = Location.order(:name).where("name LIKE ?", "%#{@terms.last}%")
     respond_to do |format|
       format.html
       format.json {

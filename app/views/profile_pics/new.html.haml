@@ -2,8 +2,9 @@
   .row
     .col-sm-6
       %h3 Add Business Images
-    .col-sm-6.text-right
-      =link_to 'See Business Images', profile_pics_path, :class=>"btn btn-primary"
+    -if current_user.profile_pic.present?
+      .col-sm-6.text-right
+        =link_to 'See Business Images', profile_pics_path, :class=>"btn btn-primary"
   .clearfix
 .dashboard_cont
   =form_for @profile_pic, :html => { :multipart => true } do |f|
