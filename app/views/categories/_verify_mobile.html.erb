@@ -17,6 +17,7 @@
             <% else %>
                 <% if session[:mobile_number].present? %>
                     <h4><%= "#{session[:mobile_number]}" %></h4>
+                    <input id="mobile_number" type="hidden" value="<%=session[:mobile_number]%>" placeholder="Enter mobile number"/>
                 <% else %>
                     <input id="mobile_number" type="text" value="" placeholder="Enter mobile number"/>
                 <% end  %>
