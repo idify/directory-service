@@ -5,6 +5,8 @@ require 'rexml/document'
 
 class ImportContactsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def authenticate
     @title = "Google Authetication"
 
@@ -59,34 +61,23 @@ class ImportContactsController < ApplicationController
     @google_friends = Invite.where(:invite_source => "Gmail", :user_id => current_user.id)
   end
 
-  def multiple_mail
-    results = params[:ids].split(/,/)
-    results.each do |result|
-      @contact = Invite.find(result)
+  def send_email_to_contacts
+    respond_to do |format|
+      invitees_emails_list = params[:ids].split(/,/)
 
-      begin
-        InvitationMailer.invitation_email(@contact,current_user).deliver
-      rescue Exception => e
-        puts e.message
-      end
-    end
-    redirect_to send_invite_import_contacts_path, notice: "Invitation Mail send"
-  end
+      invitees_emails_list.each do |invitee|
+        @contact = Invite.find(invitee)
 
-  def invitation_mail
-    if params[:contact].present?
-      @contact = Invite.find(params[:contact])
-
-      begin
-        if @contact.present?
-          InvitationMailer.invitation_email(@contact,current_user).deliver
-          redirect_to send_invite_import_contacts_path, notice: "Invitation sent."
-        else
-          redirect_to :back, notice: 'Invitation not sent.'
+        begin
+          if @contact.present? && InvitationMailer.invitation_email(@contact,current_user).deliver
+            format.html
+            format.json  { render :json => 'Invitation Mail has been sent to your contacts.'}
+          end
+        rescue Exception => e
+          puts e.message
+          format.html
+          format.json  { render :json => 'Invitation Mail has not been sent to your contacts.'}
         end
-      rescue Exception => e
-        puts e.message
-        redirect_to :back
       end
     end
   end
