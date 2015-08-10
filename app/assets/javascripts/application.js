@@ -339,4 +339,37 @@ $(document).ready(function() {
             }
         }
     });
+
+    //validations on Business info page
+    $("#new_category").validate({
+        rules: {
+            "category[name]": {
+                required: true
+            },
+            "category[address]": {
+                required: true
+            },
+            "category[location]": {
+                required: true
+            },
+            "category[category_type]": {
+                required: true
+            },
+            "category[service_area]": {
+                required: true
+            },
+            "category[no_of_employees]": {
+                required: true
+            },
+            "category[min_price]": {
+                required: true
+            },
+            "category[max_price]": {
+                required: true
+            },
+            "category[description]": {
+                required: true
+            }
+        }
+    });
 });
