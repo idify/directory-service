@@ -220,6 +220,7 @@ $(document).ready(function() {
             }
         }
     });
+
     $("#new_gallery").validate({
         ignore: "",
         rules: {
@@ -233,6 +234,7 @@ $(document).ready(function() {
             }
         }
     });
+
     $("#new_subsite").validate({
         rules: {
 
@@ -250,6 +252,7 @@ $(document).ready(function() {
             }
         }
     });
+
     $("#new_wishlist").validate({
         rules: {
 
@@ -279,7 +282,8 @@ $(document).ready(function() {
 
         }
     });
-        $("#sign_up").validate({
+
+    $("#sign_up").validate({
         rules: {
 
             "user[email]": {
@@ -297,31 +301,31 @@ $(document).ready(function() {
             "user[mobile]": {
                 required: true,
                 number: true,
-                minlength: 10, 
+                minlength: 10,
                 maxlength: 10
             }
         },
         messages: {
-        "user[email]": {
-                required: 'Email should be present.',
-                email: 'Email should be in valid format.',
-                remote: "This email has already been taken."
-            },
-        "user[password]": {
-            required: "Please provide a password"
+            "user[email]": {
+                    required: 'Email should be present.',
+                    email: 'Email should be in valid format.',
+                    remote: "This email has already been taken."
+                },
+            "user[password]": {
+                required: "Please provide a password"
 
-            
-        },
-        "user[password_confirmation]": {
-            required: "Please provide a confirm password",
-            equalTo: "Password should match with above"
-        },
-        "user[mobile]": {
-            required: "Please enter your mobile number",
-            number: "Please enter number only",
-            minlength: "Length must be 10", 
-            maxlength: "Length must be 10"
-        }
+
+            },
+            "user[password_confirmation]": {
+                required: "Please provide a confirm password",
+                equalTo: "Password should match with above"
+            },
+            "user[mobile]": {
+                required: "Please enter your mobile number",
+                number: "Please enter number only",
+                minlength: "Length must be 10",
+                maxlength: "Length must be 10"
+            }
         }
     });
 
@@ -359,17 +363,25 @@ $(document).ready(function() {
                 required: true
             },
             "category[no_of_employees]": {
-                required: true
+                required: true,
+                number: true
             },
             "category[min_price]": {
-                required: true
+                required: true,
+                greaterThanZero : true
             },
             "category[max_price]": {
-                required: true
+                required: true,
+                greaterThanZero : true
             },
             "category[description]": {
                 required: true
+
             }
         }
     });
 });
+
+jQuery.validator.addMethod("greaterThanZero", function(value, element) {
+    return this.optional(element) || (parseFloat(value) > 0);
+}, "value must be greater than zero");
