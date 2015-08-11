@@ -96,6 +96,7 @@ Rails.application.routes.draw do
       get 'authenticate'
       get 'send_invite'
       post 'send_email_to_contacts'
+      get  'facebook_callback'
     end
   end
 

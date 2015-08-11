@@ -177,6 +177,8 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
+    figaro (1.1.1)
+      thor (~> 0.14)
     foreigner (1.7.4)
       activerecord (>= 3.0.0)
     formtastic (3.1.3)
@@ -256,7 +258,6 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.3.18)
     naught (1.0.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -285,10 +286,9 @@ GEM
       json (~> 1.3)
       omniauth-oauth (~> 1.1)
     orm_adapter (0.5.0)
+    pg (0.18.2)
     polyamorous (1.2.0)
       activerecord (>= 3.0)
-    puma (2.11.1)
-      rack (>= 1.1, < 2.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -426,6 +426,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   compass-rails!
   devise
+  figaro
   friendly_id
   gravatar_image_tag
   haml-rails
@@ -436,13 +437,12 @@ DEPENDENCIES
   less-rails
   mail
   mailboxer!
-  mysql2
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-twitter
   paperclip!
-  puma
+  pg
   rails (= 4.2.1)
   rails_12factor
   ratyrate!

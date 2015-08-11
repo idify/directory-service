@@ -82,4 +82,11 @@ class ImportContactsController < ApplicationController
     end
   end
 
+  def facebook_callback
+    @user = User.find_by_uid(params[:uid])
+    flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
+    sign_in(:user, @user, { :bypass => true })
+    redirect_to root_path
+  end
+
 end
