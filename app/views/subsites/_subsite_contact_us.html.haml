@@ -1,0 +1,55 @@
+- flash.each do |name,msg|
+  .col-lg-12
+    %div{:class => "alert alert-#{name == 'notice' ? "success" : "danger"}"}
+      = msg
+      %a.close{"data-dismiss" => "alert"} x
+=flash[:message]
+.col-sm-12
+  %h4
+    ="We're looking forward to celebrating with you!"
+    .clearfix
+    ='Email:'
+    .clearfix
+    =mail_to @subsite.user.email, @subsite.user.email
+    .clearfix
+    ='or use the contact form below'
+.clearfix.margin_bottom10px
+=form_for(:subsite_contact, url:subsite_contact_us_subsites_path) do |contact_us_form|
+  .form-group
+    .col-sm-2
+      =contact_us_form.label :name, 'Name'
+    .col-sm-3
+      =contact_us_form.text_field :name, class:"form-control"
+    .clearfix
+
+  .form-group
+    .col-sm-2
+      =contact_us_form.label :email, 'Email'
+    .col-sm-3
+      =contact_us_form.email_field :email, class:"form-control"
+    .clearfix
+
+  .form-group
+    .col-sm-2
+      =contact_us_form.label :subject, 'Subject'
+    .col-sm-3
+      =contact_us_form.text_field :subject, class:"form-control"
+    .clearfix
+
+  .form-group
+    .col-sm-2
+      =contact_us_form.label :message, 'Message'
+    .col-sm-3
+      =contact_us_form.text_area :message, class:"form-control"
+    .clearfix
+
+  .form-group
+    .col-sm-2
+      %label='Captcha'
+    .col-sm-3
+      = show_simple_captcha
+    .clearfix
+
+  .col-lg-5.text-right
+    =contact_us_form.submit 'Send',:class=>"btn btn-primary"
+  .clearfix.margin_bottom100

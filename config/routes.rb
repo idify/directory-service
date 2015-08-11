@@ -82,7 +82,11 @@ Rails.application.routes.draw do
 
   #resources :user_keywords
 
-  resources :subsites
+  resources :subsites do
+    collection do
+      post 'subsite_contact_us'
+    end
+  end
 
   resources :wishlists
 
