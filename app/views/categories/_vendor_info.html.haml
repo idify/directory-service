@@ -7,7 +7,7 @@
     .clearfix
     .col-sm-12
       .header_img
-        -if @category.user.profile_pic.present?
+        -if @category.user.present? && @category.user.profile_pic.present?
           =image_tag @category.user.profile_pic.header_image.url(:original), class: "img-responsive"
         -else
           =default_header_image
