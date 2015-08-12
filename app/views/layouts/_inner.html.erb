@@ -8,7 +8,7 @@
   </div>
 
   <div class="col-sm-5 user_name">
-    <% if current_user.provider == 'twitter' && current_user.is_verified==false %>
+    <% if (current_user.provider == 'twitter' || current_user.provider == 'facebook') && current_user.is_verified==false && (!current_user.is_twitter_email_verified? || !current_user.is_facebook_email_verified?) %>
         <h3>Welcome, <span><%= current_user.first_name%></span></h3>
     <% else %>
         <h3>Welcome, <span><%= current_user.email%></span></h3>
