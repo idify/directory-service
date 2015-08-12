@@ -37,7 +37,7 @@
           <% end  %>
 
           <%if current_user.present? %>
-            <% if current_user.provider == 'twitter' && current_user.is_verified==false && !current_user.is_twitter_email_verified? %>
+            <% if (current_user.provider == 'twitter' || current_user.provider == 'facebook') && current_user.is_verified==false && (!current_user.is_twitter_email_verified? || !current_user.is_facebook_email_verified?) %>
               <li><a href="/">Welcome, <%= current_user.first_name%></a></li>
             <% else %>
               <li><a href="/">Welcome, <%= current_user.email%></a></li>
