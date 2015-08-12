@@ -12,7 +12,7 @@
         -else
           =default_header_image
       .bar_img
-        -if @category.user.profile_pic.present?
+        -if @category.user.present? && @category.user.profile_pic.present?
           =image_tag @category.user.profile_pic.logo.url(:original)
         -else
           =default_logo_image
