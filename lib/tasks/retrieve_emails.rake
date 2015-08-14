@@ -2,22 +2,28 @@ namespace :retrieve_emails do
   desc "Rake task to retrieve emails replies"
 
   task :send => :environment do
-    Mail.defaults do
-      retriever_method :pop3, :address    => "pop.gmail.com",
-                       :port       => 995,
-                       :user_name  => 'test1@idifysolutions.com',
-                       :password   => 'd1lsedosti',
-                       :enable_ssl => true
+    Mailman.config.ignore_stdin = true
+    Mailman.config.poll_interval = 300  # change this number as per your needs. Default is 60 seconds
+
+    Mailman.config.pop3 = {
+        server: 'pop.gmail.com',
+        port: 995,
+        ssl: true,
+        username: "test1@idifysolutions.com",
+        password: "d1lsedosti"
+    }
+
+    Mailman::Application.run do
+      default do
+        begin
+          if message.subject.present? && message.subject.to_s.include?('Directory-service')
+            MessageReply.save_email_replies(message)
+          end
+        rescue Exception => e
+          Mailman.logger.error "Exception occurred while receiving message:n#{message}"
+          Mailman.logger.error [e, *e.backtrace].join("n")
+        end
+      end
     end
-
-    emails = Mail.first
-    # # all_emails.each do |email|
-    # #   puts email.subject
-    # # end
-    puts emails.inspect
-
-    # emails = Mail.find(:what => :last, :count => 10, :order => :asc)
-    # puts emails
-
   end
 end

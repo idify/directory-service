@@ -56,13 +56,13 @@ module Mailboxer
       end
 
       #Sends a notification to the messageable
-      def notify(subject,body,obj = nil,sanitize_text=true,notification_code=nil,send_mail=true,sender=nil, attachment)
+      def notify(subject,body,obj = nil,sanitize_text=true,notification_code=nil,send_mail=true,sender=nil, attachment=nil)
         Mailboxer::Notification.notify_all([self],subject,body,obj,sanitize_text,notification_code,send_mail,sender,attachment)
       end
 
       #Sends a messages, starting a new conversation, with the messageable
       #as originator
-      def send_message(recipients, msg_body, subject, sanitize_text=true, attachment)
+      def send_message(recipients, msg_body, subject, sanitize_text=true, attachment=nil)
         convo = Mailboxer::ConversationBuilder.new({
           :subject    => subject,
           :created_at => Time.now,

@@ -5,9 +5,9 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
-#gem 'mysql2'
-#gem 'puma'
-gem 'pg'
+gem 'mysql2'
+gem 'puma'
+#gem 'pg'
 gem 'devise'
 gem "haml-rails"
 # Use SCSS for stylesheets
@@ -79,6 +79,7 @@ gem "whenever"
 gem 'rmagick'
 gem 'jquery-fileupload-rails'
 gem 'ratyrate', github: 'wazery/ratyrate'
-gem 'mail'
 gem 'simple_captcha2', require: 'simple_captcha'
 gem "figaro"
+gem "mailman"
+gem "email_reply_parser"

@@ -15,7 +15,7 @@ class Mailboxer::MessageMailer < Mailboxer::BaseMailer
     @message  = message
     @receiver = receiver
     set_subject(message)
-    if @message.document.present?
+    if @message.document_file_name.present?
       attachments["#{@message.document}"] = File.read("#{Rails.root}/public#{@message.document.url}")
     end
     mail :to => receiver.send(Mailboxer.email_method, message),

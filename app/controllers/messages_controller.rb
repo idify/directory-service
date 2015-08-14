@@ -8,7 +8,8 @@ class MessagesController < ApplicationController
 
   def create
     recipients = User.where(id: params['recipients'])
-    conversation = current_user.send_message(recipients, params[:message][:body], params[:message][:subject], params[:attachment]).conversation
+    attachment_params = params[:attachment].present? ? params[:attachment] : nil
+    conversation = current_user.send_message(recipients, params[:message][:body], "#{params[:message][:subject]}-Directory-service:#{Time.now}", attachment_params).conversation
     flash[:success] = "Message has been sent!"
     redirect_to conversation_path(conversation)
   end
